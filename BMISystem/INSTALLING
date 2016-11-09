@@ -1,0 +1,11 @@
+=== Requirements ===
+ * MYSQL >= 5.7.14
+ * Pivotal Server >= 3.1
+
+=== Linux/BSD ===
+
+ 
+=== Windows ===
+ * Install the appropriate MYSQL version as x64 or x86_64.
+ * Install the appropriate Pivotal Server version.
+ * Insert the project into the 'wtpwebapps' folder of the Pivotal Server.

@@ -1,0 +1,28 @@
+Version 0.11 (changes from BMI Calculator 0.1) - Future Release planned to 25 April 2016:
+* gui: Integrating HTML instead of JSP.
+* gui: Registration page is working but graphical enhancement is needed.
+* bug: Login page is not working as a standard login page. Back-end user session codes has some problems so login functions should be developed.
+* bug: Food addition page is working but it can't get the user's session because of the bugs from login page.
+* gui, added: Showing user's foods function is created but a graphical food page should be created.
+* added: Connecting the USDA database.
+* gui, added, scripts: Inserting gifs into the HTML pages.
+
+Version 0.1 (first version) - Released 08 April 2016:
+* all: Creating a Spring Legacy Project.
+* added: Inserting service, serviceImpl, model, domain, domain.rowmapper, and controller packages.
+* added: Defining User, UserMapping, AppController, Food and AppServiceImpl classes.
+* added: Writing User Queries inside the AppServiceImpl class.
+* added: Writing Food Queries inside the AppServiceImpl class.
+* added: Inserting controllers.
+* added: Defining AppService interface to reach AppServiceImpl class easily and properly.
+* gui, added: Creating .jsp graphical views which use the system.
+
+### Change tags
+* all: A huge change that affects the whole project.
+* patches: A patch is fixed.
+* install: Installation fixes.
+* gui: changes and fixes in the gui.
+* scripts: a script is changed.
+* added: a file is added.
+* updated: a file is updated.
+* bug: a bug is fixed.
