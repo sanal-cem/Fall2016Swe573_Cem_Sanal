@@ -1,0 +1,1 @@
+<h2 align="center">Adding New Food Failed</h2>
