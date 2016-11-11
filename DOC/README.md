@@ -4,7 +4,7 @@ Documentation, tutorials, ... can be found on https://github.com/sanal-cem/Fall2
 See also my issues and my wiki.
 
 ```
-I had to make a fresh start because I started to use Git Gui. After pushing with "Force Overwrite Existing Branch" option, I started again with the first commit.
+I had to make a fresh start because I started to use Git Gui and forgot to fetch the old repo from GitHub. After pushing with "Force Overwrite Existing Branch" option, I started again with the first commit.
 ```
 
 ## Project Definition

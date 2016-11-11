@@ -20,52 +20,46 @@ public class AppController {
 		this.appService = appService;
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/logreg")
 	public String loginForm(Model model, User login) {
 		model.addAttribute("login", login);
-		return "user/login";
+		return "logreg";
 	}
 	
 	@RequestMapping("/loginSuccess")
 	public String loginSuccessForm(Model model,
 			@ModelAttribute("login") User login) {
 		if(appService.login(login)) {
-			return "user/loginSuccess";
+			return "loginSuccess";
 		}
-		return "user/loginFailed";
+		return "loginFailed";
 	}
 	
 	@RequestMapping("/loginFailed")
 	public String loginFailedForm(Model model,
 			@ModelAttribute("login") User login) {
-		return "user/loginFailed";
-	}
-
-	@RequestMapping("/registration")
-	public String registForm(Model model, User registration) {
-		model.addAttribute("registration", registration);
-		return "user/registration";
+		return "loginFailed";
 	}
 
 	@RequestMapping("/registration/regSuccess")
 	public String regSuccessForm(Model model,
-			@ModelAttribute("registration") User registration) {
-		if(appService.addUser(registration)) {
-			return "user/regSuccess";
+			@ModelAttribute("login") User login) {
+		if(appService.addUser(login)) {
+			return "regSuccess";
 		}
-		return "user/regFailed";
+		return "regFailed";
 	}
 	
 	@RequestMapping("/registration/regFailed")
 	public String regFailedForm(Model model,
 			@ModelAttribute("login") User login) {
-		return "user/regFailed";
+		return "regFailed";
 	}
 	
 	@RequestMapping("/newfood")
 	public String foodForm(Model model, Food food) {
 		model.addAttribute("food", food);
-		return "user/newFood";
+		return "newFood";
 	}
 	
 	@RequestMapping("/newfood/newFoodSuccess")

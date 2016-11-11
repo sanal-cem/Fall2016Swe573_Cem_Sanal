@@ -1,4 +1,4 @@
 
 <%
-	response.sendRedirect("login");
+	response.sendRedirect("logreg");
 %>

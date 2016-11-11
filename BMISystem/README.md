@@ -41,7 +41,11 @@ Ongoing developemnts and completed developments are briefly described in 'Projec
 Java based [Spring Framework](http://projects.spring.io/spring-framework/) will be used to develop project with security.
 Spring Tool Suite - The Eclipse-based development environment for building Spring applications. will be used.
 
-[Bootstrap Framework](http://getbootstrap.com) will be used for providing cool buttons, and solving scalability issue for most devices.
+[JQuery](http://jquery.com) used for writing smaller and better scripts and effects.
+
+[JQuery UI](http://jqueryui.com) used for providing cool buttons and effects.
+
+[Bootstrap](http://getbootstrap.com/getting-started/#download) is used to provide much cool buttons, and solves scalability issue for most devices.
 
 [MYSQL](http://www.mysql.com) will be used as a database. MYSQL should be sufficient for that small scale project.
 
