@@ -19,7 +19,7 @@ Body Mass Index (BMI) is simply a guideline to track weight issues. It is a meas
 
 ## Version
 
-BMI Calculator v0.1
+BMI Calculator v0.11
 
 ## Known bugs
 
