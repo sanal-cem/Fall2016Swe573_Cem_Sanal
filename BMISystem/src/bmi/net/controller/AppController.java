@@ -21,59 +21,79 @@ public class AppController {
 	}
 	
 	@RequestMapping("/logreg")
-	public String loginForm(Model model, User login) {
-		model.addAttribute("login", login);
+	public String logRegForm(Model model, User logreg) {
+		model.addAttribute("logreg", logreg);
 		return "logreg";
+	}
+	
+	//bir þekilde kaldýrýlmalý.
+	@RequestMapping("/regSuccess/logreg")
+	public String logRegSuccessForm(Model model, User logreg) {
+		model.addAttribute("logreg", logreg);
+		return "logreg";
+	}
+	
+	//bir þekilde kaldýrýlmalý.
+	@RequestMapping("/loginFailed/logreg")
+	public String logFailedForm(Model model, User logreg) {
+		model.addAttribute("logreg", logreg);
+		return "logreg";
+	}
+	
+	@RequestMapping("/reg")
+	public String loginForm(Model model, User reg) {
+		model.addAttribute("reg", reg);
+		return appService.reg(reg);
+	}
+	
+	@RequestMapping("/login")
+	public String loginFunc(Model model, User login) {
+		model.addAttribute("login", login);
+		return appService.login(login);
 	}
 	
 	@RequestMapping("/loginSuccess")
 	public String loginSuccessForm(Model model,
-			@ModelAttribute("login") User login) {
-		if(appService.login(login)) {
-			return "loginSuccess";
+			@ModelAttribute("logreg") User logreg) {
+		return "loginSuccess";
 		}
-		return "loginFailed";
-	}
 	
 	@RequestMapping("/loginFailed")
 	public String loginFailedForm(Model model,
-			@ModelAttribute("login") User login) {
+			@ModelAttribute("logreg") User logreg) {
 		return "loginFailed";
 	}
-
-	@RequestMapping("/registration/regSuccess")
+	
+	@RequestMapping("/regSuccess")
 	public String regSuccessForm(Model model,
-			@ModelAttribute("login") User login) {
-		if(appService.addUser(login)) {
-			return "regSuccess";
-		}
-		return "regFailed";
+			@ModelAttribute("logreg") User logreg) {
+		return "regSuccess";
 	}
 	
-	@RequestMapping("/registration/regFailed")
+	@RequestMapping("/regFailed")
 	public String regFailedForm(Model model,
-			@ModelAttribute("login") User login) {
+			@ModelAttribute("logreg") User logreg) {
 		return "regFailed";
 	}
 	
-	@RequestMapping("/newfood")
+	@RequestMapping("/newFoodSuccess")
 	public String foodForm(Model model, Food food) {
 		model.addAttribute("food", food);
-		return "newFood";
+		return "newFoodSuccess";
 	}
 	
-	@RequestMapping("/newfood/newFoodSuccess")
+	@RequestMapping("/newFoodFailed")
 	public String regSuccessForm(Model model,
 			@ModelAttribute("food") Food food) {
 		if(appService.addFood(food)) {
-			return "/newfood/newFoodSuccess";
+			return "newFoodSuccess";
 		}
-		return "/newfood/newFoodFailed";
+		return "newFoodFailed";
 	}
 	
-	@RequestMapping("/registration/regFailed")
+	@RequestMapping("/newFoodFailed")
 	public String regFailedForm(Model model,
 			@ModelAttribute("food") Food food) {
-		return "/newfood/newFoodFailed";
+		return "newFoodFailed";
 	}
 }

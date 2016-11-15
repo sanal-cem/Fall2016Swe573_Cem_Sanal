@@ -1,3 +1,9 @@
+Version 0.12 (changes from BMI Calculator 0.1) - Released on 15 April 2016:
+* req: using libraries locally. - can't performed with JSP structure.
+* gui, added, req: Showing user's foods function is created but a graphical food page should be created.
+* added, req: Connecting the USDA database is needed.
+* gui, added, scripts: Inserting gifs into the HTML pages is needed.
+
 Version 0.11 (changes from BMI Calculator 0.1) - Released on 11 April 2016:
 * added, conf, all: pom.xml -> External Maven Libraries corrected and their versions increased with pom.xml.
 * added, conf: spring-security library.

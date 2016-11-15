@@ -8,6 +8,7 @@ public class User {
 	private String age;
 	private String comment;
 	private boolean isValid = false;
+	//dummy variables
 	
 	public User() {
 		isValid = true;

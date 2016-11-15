@@ -10,8 +10,8 @@ import bmi.net.model.User;
 
 public interface AppService {
 	
-	public boolean addUser(User registration);
-	public boolean login(User login);
+	public String login(User login);
+	public String reg(User reg);
 	public boolean addFood(Food food);
 	public List<Map<String, Object>> getUsersFood();
 //	public List<Food> getAllFoods();

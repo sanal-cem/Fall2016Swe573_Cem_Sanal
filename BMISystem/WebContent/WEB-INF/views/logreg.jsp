@@ -8,47 +8,25 @@
 
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-<script type="text/javascript"
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" 
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style type="text/css">
-body {
-	background-color: #e7e7e7;
-	font-family: Helvetica;
-	font-size: 14px;
-	color: #666;
-	margin: 0px;
-	padding: 0px;
-}
-
-.wrapper {
-	width: 90%;
-	height: 80%;
-	margin: 0 auto;
-	background: white;
-	margin: 0 auto;
-}
-
-.container {
-	min-height: 400px;
-	border-top: 1px solid gray;
-	padding: 50px;
-}
-</style>
+<link rel="stylesheet" 
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 </head>
 <body>
+<div class="col-md-5 col-sm-5 textContainer">
+	<h2>BMI Calculator</h2>
+</div>
+<br /><br /><br />
 <div class="toggler">
 	<div id="dialog" class="ui-widget-header ui-corner-all" title="BMI Calculator">
 	  <p>Welcome to the coolest BMI Calculator ever! To login, you should use your e-mail address.</p>
 	</div>
 </div>
-<h2>User Login</h2>
-<hr />
 	<div class="wrapper">
 		<div class="container">
 			<div id="tabs">
@@ -57,14 +35,10 @@ body {
 					<li><a href="#register">Register</a></li>
 				</ul>
 				<div id="login">
-					<% 
-  	if((String)session.getAttribute("error") != null){ %>
-					<h4>Invalid Email or Password. Please try again.</h4>
-					<%} %>
-					<form:form commandName="login" method="POST" action="loginSuccess">
+					<form:form commandName="logreg" method="POST" action="login">
 						<p class="desc">User Name: </p>
 						<form:input class="ui-button" path="uName" />
-							<br />
+							<br /><br />
 						<p class="desc">Password: </p>
 						<form:input class="ui-button" type="password" path="pass"/>
 							<br /><br />
@@ -73,29 +47,28 @@ body {
 					</form:form>
 				</div>
 				<div id="register">
-					<form:form commandName="login" method="POST" action="regSuccess">
-					<div class="col-xs-3">
+					<form:form commandName="logreg" method="POST" action="reg">
 						<p class="desc">User Name: </p>
 						<form:input class="form-control" path="uName" />
 							<br />
 						<p class="desc">Password: </p>
 						<form:input class="form-control" type="password" path="pass"/>
-							<br /><br />
+							<br />
 						<p class="desc">Name: </p>
 						<form:input class="form-control" path="name" />
-							<br /><br />
+							<br />
 						<p class="desc">Surname: </p>
 							<form:input class="form-control" path="surName" />
-							<br /><br />
+							<br />
 						<p class="desc">Age</p>
 						<form:input id="numbersOnly" class="form-control" path="age" />
 							<br />
 						<p class="desc">Comments</p>
 							<br />
-						<form:textarea cols="30" rows="6" path="comment" />
+						<form:textarea class="form-control" cols="30" rows="6" path="comment" />
 							<br /><br />
 						<input class="ui-button ui-widget ui-corner-all" type="submit" value="Register" />
-						</div>
+						<br /><br />
 					</form:form>
 				</div>
 			</div>
@@ -139,5 +112,6 @@ $(function() {
 	      }, 1000 );
 	    };
 });
+
 </script>
 </html>

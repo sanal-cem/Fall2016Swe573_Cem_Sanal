@@ -20,61 +20,71 @@ public class AppServiceImpl implements AppService {
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
-
-	public boolean addUser(User registration) {
-		try {
-			String sql = "INSERT INTO USERS("
-					+ "UNAME, PASS, SURNAME, "
-					+ "NAME, AGE, COMMENT"
-					+ ") values(?,?,?,?,?,?)";
-			jdbcTemplate.update(sql, new Object[] {
-					registration.getuName(), registration.getPass(),
-					registration.getSurName(), registration.getName(),
-					registration.getAge(), registration.getComment()});
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
 	
-	public boolean login(User login) {
+	public String login(User login) {
 	    try
 	    {
-	        user.setuName(login.getuName());
-	        user.setPass(login.getPass());
-	        if(user.getIsValid())
-	        {
-	        	try {
-	    			String query = "SELECT UNAME, PASS, "
-	    					+ "NAME, SURNAME , AGE, "
-	    					+ "COMMENT FROM USERS "
-	    					+ "WHERE UNAME LIKE '"
-	    					+ user.getuName() + "'"
-	    					+ " AND PASS LIKE '"
-	    					+ user.getPass() + "'";
-	    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
-	    		       user.setuName(row.get("UNAME").toString());
-	    		       user.setPass(row.get("PASS").toString());
-	    		       user.setName(row.get("NAME").toString());
-	    		       user.setSurName(row.get("SURNAME").toString());
-	    		       user.setAge(row.get("AGE").toString());
-	    		       user.setComment(row.get("COMMENT").toString());
-	    		     }
-	    		} catch (Exception e) {
-	    			System.out.println(e.getMessage());
-	    			e.printStackTrace();
-	    			return false;
-	    		}
-	        	return true;
-	        }else
-	            return false;
+		    	user.setuName(login.getuName());
+		        user.setPass(login.getPass());
+		        if(user.getIsValid())
+		        {
+		        	try {
+		    			String query = "SELECT UNAME, PASS, "
+		    					+ "NAME, SURNAME , AGE, "
+		    					+ "COMMENT FROM USERS "
+		    					+ "WHERE UNAME LIKE '"
+		    					+ user.getuName() + "'"
+		    					+ " AND PASS LIKE '"
+		    					+ user.getPass() + "'";
+		    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
+		    		    	user.setuName(row.get("UNAME").toString());
+		    		    	user.setPass(row.get("PASS").toString());
+		    		    	user.setName(row.get("NAME").toString());
+		    		    	user.setSurName(row.get("SURNAME").toString());
+		    		    	user.setAge(row.get("AGE").toString());
+		    		    	user.setComment(row.get("COMMENT").toString());
+		    		     }
+		    		    if(user.getName().isEmpty() && user.getSurName().isEmpty()) 
+		    		    	return "loginFailed";
+		    		} catch (Exception e) {
+		    			System.out.println(e.getMessage());
+		    			e.printStackTrace();
+		    			return "loginFailed";
+		    		}
+		        	return "loginSuccess";
+		        }else
+		        	//notValid
+		            return "logreg";
 	    } catch (Throwable exc)
 	    {
 	        System.out.println(exc);
 	    }
-	    return true;
+	    return "logreg";
+	}
+	
+	public String reg(User reg) {
+	    try
+	    {
+    		try {
+    			String sql = "INSERT INTO USERS("
+    					+ "UNAME, PASS, SURNAME, "
+    					+ "NAME, AGE, COMMENT"
+    					+ ") values(?,?,?,?,?,?)";
+    			jdbcTemplate.update(sql, new Object[] {
+    					reg.getuName(), reg.getPass(),
+    					reg.getSurName(), reg.getName(),
+    					reg.getAge(), reg.getComment()});
+    		} catch (Exception e) {
+    			System.out.println(e.getMessage());
+    			e.printStackTrace();
+    			return "regFailed";
+    		}
+    		return "regSuccess";
+	    } catch (Throwable exc)
+	    {
+	        System.out.println(exc);
+	    }
+	    return "logreg";
 	}
 	
 	public boolean addFood(Food food) {

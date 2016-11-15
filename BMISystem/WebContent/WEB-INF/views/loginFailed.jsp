@@ -7,5 +7,6 @@
 </head>
 <body>
 <h2 align="center">Login Failed</h2>
+<a class="btn btn-default" href="logreg" >Login Page</a>
 </body>
 </html>

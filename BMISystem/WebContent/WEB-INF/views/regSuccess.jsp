@@ -9,5 +9,7 @@
 <body>
 <h2 align="center">Registration Success</h2>
 <h3>Hello <core:out value="${ registration.uName}" /></h3>
+<p>Please Login Now.</p>
+<a class="btn btn-default" href="logreg" >Login Page</a>
 </body>
 </html>
