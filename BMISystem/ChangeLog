@@ -3,6 +3,7 @@ Version 0.12 (changes from BMI Calculator 0.1) - Released on 15 April 2016:
 * gui, added, req: Showing user's foods function is created but a graphical food page should be created.
 * added, req: Connecting the USDA database is needed.
 * gui, added, scripts: Inserting gifs into the HTML pages is needed.
+* bug: forwarding user after loginSuccess, loginFailed, regSuccess or regFailed works, however longer link after forwarding should not be added into the AppController class.
 
 Version 0.11 (changes from BMI Calculator 0.1) - Released on 11 April 2016:
 * added, conf, all: pom.xml -> External Maven Libraries corrected and their versions increased with pom.xml.
