@@ -14,6 +14,12 @@ public class User {
 		isValid = true;
 	}
 	
+    public User(String uName, String pass)
+    {
+        this.uName = uName;
+        this.pass = pass;
+    }
+	
 	public String getuName() {
 		return uName;
 	}

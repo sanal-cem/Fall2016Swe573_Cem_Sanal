@@ -61,7 +61,7 @@
 							<form:input class="form-control" path="surName" />
 							<br />
 						<p class="desc">Age</p>
-						<form:input id="numbersOnly" class="form-control" path="age" />
+						<form:input class="form-control numbersOnly" path="age" />
 							<br />
 						<p class="desc">Comments</p>
 							<br />
@@ -79,7 +79,7 @@
 $(function() {
   $( "#tabs" ).tabs();
   $( "#dialog" ).dialog();
-  $( "#numbersOnly" ).keyup(function () {
+  $( ".numbersOnly" ).keyup(function () {
 	    if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
 	       this.value = this.value.replace(/[^0-9\.]/g, '');
 	    }

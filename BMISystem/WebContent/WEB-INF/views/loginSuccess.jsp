@@ -9,5 +9,6 @@
 <body>
 <h2 align="center">Login Success</h2>
 <h3>Hello <core:out value="${ login.uName}" /></h3>
+<a class="btn btn-default" href="addFood" >Add Food Page</a>
 </body>
 </html>

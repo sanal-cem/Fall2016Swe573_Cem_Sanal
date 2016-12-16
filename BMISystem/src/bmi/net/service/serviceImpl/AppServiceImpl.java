@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import bmi.net.domain.Food;
+import bmi.net.domain.FoodItem;
 import bmi.net.model.User;
 import bmi.net.service.AppService;
 
@@ -33,9 +33,9 @@ public class AppServiceImpl implements AppService {
 		    					+ "NAME, SURNAME , AGE, "
 		    					+ "COMMENT FROM USERS "
 		    					+ "WHERE UNAME LIKE '"
-		    					+ user.getuName() + "'"
+		    					+ login.getuName() + "'"
 		    					+ " AND PASS LIKE '"
-		    					+ user.getPass() + "'";
+		    					+ login.getPass() + "'";
 		    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
 		    		    	user.setuName(row.get("UNAME").toString());
 		    		    	user.setPass(row.get("PASS").toString());
@@ -63,66 +63,64 @@ public class AppServiceImpl implements AppService {
 	}
 	
 	public String reg(User reg) {
-	    try
-	    {
-    		try {
-    			String sql = "INSERT INTO USERS("
-    					+ "UNAME, PASS, SURNAME, "
-    					+ "NAME, AGE, COMMENT"
-    					+ ") values(?,?,?,?,?,?)";
-    			jdbcTemplate.update(sql, new Object[] {
-    					reg.getuName(), reg.getPass(),
-    					reg.getSurName(), reg.getName(),
-    					reg.getAge(), reg.getComment()});
-    		} catch (Exception e) {
-    			System.out.println(e.getMessage());
-    			e.printStackTrace();
-    			return "regFailed";
-    		}
-    		return "regSuccess";
-	    } catch (Throwable exc)
-	    {
-	        System.out.println(exc);
-	    }
-	    return "logreg";
+		try {
+			String sql = "INSERT INTO USERS("
+					+ "UNAME, PASS, SURNAME, "
+					+ "NAME, AGE, COMMENT"
+					+ ") values(?,?,?,?,?,?)";
+			jdbcTemplate.update(sql, new Object[] {
+					reg.getuName(), reg.getPass(),
+					reg.getSurName(), reg.getName(),
+					reg.getAge(), reg.getComment()});
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return "regFailed";
+		}
+		return "regSuccess";
 	}
 	
-	public boolean addFood(Food food) {
+	public String addFood(FoodItem food) {
 		try {
 			String sql = "INSERT INTO UFOOD("
-					+ "UNAME, FOODID, FNAME,"
-					+ "FTYPE ,FCALORY, FINGRED"
-					+ ") values(?,?,?,?,?,?)";
+					+ "UNAME, FOFFSET,"
+					+ "FGROUP, FNAME, FNDBNO,"
+					+ " FDS, FCALORY, FINGRED"
+					+ ") values(?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] { food.getuName(),
-					food.getfoodId(), food.getfName(),
-					food.getfType(), food.getfCalory(),
+					food.getOffset(), food.getGroup(),
+					food.getName(), food.getnDbNo(),
+					food.getDs(), food.getfCalory(),
 					food.getfIngred() });
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			return false;
+			return "newFoodFailed";
 		}
-		return true;
+		return "newFoodSuccess";
 	}
 	
 	public List<Map<String, Object>> getUsersFood() {
 		List<Map<String, Object>> foodRows = null;
 		try {
 			//****like'dan sonra seçilmiþ kullanýcý adý gelecek.
-			String query = "SELECT UNAME, FOODID, "
-					+ "FNAME, FTYPE ,FCALORY, "
-					+ "FINGRED FROM UFOOD"
+			String query = "SELECT UNAME, FOFFSET,"
+					+ "FGROUP, FNAME, FNDBNO,"
+					+ " FDS, FCALORY, FINGRED"
 					+ "WHERE FNAME LIKE "
 					+ user.getuName();
 		    foodRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> row : foodRows){
 		       String uName = row.get("UNAME").toString();
-		       String foodId = row.get("FOODID").toString();
-		       String fName = row.get("FNAME").toString();
-		       String fType = row.get("FTYPE").toString();
-		       String fClry = row.get("FNAFCALORYME").toString();
+		       String offset = row.get("FOFFSET").toString();
+		       String group = row.get("FGROUP").toString();
+		       String name = row.get("FNAME").toString();
+		       String nDbNo = row.get("FNDBNO").toString();
+		       String ds = row.get("FDS").toString();
+		       String fClry = row.get("FCALORY").toString();
 		       String fIngred = row.get("FINGRED").toString();
-		       System.out.println(uName + " " + foodId + " " + fName + " " + fType + " " + fClry + " " + fIngred );
+		       System.out.println(uName + " " + offset + " " + group + " " + name 
+		    		   + " " + nDbNo + " " + ds + " " + fClry + " " + fIngred );
 		     }
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

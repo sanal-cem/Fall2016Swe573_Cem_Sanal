@@ -1,6 +1,6 @@
 === Requirements ===
  * MYSQL >= 5.7.14
- * Pivotal Server >= 3.1
+ * Tomcat Server >= 8.5
 
 === Linux/BSD ===
 
