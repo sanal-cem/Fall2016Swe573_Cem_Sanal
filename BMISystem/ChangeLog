@@ -1,3 +1,8 @@
+Version 0.14 (changes from BMI Calculator 0.13) - Released on 21 December 2016:
+* fix: USDA database connection is working totally. searchFood function inside the USDAConnection class is fixed.
+* added: foodList.jsp file is added to show USDA API data results.
+* bug: USDA API data results could not be shown in the foodList.jsp file.
+
 Version 0.13 (changes from BMI Calculator 0.12) - Released on 16 December 2016:
 * added: A graphical food addition page is created. New foods for logged in users could be added from that page.
 * added, req: USDA database connection is written but connecting the USDA database could not achieved.
@@ -57,7 +62,8 @@ Version 0.1 (first version) - Released 08 November 2016:
 * scripts: a script is changed.
 * added: a file is added.
 * updated: a file is updated.
-* bug: a bug is fixed.
+* bug: a bug is found.
+* fix: a bug is fixed.
 * conf: configuration.
 * req: unfinished requirement found.
 * del: file deleted.

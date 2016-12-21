@@ -14,39 +14,6 @@
 			src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 		<link rel="stylesheet"
 			href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-        <script type="text/javascript">
-            $(document).ready(function() {
-                bind()
-            })
-
-            function bind() {
-                $("#search_button").click(function(){
-                    var keyword = $("#search_box").val()
-                    show_list(keyword)
-                })
-            }
-            function show_list(keyword) {
-                $.ajax({
-                    url: "/foodList/" + keyword,
-                    type: 'POST'
-                }).done(function(res){
-                    render_list(res)
-                    console.log("completed")
-                })
-                console.log("show_list sonu")
-            }
-
-            function render_list(data) {
-                var template = "<li></li>";
-                var container = $("#results");
-                container.html("")
-                for (var i = data.length - 1; i >= 0; i--) {
-                    var food = data[i];
-                    var template = "<li>" + food.name + "</li>";
-                    container.append(template);
-                };
-            }
-        </script>
     </head>
     <body>
   	<div class="container">
@@ -58,8 +25,6 @@
 				<input class="form-control" id="search_box" type="text" name="keyword"><br>
 	            <input class="ui-button ui-widget ui-corner-all" id="search_button" type="submit" value="Search"></input>
 	        </form:form>
-	        <ul id="results">
-	        </ul>
 	        </div>
 		</div>
 	</div>
