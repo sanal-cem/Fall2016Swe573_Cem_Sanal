@@ -8,4 +8,4 @@
 === Windows ===
  * Install the appropriate MYSQL version as x64 or x86_64.
  * Install the appropriate Pivotal or Tomcat Server version.
- * Insert the project into the 'wtpwebapps' folder of the Pivotal Server.
+ * Insert the project into the 'wtpwebapps' folder of the Pivotal or Tomcat Server.

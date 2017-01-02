@@ -1,3 +1,12 @@
+Version 0.15 (changes from BMI Calculator 0.14) - Released on 2 January 2016:
+* added, req: Using libraries locally. - Performed with JSP structure.
+* gui: Background image inserted.
+* fix: Controllers totally fixed. (No unneccessary connectors.)
+* fix: Project structure corrected. (Folder and file structure changed with using Java Spring MVC standards.)
+* added: Libraries (spring-orm, servlet-api, jsp-api, gson, cglib, jstl) added into pom.xml.
+* updated: springSecurity library updated to version 4.2.1 from 4.2.0.
+* del: javax.servlet-api library is removed.
+
 Version 0.14 (changes from BMI Calculator 0.13) - Released on 21 December 2016:
 * fix: USDA database connection is working totally. searchFood function inside the USDAConnection class is fixed.
 * added: foodList.jsp file is added to show USDA API data results.
