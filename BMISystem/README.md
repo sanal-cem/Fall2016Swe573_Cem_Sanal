@@ -24,7 +24,7 @@ Bugs, development issues, version information, future development issues could b
 
 ## Version
 
-BMI Calculator v0.15
+BMI Calculator v0.16
 
 ## Known bugs
 

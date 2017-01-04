@@ -1,6 +1,7 @@
 Version 0.16 (changes from BMI Calculator 0.15) - Released on 4 January 2016:
 * added: showFood.jsp file is added to show users foods.
 * fix: Query errors are corrected in AppServiceImpl.java page while testing.
+* fix: All written queries, controllers and jsp pages are corrected.
 * added, fix: <core:out values are set for showing users information in all pages.
 * updated: Primary keys of USERS, UFOOD and UACTIVITY tables are set.
 
