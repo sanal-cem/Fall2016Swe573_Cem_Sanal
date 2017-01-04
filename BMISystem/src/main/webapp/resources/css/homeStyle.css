@@ -1,9 +1,17 @@
 .backgrnd{
-background-image: url('${pageContext.request.contextPath}/resources/images/NYC_Bridge.jpg');
--moz-background-size: cover;
--webkit-background-size: cover;
-background-size: cover;
-background-position: top center !important;
-background-repeat: no-repeat !important;
-background-attachment: fixed;
+	background-image: url('${pageContext.request.contextPath}/resources/images/NYC_Bridge.jpg');
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: top center !important;
+	background-repeat: no-repeat !important;
+	background-attachment: fixed;
+}
+.centeredTbl{
+	text-align: center;
+	border-collapse: separate;
+	border-spacing: 5px; 
+}
+.centeredTbl td {
+    border:1px solid black;
 }

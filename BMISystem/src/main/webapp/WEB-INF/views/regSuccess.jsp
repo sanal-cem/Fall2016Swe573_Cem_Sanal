@@ -5,11 +5,21 @@
 <html>
 <head>
 <title>Registration Success</title>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+<link rel="stylesheet" 
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 </head>
+
 <body>
-<h2 align="center">Registration Success</h2>
-<h3>Hello <core:out value="${ registration.uName}" /></h3>
-<p>Please Login Now.</p>
-<a class="btn btn-default" href="logreg" >Login Page</a>
+<div class="col-xs-3">
+	<h2 align="center">Registration Success</h2>
+	<h3>Hello <core:out value="${reg.name} ${reg.surName}" /></h3>
+	<p>Please Login Now.</p>
+	<a class="btn btn-default" href="logreg" >Login Page</a>
+</div>
 </body>
 </html>

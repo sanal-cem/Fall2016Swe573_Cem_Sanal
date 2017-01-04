@@ -8,9 +8,11 @@
 </head>
 <body>
 <h2 align="center">Login Success</h2>
-<h3>Hello <core:out value="${ login.uName}" /></h3>
+<h3>Hello <core:out value="${login.name} ${login.surName}" /></h3>
 <a class="btn btn-default" href="addFood" >Add Food Page</a>
 <br/>
 <a class="btn btn-default" href="foodSearch" >Food Search Page</a>
+<br/>
+<a class="btn btn-default" href="showFood" >Users Food Showcase Page</a>
 </body>
 </html>

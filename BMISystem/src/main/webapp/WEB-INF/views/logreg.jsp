@@ -17,7 +17,6 @@ href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 </head>
 
 <body background="${pageContext.request.contextPath}/resources/images/NYC_Bridge.jpg">
-<%-- <img src="${pageContext.request.contextPath}/resources/images/NYC_Bridge.jpg" alt="bridge_image"/> --%>
 <div class="col-md-5 col-sm-5 textContainer">
 	<h2>BMI Calculator</h2>
 </div>

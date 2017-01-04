@@ -3,7 +3,6 @@ package com.bmi.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bmi.domain.FoodItem;
@@ -23,15 +22,21 @@ public class FoodController {
 	}
 	
 	@RequestMapping("/addFood")
-	public String addFood(Model model, FoodItem food) {
+	public String addFoodPage(Model model, FoodItem food) {
 		model.addAttribute("addFood", food);
 		return "addFood";
 	}
 	
 	@RequestMapping("/newFood")
-	public String loginForm(Model model, FoodItem food) {
+	public String addFood( Model model, FoodItem food) {
 		model.addAttribute("addFood", food);
 		return appService.addFood(food);
+	}
+	
+    @RequestMapping(value = "/showFood")
+	public String showFood(Model model, FoodItem food) {
+    	model.addAttribute("showFood", food);
+    	return appService.showFood(food);
 	}
 	
 	@RequestMapping("/newFoodSuccess")
@@ -41,8 +46,8 @@ public class FoodController {
 	}
 
 	@RequestMapping("/newFoodFailed")
-	public String foodFailForm(Model model,
-			@ModelAttribute("food") FoodItem food) {
+	public String foodFailForm(Model model, FoodItem food) {
+		model.addAttribute("food", food);
 		return "newFoodFailed";
 	}
 }

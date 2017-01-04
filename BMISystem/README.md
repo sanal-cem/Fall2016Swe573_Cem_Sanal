@@ -44,7 +44,7 @@ Ongoing developemnts and completed developments are briefly described in 'Projec
 [Apache Maven](https://maven.apache.org/) will be used for using Java Spring.
 
 Java based [Spring Framework](http://projects.spring.io/spring-framework/) will be used to develop project with security.
-Spring Tool Suite - The Eclipse-based development environment for building Spring applications. will be used.
+Spring Tool Suite - The Eclipse-based development environment for building Spring applications will be used.
 
 [JQuery](http://jquery.com) used for writing smaller and better scripts and effects.
 
@@ -99,13 +99,22 @@ Mockups will give a representation of the product’s visual appearance. Mockups
 
 ### Architectural Diagrams
 1. Component Diagram
+
 [Component Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Component_BMI.png)
 
-2. Architecture Diagram
+2. Context Diagram
 
-3. Database Diagram
+[Context Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Context%20Diagram.png)
+
+3. Data Flow Diagram
+
+[Data Flow Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Data%20Flow%20Diagram.png)
 
 4. Sequence Diagrams
+
+[a.USDA API Data Fetching Sequence Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Sequence_USDA_API_Data_Fetching.png)
+
+[b.Controller Sequence Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Sequence_Controller_Logic.png)
 
 5. Other Diagrams
 
@@ -113,7 +122,7 @@ Mockups will give a representation of the product’s visual appearance. Mockups
 ## Issues
 
 [Issues](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/issues) includes issues of the BMI Calculator Project.
-Standard issue types are in below,
+Standard issue types are in below:
 
 Bug
 Configuration

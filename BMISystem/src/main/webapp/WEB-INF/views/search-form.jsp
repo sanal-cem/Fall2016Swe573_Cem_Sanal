@@ -3,11 +3,13 @@
 <html>
 <head>
 <title>Registration</title>
+<link rel="stylesheet"
+href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 </head>
 <body>
 <h2 align="center">User Registration</h2>
 <hr />
-<table align="center" cellpadding="5" cellspacing="5">
+<table class="centeredTbl">
 	<form:form commandName="registration" method="POST" action="search">
 		<tr>
 			<td>Username</td>
@@ -18,16 +20,15 @@
 		</tr>
 	</form:form>
 </table>
-<c:if test="${user != null}">
-	<table align="center" cellpadding="5" cellspacing="5">
+<c:if test="${login.uName != null}">
+	<table class="centeredTbl">
 		<thead>
 			<tr>
 				<td>User Name</td>
 				<td>Name</td>
 				<td>Surname</td>
-				<td>Food</td>
-				<td>Activity</td>
 				<td>Age</td>
+				<td>Comment</td>
 				<td>Edit</td>
 				<td>Delete</td>
 			</tr>
@@ -35,11 +36,10 @@
 		<tbody>
 			<tr>
 				<td>${login.uName}</td>
+				<td>${login.name}</td>
 				<td>${login.surName}</td>
-				<td>${login.food_id}</td>
-				<td>${login.act_id}</td>
-				<td>${login.address}</td>
 				<td>${login.age}</td>
+				<td>${login.comment}</td>
 				<td><a href="load-form?roll=${login.uName}">Edit</a></td>
 				<td><a href="delete?roll=${login.uName}">Edit</a></td>
 			</tr>

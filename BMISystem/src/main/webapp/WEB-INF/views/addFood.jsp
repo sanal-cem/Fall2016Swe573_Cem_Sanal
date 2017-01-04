@@ -2,6 +2,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="core" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <title>Add Food</title>
@@ -20,9 +21,6 @@
 		<div id="AddFood">
 			<div class="col-xs-4">
 				<form:form commandName="addFood" method="POST" action="newFood">
-				<p class="desc">User Name: </p>
-				<form:label readonly="true" value="${ login.uName}" path="uName" ></form:label>
-				<br />
 				<p class="desc">Food Offset: </p>
 				<form:input class="form-control numbersOnly" path="offset" />
 				<br />
@@ -39,7 +37,7 @@
 				<form:input class="form-control" path="ds" />
 				<br />
 				<p class="desc">Food Calory: </p>
-				<form:input id="numbersOnly" class="form-control numbersOnly" path="fCalory" />
+				<form:input id="form-control numbersOnly" class="form-control numbersOnly" path="fCalory" />
 				<br />
 				<p class="desc">Food Ingredients: </p>
 				<form:textarea class="form-control" cols="30" rows="3" path="fIngred" />
@@ -58,33 +56,6 @@ $(function() {
 	       this.value = this.value.replace(/[^0-9\.]/g, '');
 	    }
 	});
-  runEffect();
-	    // run the currently selected effect
-	    function runEffect() {
-	      // get effect type from
-	      var selectedEffect = $( "#effectTypes" ).val();
-	 
-	      // Most effect types need no options passed by default
-	      var options = {};
-	      // some effects have required parameters
-	      if ( selectedEffect === "scale" ) {
-	        options = { percent: 50 };
-	      } else if ( selectedEffect === "transfer" ) {
-	        options = { to: "#button", className: "ui-effects-transfer" };
-	      } else if ( selectedEffect === "size" ) {
-	        options = { to: { width: 200, height: 60 } };
-	      }
-	 
-	      // Run the effect
-	      $( "#dialog" ).effect( "bounce", options, 500, callback );
-	    };
-	 
-	    // Callback function to bring a hidden box back
-	    function callback() {
-	      setTimeout(function() {
-	        $( "#dialog" ).removeAttr( "style" ).hide().fadeIn();
-	      }, 1000 );
-	    };
 });
 
 </script>

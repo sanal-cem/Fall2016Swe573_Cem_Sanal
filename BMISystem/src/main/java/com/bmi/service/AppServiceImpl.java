@@ -1,7 +1,9 @@
 package com.bmi.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -29,11 +31,11 @@ public class AppServiceImpl implements AppService {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	public String login(User login) {
+	public String login(User userL) {
 	    try
 	    {
-		    	user.setuName(login.getuName());
-		        user.setPass(login.getPass());
+		    	user.setuName(userL.getuName());
+		        user.setPass(userL.getPass());
 		        if(user.getIsValid())
 		        {
 		        	try {
@@ -41,16 +43,22 @@ public class AppServiceImpl implements AppService {
 		    					+ "NAME, SURNAME , AGE, "
 		    					+ "COMMENT FROM USERS "
 		    					+ "WHERE UNAME LIKE '"
-		    					+ login.getuName() + "'"
+		    					+ userL.getuName() + "'"
 		    					+ " AND PASS LIKE '"
-		    					+ login.getPass() + "'";
+		    					+ userL.getPass() + "'";
 		    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
 		    		    	user.setuName(row.get("UNAME").toString());
+		    		    	userL.setuName(row.get("UNAME").toString());
 		    		    	user.setPass(row.get("PASS").toString());
+		    		    	userL.setPass(row.get("PASS").toString());
 		    		    	user.setName(row.get("NAME").toString());
+		    		    	userL.setName(row.get("NAME").toString());
 		    		    	user.setSurName(row.get("SURNAME").toString());
+		    		    	userL.setSurName(row.get("SURNAME").toString());
 		    		    	user.setAge(row.get("AGE").toString());
+		    		    	userL.setAge(row.get("AGE").toString());
 		    		    	user.setComment(row.get("COMMENT").toString());
+		    		    	userL.setComment(row.get("COMMENT").toString());
 		    		     }
 		    		    if(user.getName().isEmpty() && user.getSurName().isEmpty()) 
 		    		    	return "loginFailed";
@@ -95,7 +103,7 @@ public class AppServiceImpl implements AppService {
 					+ "FGROUP, FNAME, FNDBNO,"
 					+ " FDS, FCALORY, FINGRED"
 					+ ") values(?,?,?,?,?,?,?,?)";
-			jdbcTemplate.update(sql, new Object[] { food.getuName(),
+			jdbcTemplate.update(sql, new Object[] { user.getuName(),
 					food.getOffset(), food.getGroup(),
 					food.getName(), food.getnDbNo(),
 					food.getDs(), food.getfCalory(),
@@ -108,33 +116,84 @@ public class AppServiceImpl implements AppService {
 		return "newFoodSuccess";
 	}
 	
-	public List<Map<String, Object>> getUsersFood() {
+	public String showFood(FoodItem food) {
 		List<Map<String, Object>> foodRows = null;
+		List<FoodItem> foodL = new ArrayList<>();
 		try {
-			//****like'dan sonra seçilmiþ kullanýcý adý gelecek.
+			// Chosen user name inserted after LIKE expression.
 			String query = "SELECT UNAME, FOFFSET,"
 					+ "FGROUP, FNAME, FNDBNO,"
-					+ " FDS, FCALORY, FINGRED"
-					+ "WHERE FNAME LIKE "
-					+ user.getuName();
+					+ " FDS, FCALORY, FINGRED "
+					+ "FROM UFOOD "
+					+ "WHERE UNAME LIKE "
+					+ "'" + user.getuName() + "'";
 		    foodRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> row : foodRows){
-		       String uName = row.get("UNAME").toString();
-		       String offset = row.get("FOFFSET").toString();
-		       String group = row.get("FGROUP").toString();
-		       String name = row.get("FNAME").toString();
-		       String nDbNo = row.get("FNDBNO").toString();
-		       String ds = row.get("FDS").toString();
-		       String fClry = row.get("FCALORY").toString();
-		       String fIngred = row.get("FINGRED").toString();
-		       System.out.println(uName + " " + offset + " " + group + " " + name 
-		    		   + " " + nDbNo + " " + ds + " " + fClry + " " + fIngred );
+//			   ***deneme amaçlý tek food koyuldu, sayfa deðiþtikçe tüm food'larýn görülmesi saðlanmalý.
+		    	
+		       if(row.get("UNAME") != null) {
+		    	   food.setuName(row.get("UNAME").toString());
+		       }
+		       else {
+		    	   food.setuName(" ");
+		       }
+		       
+		       if(row.get("FOFFSET") != null) {
+		    	   food.setOffset(Integer.parseInt(row.get("FOFFSET").toString()));
+		       }
+		       else {
+		    	   food.setOffset(0);
+		       }
+		       
+		       if(row.get("FGROUP") != null) {
+		    	   food.setGroup(row.get("FGROUP").toString());
+		       }
+		       else {
+		    	   food.setGroup(" ");
+		       }
+		       
+		       if(row.get("FNAME") != null) {
+		    	   food.setName(row.get("FNAME").toString());
+		       }
+		       else {
+		    	   food.setName(" ");
+		       }
+		       
+		       if(row.get("FNDBNO") != null) {
+		    	   food.setNdbno(row.get("FNDBNO").toString());
+		       }
+		       else {
+		    	   food.setNdbno(" ");
+		       }
+		       
+		       if(row.get("FDS") != null) {
+		    	   food.setDs(row.get("FDS").toString());
+		       }
+		       else {
+		    	   food.setDs(" ");
+		       }
+
+		       if(row.get("FDS") != null) {
+		    	   food.setfCalory(Integer.parseInt(row.get("FCALORY").toString()));
+		       }
+		       else {
+		    	   food.setfCalory(0);
+		       }
+
+		       if(row.get("FINGRED") != null) {
+		    	   food.setfIngred(row.get("FINGRED").toString());
+		       }
+		       else {
+		    	   food.setfIngred(" ");
+		       }
+		       foodL.add(food);
+
 		     }
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
-		return foodRows;
+		return "showFood";
 	}
 	
 	public String getAllFoodsUSDA() {

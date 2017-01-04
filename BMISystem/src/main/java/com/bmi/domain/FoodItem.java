@@ -1,22 +1,15 @@
 package com.bmi.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * Created by Cem Þanal.
  */
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class FoodItem {
 
     private int offset;
     private String group;
-	@JsonProperty("nDbNo")
 	private String nDbNo;
-	
-	@JsonProperty("name")
 	private String name;
-	
     private String ds;
     private String uName;
     private int fCalory;
