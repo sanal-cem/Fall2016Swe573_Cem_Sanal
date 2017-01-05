@@ -9,7 +9,7 @@ I had to make a fresh start because I started to use Git Gui. After pushing with
 
 ## Project Definition
 
-[[BMI Calculator Project link|http://custom-env.fif3pardgp.eu-west-2.elasticbeanstalk.com/]]
+[BMI Calculator Project link](http://custom-env.fif3pardgp.eu-west-2.elasticbeanstalk.com/]
 
 ### Name of the project: BMI Calculator
 
