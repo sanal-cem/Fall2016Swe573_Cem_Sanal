@@ -7,5 +7,8 @@
  
 === Windows ===
  * Install the appropriate MYSQL version as x64 or x86_64.
- * Install the appropriate Pivotal or Tomcat Server version.
- * Insert the project into the 'wtpwebapps' folder of the Pivotal or Tomcat Server.
+ * Install the Tomcat Server. (version > 8.0)
+ * Stop Tomcat service.
+ * Insert the BMISystem.war file from that link: "https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/tree/master/BMISystem/target/BMISystem.war" into "C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps" folder of the Tomcat Server.
+ * Start Tomcat service and check "C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps" folder. There should be BMISystem folder.
+ * execute localhost:8080/BMISystem/

@@ -9,6 +9,8 @@ I had to make a fresh start because I started to use Git Gui. After pushing with
 
 ## Project Definition
 
+[[BMI Calculator Project link|http://custom-env.fif3pardgp.eu-west-2.elasticbeanstalk.com/]]
+
 ### Name of the project: BMI Calculator
 
 Body Mass Index (BMI) is simply a guideline to track weight issues. It is a measurement of body fat based on weight. BMI calculation for females and males would differ. BMI is the amount of fat content in the body as related to height and weight. This is a way of measuring the fat content and muscle mass so that the person knows whether they are healthy or whether they can be prone to health problems like cardiovascular diseases, diabetes, or even certain types of cancer.
@@ -20,6 +22,7 @@ Bugs, development issues, version information, future development issues could b
 
 ## Installation
 
+.war file is ready!
 [Installation information](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/BMISystem/INSTALLING)
 
 ## Version
