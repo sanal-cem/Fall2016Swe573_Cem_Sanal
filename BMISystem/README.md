@@ -1,6 +1,6 @@
 #### BMI Calculator Project - Fall2016Swe573_Cem_Sanal in Bogazici University. You can find the project description from: [Project Description](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/wiki/Project-Description)
 
-Documentation, tutorials, ... can be found on https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal
+Documentation, tutorials, ... can be found on [GitHub link](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal)
 See also my issues and my wiki.
 
 ```
@@ -9,7 +9,7 @@ I had to make a fresh start because I started to use Git Gui. After pushing with
 
 ## Project Definition
 
-[BMI Calculator Project link](http://custom-env.fif3pardgp.eu-west-2.elasticbeanstalk.com/]
+[BMI Calculator Project link](http://custom-env.fif3pardgp.eu-west-2.elasticbeanstalk.com/)
 
 ### Name of the project: BMI Calculator
 
@@ -27,7 +27,7 @@ Bugs, development issues, version information, future development issues could b
 
 ## Version
 
-BMI Calculator v0.16
+BMI Calculator v0.17
 
 ## Known bugs
 
@@ -38,24 +38,26 @@ BMI Calculator v0.16
 Ongoing developemnts and completed developments are briefly described in 'Project Development Stages' issue.
 
 
-## Sources and Libraries and Tools
+## Sources, Libraries and Tools
 
-[Eclipse Neon IDE](http://www.eclipse.org) will be used developing software with using framewoks.
+[Eclipse Neon IDE](http://www.eclipse.org) used developing software with using framewoks.
 
-[Java](https://www.java.com) will be used to write the codes.
+[Java](https://www.java.com) used to write the codes.
 
-[Apache Maven](https://maven.apache.org/) will be used for using Java Spring.
+[Apache Maven](https://maven.apache.org/) used for using Java Spring.
 
-Java based [Spring Framework](http://projects.spring.io/spring-framework/) will be used to develop project with security.
+Java based [Spring Framework](http://projects.spring.io/spring-framework/) used to develop project with security.
 Spring Tool Suite - The Eclipse-based development environment for building Spring applications will be used.
 
 [JQuery](http://jquery.com) used for writing smaller and better scripts and effects.
 
 [JQuery UI](http://jqueryui.com) used for providing cool buttons and effects.
 
-[Bootstrap](http://getbootstrap.com/getting-started/#download) is used to provide much cool buttons, and solves scalability issue for most devices.
+[Bootstrap](http://getbootstrap.com/getting-started/#download) used to provide much cool buttons, and solves scalability issue for most devices.
 
-[MYSQL](http://www.mysql.com) will be used as a database. MYSQL should be sufficient for that small scale project.
+[A simple sidebar from BlackrockDigital](https://github.com/BlackrockDigital/startbootstrap-simple-sidebar) used to create a cool menu in JSP pages.
+
+[MYSQL](http://www.mysql.com) used as a database. MYSQL should be sufficient for that small scale project.
 
 
 ## Used Technologies

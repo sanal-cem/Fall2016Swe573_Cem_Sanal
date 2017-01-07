@@ -1,12 +1,13 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <html>
 <head>
-<title>Registration</title>
-<link rel="stylesheet"
-href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
+	<title>Registration</title>
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 </head>
-<body>
+
+<body class="bdy" >
 <h2 align="center">User Registration</h2>
 <hr />
 <table class="centeredTbl">
@@ -20,7 +21,7 @@ href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 		</tr>
 	</form:form>
 </table>
-<c:if test="${login.uName != null}">
+<core:if test="${login.uName != null}">
 	<table class="centeredTbl">
 		<thead>
 			<tr>
@@ -45,6 +46,6 @@ href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 			</tr>
 		</tbody>
 	</table>
-</c:if>
+</core:if>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.bmi.domain;
+package com.bmi.model;
 
 /**
  * Created by Cem Þanal.
@@ -6,10 +6,10 @@ package com.bmi.domain;
 
 public class FoodItem {
 
-    private int offset;
+    private String offset;
     private String group;
-	private String nDbNo;
 	private String name;
+	private String ndbno;
     private String ds;
     private String uName;
     private int fCalory;
@@ -19,11 +19,11 @@ public class FoodItem {
 		
 	}
 	
-	public FoodItem(int offset, String group, String name, String nDbNo, String ds, String uName, int fCalory, String fIngred) {
+	public FoodItem(String offset, String group, String name, String ndbno, String ds, String uName, int fCalory, String fIngred) {
 		this.offset = offset;
 		this.group = group;
 		this.name = name;
-		this.nDbNo = nDbNo;
+		this.ndbno = ndbno;
 		this.ds = ds;
 		this.uName = uName;
 		this.fCalory = fCalory;
@@ -38,11 +38,11 @@ public class FoodItem {
 		this.uName = uName;
 	}
 	
-    public int getOffset() {
+    public String getOffset() {
         return offset;
     }
 
-    public void setOffset(int offset) {
+    public void setOffset(String offset) {
         this.offset = offset;
     }
 
@@ -62,12 +62,12 @@ public class FoodItem {
         this.name = name;
     }
 
-    public String getnDbNo() {
-        return nDbNo;
+    public String getndbno() {
+        return ndbno;
     }
 
-    public void setNdbno(String nDbNo) {
-        this.nDbNo = nDbNo;
+    public void setndbno(String ndbno) {
+        this.ndbno = ndbno;
     }
 
     public String getDs() {

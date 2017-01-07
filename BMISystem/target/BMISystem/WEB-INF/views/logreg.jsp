@@ -4,26 +4,26 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-<title>BMI Calculator Login Page</title>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-<link rel="stylesheet" 
-	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
-<link rel="stylesheet"
-href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
+	<title>BMI Calculator Login Page</title>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" 
+		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
+	<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 </head>
 
-<body background="${pageContext.request.contextPath}/resources/images/NYC_Bridge.jpg">
+<body class="bdy" >
 <div class="col-md-5 col-sm-5 textContainer">
 	<h2>BMI Calculator</h2>
 </div>
 <br /><br /><br />
 <div class="toggler">
 	<div id="dialog" class="ui-widget-header ui-corner-all" title="BMI Calculator">
-	  <p>Welcome to the coolest BMI Calculator ever! To login, you should use your e-mail address.</p>
+	  <p>Welcome to the latest BMI Calculator! To login, you should use your e-mail address.</p>
 	</div>
 </div>
 	<div class="wrapper">
@@ -97,7 +97,7 @@ $(function() {
 	      } else if ( selectedEffect === "transfer" ) {
 	        options = { to: "#button", className: "ui-effects-transfer" };
 	      } else if ( selectedEffect === "size" ) {
-	        options = { to: { width: 200, height: 60 } };
+	        options = { to: { width: 200, height: 50 } };
 	      }
 	 
 	      // Run the effect

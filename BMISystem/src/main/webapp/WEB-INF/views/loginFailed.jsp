@@ -3,9 +3,12 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>New Food</title>
+	<title>New Food</title>
+	<link rel="stylesheet"
+		href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 </head>
-<body>
+
+<body class="bdy" >
 <h2 align="center">Login Failed</h2>
 <a class="btn btn-default" href="logreg" >Login Page</a>
 </body>

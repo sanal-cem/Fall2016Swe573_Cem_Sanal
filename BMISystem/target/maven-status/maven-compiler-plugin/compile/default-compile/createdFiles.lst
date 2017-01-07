@@ -1,8 +1,0 @@
-com\bmi\domain\FoodList.class
-com\bmi\service\AppService.class
-com\bmi\controller\RegLoginController.class
-com\bmi\controller\FoodController.class
-com\bmi\controller\USDAConnection.class
-com\bmi\domain\FoodItem.class
-com\bmi\model\User.class
-com\bmi\service\AppServiceImpl.class

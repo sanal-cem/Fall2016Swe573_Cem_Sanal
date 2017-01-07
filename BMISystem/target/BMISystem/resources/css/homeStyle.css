@@ -1,5 +1,5 @@
-.backgrnd{
-	background-image: url('${pageContext.request.contextPath}/resources/images/NYC_Bridge.jpg');
+.bdy{
+	background-image: url("../images/stndrd_backgrnd.jpg");
 	-moz-background-size: cover;
 	-webkit-background-size: cover;
 	background-size: cover;

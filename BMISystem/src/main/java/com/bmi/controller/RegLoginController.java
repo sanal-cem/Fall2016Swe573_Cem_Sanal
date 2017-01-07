@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bmi.model.User;
-import com.bmi.service.AppService;
+import com.bmi.service.RegLoginService;
 /**
  * Created by Cem Þanal
  */
@@ -16,10 +16,10 @@ import com.bmi.service.AppService;
 public class RegLoginController {
 
 	@Autowired
-	public AppService appService;
+	public RegLoginService regLogService;
 
-	public void setAppService(AppService appService) {
-		this.appService = appService;
+	public void setAppService(RegLoginService regLogService) {
+		this.regLogService = regLogService;
 	}
 	
 	@RequestMapping("/logreg")
@@ -31,13 +31,13 @@ public class RegLoginController {
 	@RequestMapping("/reg")
 	public String loginForm(Model model, User reg) {
 		model.addAttribute("reg", reg);
-		return appService.reg(reg);
+		return regLogService.reg(reg);
 	}
 	
 	@RequestMapping("/login")
 	public String loginFunc(Model model, User login) {
 		model.addAttribute("login", login);
-		return appService.login(login);
+		return regLogService.login(login);
 	}
 	
 	@RequestMapping("/loginSuccess")

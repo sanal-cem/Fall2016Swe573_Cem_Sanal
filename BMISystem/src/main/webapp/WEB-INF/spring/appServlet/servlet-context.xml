@@ -37,7 +37,15 @@
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean id="appService" class="com.bmi.service.AppServiceImpl">
+	<beans:bean id="ActivityService" class="com.bmi.service.ActivityService">
+		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
+	</beans:bean>
+	
+	<beans:bean id="FoodService" class="com.bmi.service.FoodService">
+		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
+	</beans:bean>
+	
+	<beans:bean id="RegLoginService" class="com.bmi.service.RegLoginService">
 		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
 	</beans:bean>
 	
