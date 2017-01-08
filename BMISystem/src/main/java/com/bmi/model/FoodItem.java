@@ -6,13 +6,37 @@ package com.bmi.model;
 
 public class FoodItem {
 
+    /**
+	 * @uml.property  name="offset"
+	 */
     private String offset;
+    /**
+	 * @uml.property  name="group"
+	 */
     private String group;
+	/**
+	 * @uml.property  name="name"
+	 */
 	private String name;
+	/**
+	 * @uml.property  name="ndbno"
+	 */
 	private String ndbno;
+    /**
+	 * @uml.property  name="ds"
+	 */
     private String ds;
+    /**
+	 * @uml.property  name="uName"
+	 */
     private String uName;
+    /**
+	 * @uml.property  name="fCalory"
+	 */
     private int fCalory;
+    /**
+	 * @uml.property  name="fIngred"
+	 */
     private String fIngred;
     
 	public FoodItem() {
@@ -30,34 +54,66 @@ public class FoodItem {
 		this.fIngred = fIngred;
 	}
 
+	/**
+	 * @return
+	 * @uml.property  name="uName"
+	 */
 	public String getuName() {
 		return uName;
 	}
 
+	/**
+	 * @param uName
+	 * @uml.property  name="uName"
+	 */
 	public void setuName(String uName) {
 		this.uName = uName;
 	}
 	
+    /**
+	 * @return
+	 * @uml.property  name="offset"
+	 */
     public String getOffset() {
         return offset;
     }
 
+    /**
+	 * @param offset
+	 * @uml.property  name="offset"
+	 */
     public void setOffset(String offset) {
         this.offset = offset;
     }
 
+    /**
+	 * @return
+	 * @uml.property  name="group"
+	 */
     public String getGroup() {
         return group;
     }
 
+    /**
+	 * @param group
+	 * @uml.property  name="group"
+	 */
     public void setGroup(String group) {
         this.group = group;
     }
 
+    /**
+	 * @return
+	 * @uml.property  name="name"
+	 */
     public String getName() {
         return name;
     }
 
+    /**
+	 * @param name
+	 * @uml.property  name="name"
+	 */
     public void setName(String name) {
         this.name = name;
     }
@@ -70,10 +126,18 @@ public class FoodItem {
         this.ndbno = ndbno;
     }
 
+    /**
+	 * @return
+	 * @uml.property  name="ds"
+	 */
     public String getDs() {
         return ds;
     }
 
+    /**
+	 * @param ds
+	 * @uml.property  name="ds"
+	 */
     public void setDs(String ds) {
         this.ds = ds;
     }
@@ -86,10 +150,18 @@ public class FoodItem {
 		this.fCalory = fCalory;
 	}
 	
+	/**
+	 * @return
+	 * @uml.property  name="fIngred"
+	 */
 	public String getfIngred() {
 		return fIngred;
 	}
 	
+	/**
+	 * @param fIngred
+	 * @uml.property  name="fIngred"
+	 */
 	public void setfIngred(String fIngred) {
 		this.fIngred = fIngred;
 	}

@@ -11,11 +11,19 @@ import com.bmi.model.User;
  */
 public class RegLoginService {
 
+	/**
+	 * @uml.property  name="jdbcTemplate"
+	 * @uml.associationEnd  
+	 */
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
     public static User user = new User();
 
+	/**
+	 * @param jdbcTemplate
+	 * @uml.property  name="jdbcTemplate"
+	 */
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}

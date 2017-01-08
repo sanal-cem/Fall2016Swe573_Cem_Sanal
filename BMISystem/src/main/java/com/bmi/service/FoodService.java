@@ -17,9 +17,17 @@ import com.bmi.model.FoodItem;
 
 public class FoodService {
 	
+	/**
+	 * @uml.property  name="jdbcTemplate"
+	 * @uml.associationEnd  
+	 */
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	/**
+	 * @param jdbcTemplate
+	 * @uml.property  name="jdbcTemplate"
+	 */
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}

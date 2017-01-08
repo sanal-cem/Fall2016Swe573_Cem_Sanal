@@ -15,6 +15,10 @@ import com.bmi.service.RegLoginService;
 @Controller
 public class RegLoginController {
 
+	/**
+	 * @uml.property  name="regLogService"
+	 * @uml.associationEnd  
+	 */
 	@Autowired
 	public RegLoginService regLogService;
 

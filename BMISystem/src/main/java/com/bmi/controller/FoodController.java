@@ -14,6 +14,10 @@ import com.bmi.service.FoodService;
 @Controller
 public class FoodController {
 	
+	/**
+	 * @uml.property  name="foodService"
+	 * @uml.associationEnd  
+	 */
 	@Autowired
 	public FoodService foodService;
 	

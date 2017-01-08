@@ -9,6 +9,10 @@ import com.bmi.model.FoodItem;
 
 public class FoodList {
 	
+	/**
+	 * @uml.property  name="foods"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.bmi.model.FoodItem"
+	 */
 	private List<FoodItem> foods;
 	
 	public FoodList() {

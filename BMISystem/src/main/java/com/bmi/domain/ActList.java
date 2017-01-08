@@ -9,6 +9,10 @@ import com.bmi.model.ActItem;
 
 public class ActList {
 	
+	/**
+	 * @uml.property  name="acts"
+	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.bmi.model.ActItem"
+	 */
 	private List<ActItem> acts;
 	
 	public ActList() {

@@ -26,6 +26,10 @@ import com.bmi.service.RegLoginService;
 @Controller
 public class USDAConnection {
 
+	/**
+	 * @uml.property  name="foodService"
+	 * @uml.associationEnd  readOnly="true"
+	 */
 	@Autowired
 	public FoodService foodService;
 	
