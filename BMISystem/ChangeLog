@@ -1,4 +1,4 @@
-Version 0.17 (changes from BMI Calculator 0.16) - Released on 7 January 2016:
+Version 0.17 (changes from BMI Calculator 0.16) - Released on 8 January 2016:
 * added: org.json.json library added.
 * fix: USDA Database connection totally completed. Data could be fetched. (getAllFoodsUSDA function is corrected and searchFood function is replaced with foodList function.)
 * deleted: gson library isn't needed.
@@ -6,6 +6,7 @@ Version 0.17 (changes from BMI Calculator 0.16) - Released on 7 January 2016:
 * gui: Background image is changed.
 * gui, fix: Objects inside pages placed correctly to handle different screen sizes.
 * fix: Some query and jsp data transfer errors corrected.
+* added: BMI Calculation function added into loginSuccess page and fully working using users registration data.
 
 Version 0.16 (changes from BMI Calculator 0.15) - Released on 4 January 2016:
 * added: showFood.jsp file is added to show users foods.

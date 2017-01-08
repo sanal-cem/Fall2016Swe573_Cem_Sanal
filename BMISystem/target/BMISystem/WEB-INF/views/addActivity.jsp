@@ -72,7 +72,7 @@
 										<form:input class="form-control numbersOnly" path="actClry" />
 										<br />
 										<!-- DateTime yapilacak. -->
-										<p class="desc">Activity Time: </p>
+										<p class="desc">Activity Date: </p>
 										<form:input class="form-control cantWrite" type="text" id="datepicker" path="actTime" />
 										<br />
 										<input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Activity" />

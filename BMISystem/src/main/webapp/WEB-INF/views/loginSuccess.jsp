@@ -50,7 +50,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 align="center">Login Success!</h1>
-                        <p>Hello <core:out value="${login.name} ${login.surName}" /></p>
+                        <h3>Hello <core:out value="${login.name} ${login.surName}" /></h3>
+                        <h3> Your BMI: <core:out value="${login.bmi}" /></h3>
                     </div>
                 </div>
             </div>

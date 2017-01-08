@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 align="center">Adding New Food is Successful</h1>
-                        <p>Food name: <core:out value="${addFood.name}" /></p>
+                        <h3>Food name: <core:out value="${addFood.name}" /></h3>
                     </div>
                 </div>
             </div>

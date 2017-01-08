@@ -1,10 +1,7 @@
 === Requirements ===
  * MYSQL >= 5.7.14
- * Tomcat Server >= 8.5
+ * Tomcat Server >= 8.0
 
-=== Linux/BSD ===
-
- 
 === Windows ===
  * Install the appropriate MYSQL version as x64 or x86_64.
  * Install the Tomcat Server. (version > 8.0)
@@ -12,3 +9,12 @@
  * Insert the BMISystem.war file from that link: "https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/tree/master/BMISystem/target/BMISystem.war" into "C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps" folder of the Tomcat Server.
  * Start Tomcat service and check "C:\Program Files\Apache Software Foundation\Tomcat 8.5\webapps" folder. There should be BMISystem folder.
  * execute localhost:8080/BMISystem/
+ 
+=== AWS ===
+ * Sign in to Amazon AWS.
+ * Open RDS from the AWS console and Launch a MYSQL DB instance. DB Name should be 'bmi'. Examine AWS documents for the rest processes.
+ * Create an Elastic Beanstalk environment. A free Tier is sufficient until v1.0 BMISystem. Examine AWS documents for the rest processes.
+ * Upload BMISystem.war file from that link: "https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/tree/master/BMISystem/target/BMISystem.war" into the Elastic Beanstalk environment. Deploy it in the environment.
+ * Install MYSQL Workbench into your own local environment and connect to your new AWS MYSQL instance using provided MYSQL hostname. Refer AWS documents to create that connection easily.
+ * Execute DumpBMISystem.sql file inside the 'bmi' db.
+ * Try opening provided Elastic Beanstalk environment link.

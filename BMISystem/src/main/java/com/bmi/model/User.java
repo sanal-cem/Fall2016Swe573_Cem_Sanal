@@ -11,6 +11,9 @@ public class User {
 	private String age;
 	private String comment;
 	private boolean isValid = false;
+	private double bmi;
+	private double height;
+	private double weight;
 	
 	public User() {
 		isValid = true;
@@ -76,5 +79,29 @@ public class User {
 	
 	public void setIsValid(boolean isValid) {
 		this.isValid = isValid;
+	}
+	
+	public double getBmi() {
+		return bmi;
+	}
+	
+	public void setBmi(double bmi) {
+		this.bmi = bmi;
+	}
+	
+	public double getHeight() {
+		return height;
+	}
+	
+	public void setHeight(double height) {
+		this.height = height;
+	}
+	
+	public double getWeight() {
+		return weight;
+	}
+	
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 }

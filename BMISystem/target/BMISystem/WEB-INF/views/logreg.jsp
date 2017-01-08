@@ -62,6 +62,12 @@
 						<p class="desc">Age</p>
 						<form:input class="form-control numbersOnly" path="age" />
 							<br />
+						<p class="desc">Height</p>
+						<form:input class="form-control numbersOnly" path="height" />
+							<br />
+						<p class="desc">Weight</p>
+						<form:input class="form-control numbersOnly" path="weight" />
+							<br />
 						<p class="desc">Comments</p>
 							<br />
 						<form:textarea class="form-control" cols="30" rows="6" path="comment" />

@@ -78,6 +78,7 @@ public class USDAConnection {
 //	                fList.addFoodItem(fItem);
 	            }
 	        foodItem.setOffset(offset);
+	        foodItem.setGroup(group);
 	        foodItem.setName(name);
 	        foodItem.setndbno(ndbno);
 	        foodItem.setDs(ds);

@@ -30,7 +30,7 @@ public class RegLoginService {
 		        	try {
 		    			String query = "SELECT UNAME, PASS, "
 		    					+ "NAME, SURNAME , AGE, "
-		    					+ "COMMENT FROM USERS "
+		    					+ "COMMENT, BMI FROM USERS "
 		    					+ "WHERE UNAME LIKE '"
 		    					+ userL.getuName() + "'"
 		    					+ " AND PASS LIKE '"
@@ -48,6 +48,8 @@ public class RegLoginService {
 		    		    	userL.setAge(row.get("AGE").toString());
 		    		    	user.setComment(row.get("COMMENT").toString());
 		    		    	userL.setComment(row.get("COMMENT").toString());
+		    		    	user.setBmi(Double.parseDouble(row.get("BMI").toString()));
+		    		    	userL.setBmi(Double.parseDouble(row.get("BMI").toString()));
 		    		     }
 		    		    if(user.getName().isEmpty() && user.getSurName().isEmpty()) 
 		    		    	return "loginFailed";
@@ -71,17 +73,36 @@ public class RegLoginService {
 		try {
 			String sql = "INSERT INTO USERS("
 					+ "UNAME, PASS, SURNAME, "
-					+ "NAME, AGE, COMMENT"
-					+ ") values(?,?,?,?,?,?)";
+					+ "NAME, AGE, COMMENT, "
+					+ "HEIGHT, WEIGHT, BMI "
+					+ ") values(?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] {
 					reg.getuName(), reg.getPass(),
 					reg.getSurName(), reg.getName(),
-					reg.getAge(), reg.getComment()});
+					reg.getAge(), reg.getComment(),
+					reg.getHeight(), reg.getWeight(),
+					calcUsersBMI(reg)});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			return "regFailed";
 		}
 		return "regSuccess";
+	}
+	
+	public double calcUsersBMI(User reg) {
+
+		double weight = reg.getWeight();
+		double height = reg.getHeight();
+        double bmi = 0.0;
+
+        if(height == 0) {
+        	bmi = 0;
+        }
+        else {
+        	bmi = ((weight * 703)/(height * height));
+        }
+
+        return bmi;
 	}
 }

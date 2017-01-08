@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 align="center">Adding New Activity Successful</h1>
-                        <p>Activity name: <core:out value="${addActivity.actName}" /> /></p>
+                        <h3>Activity name: <core:out value="${addActivity.actName}" /></h3>
                     </div>
                 </div>
             </div>

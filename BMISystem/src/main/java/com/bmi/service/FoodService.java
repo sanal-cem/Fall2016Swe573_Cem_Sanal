@@ -127,7 +127,7 @@ public class FoodService {
 	public String getAllFoodsUSDA() {
 		
 	    final String API_KEY = "J1JqoqoyHlHqBle6EQi3Vj1p356YJZYulgiYvzLp";
-	    final String SEARCH_URL = "http://api.nal.usda.gov/ndb/search/?format=json&api_key=" + API_KEY + "&q=ab";
+	    final String SEARCH_URL = "http://api.nal.usda.gov/ndb/search/?format=json&api_key=" + API_KEY + "&q=";
 	    
 	    String jsonResponse = "";
 	    // Fetching Food data from USDA API
