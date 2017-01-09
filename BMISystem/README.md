@@ -40,11 +40,11 @@ Ongoing developemnts and completed developments are briefly described in 'Projec
 
 ## Sources, Libraries and Tools
 
-[Eclipse Neon IDE](http://www.eclipse.org) used developing software with using framewoks.
+[Eclipse Neon IDE](http://www.eclipse.org) used developing software with using frameworks.
 
 [Java](https://www.java.com) used to write the codes.
 
-[Apache Maven](https://maven.apache.org/) used for using Java Spring.
+[Apache Maven](https://maven.apache.org/) used for using different libraries with Java Spring.
 
 Java based [Spring Framework](http://projects.spring.io/spring-framework/) used to develop project with security.
 Spring Tool Suite - The Eclipse-based development environment for building Spring applications will be used.
@@ -62,7 +62,7 @@ Spring Tool Suite - The Eclipse-based development environment for building Sprin
 
 ## Used Technologies
 
-After researching some weeks, thanks to [roseindia](http://www.roseindia.net/spring/) ,I learned Java Spring basics and started to write Java Spring codes. JSP is the default for front-end. However, I don't want to consume my time with struggling JSP requests and responses. I will try to integrate HTML instead of JSP into my Spring project.
+After researching some weeks, thanks to [RoseIndia](http://www.roseindia.net/spring/) ,I learned Java Spring basics and started to write Java Spring codes. JSP is the default for front-end. However, I don't want to consume my time with struggling JSP requests and responses. I will try to integrate HTML instead of JSP into my Spring project.
 More technologies will be used connect the USDA database and insert gifs into the HTML pages later.
 
 
@@ -103,26 +103,21 @@ Mockups will give a representation of the product’s visual appearance. Mockups
 [Admin User Use Case Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/UC_Admin_User.png)
 
 ### Architectural Diagrams
-1. Component Diagram
+1. [Component Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Component_BMI.png)
 
-[Component Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Component_BMI.png)
+2. [Context Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Context%20Diagram.png)
 
-2. Context Diagram
+3. [Data Flow Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Data%20Flow%20Diagram.png)
 
-[Context Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Context%20Diagram.png)
+4. [Database Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Database_Diagram.png)
 
-3. Data Flow Diagram
-
-[Data Flow Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Data%20Flow%20Diagram.png)
+5. [Class Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Class_Diagram.png)
 
 4. Sequence Diagrams
 
 [a.USDA API Data Fetching Sequence Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Sequence_USDA_API_Data_Fetching.png)
 
 [b.Controller Sequence Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Sequence_Controller_Logic.png)
-
-5. Other Diagrams
-
 
 ## Issues
 
