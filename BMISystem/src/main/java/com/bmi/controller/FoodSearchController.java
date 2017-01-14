@@ -11,6 +11,7 @@ import com.bmi.domain.FoodList;
 import com.bmi.model.FoodItem;
 import com.bmi.domain.FNutMeasureList;
 import com.bmi.domain.FNutrList;
+import com.bmi.service.ActivityService;
 import com.bmi.service.USDAFoodService;
 /**
  * Created by Cem Þanal.
@@ -21,6 +22,10 @@ public class FoodSearchController {
 
 	@Autowired
 	public USDAFoodService USDAfoodService;
+	
+	public void setAppService(USDAFoodService USDAfoodService) {
+		this.USDAfoodService = USDAfoodService;
+	}
 
     @RequestMapping(value = "/foodSearch" , method = RequestMethod.GET)
     public String searchFood()
