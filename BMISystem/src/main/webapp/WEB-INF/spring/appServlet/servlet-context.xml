@@ -41,11 +41,15 @@
 		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
 	</beans:bean>
 	
-	<beans:bean id="FoodService" class="com.bmi.service.FoodService">
+	<beans:bean id="FoodShowService" class="com.bmi.service.FoodShowService">
 		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
 	</beans:bean>
 	
-	<beans:bean id="RegLoginService" class="com.bmi.service.RegLoginService">
+	<beans:bean id="AccountService" class="com.bmi.service.AccountService">
+		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
+	</beans:bean>
+	
+	<beans:bean id="USDAFoodService" class="com.bmi.service.USDAFoodService">
 		<beans:property name="jdbcTemplate" ref="jdbcTemplate" />
 	</beans:bean>
 	

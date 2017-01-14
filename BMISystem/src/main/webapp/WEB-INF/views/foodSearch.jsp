@@ -15,6 +15,30 @@
 		href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/simple-sidebar.css">
+	<script type="text/javascript">
+	function validateForm(form) {
+	    if (isNotEmpty(form.search_box)) {
+	        if(isNotEmpty(form.search_button)) {
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
+	function isNotEmpty(field) {
+
+	    var fieldData = field.value;
+
+	    if (fieldData.length < 3 || fieldData == "") {
+
+	        alert("Please enter more than 2 letters.");
+	        return false;
+	    } else {
+
+	        return true; //Submits form
+	    }
+	}
+	</script>
 </head>
     
     <body class="bdy" >
@@ -27,10 +51,10 @@
                     <a href="logreg">BMI System</a>
                 </li>
                 <li>
-					<a href="foodSearch" >Food Search Page</a>
+					<a href="settings" >Edit Settings Page</a>
                 </li>
                 <li>
-					<a href="addFood" >Add Food Page</a>
+					<a href="foodSearch" >Food Addition Page</a>
                 </li>
                 <li>
 					<a href="showFood" >Users Food Showcase Page</a>
@@ -51,9 +75,9 @@
                 <div class="row">
                     <div class="col-lg-12">
      					<div class="col-xs-3">
-							<h2 align="center">Your Activities</h2>
+							<h2 align="center">Search Foods</h2>
 							<hr />
-					        <form:form method="GET" commandName="foodList" action="foodList" modelAttribute="keyword">
+					        <form:form method="GET" commandName="foodList" action="foodList" modelAttribute="keyword" onsubmit="return validateForm(this)">
 					        	<br /><br />
 					            <p class="desc">Food Name: </p>
 								<input class="form-control" id="search_box" type="text" name="keyword"><br>

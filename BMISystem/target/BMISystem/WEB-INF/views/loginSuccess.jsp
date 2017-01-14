@@ -5,8 +5,10 @@
 <html>
 <head>
 	<title>New Food</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" 
 		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
@@ -26,10 +28,10 @@
                     <a href="logreg">BMI System</a>
                 </li>
                 <li>
-					<a href="foodSearch" >Food Search Page</a>
+					<a href="settings" >Edit Settings Page</a>
                 </li>
                 <li>
-					<a href="addFood" >Add Food Page</a>
+					<a href="foodSearch" >Food Addition Page</a>
                 </li>
                 <li>
 					<a href="showFood" >Users Food Showcase Page</a>
@@ -50,8 +52,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 align="center">Login Success!</h1>
-                        <h3>Hello <core:out value="${login.name} ${login.surName}" /></h3>
-                        <h3> Your BMI: <core:out value="${login.bmi}" /></h3>
+                        <h3>Hello <core:out value="${user.name} ${user.surName}" /></h3>
+                        <h3>Your BMI: <core:out value="${user.bmi}" /></h3>
                     </div>
                 </div>
             </div>

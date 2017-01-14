@@ -29,10 +29,10 @@
                     <a href="logreg">BMI System</a>
                 </li>
                 <li>
-					<a href="foodSearch" >Food Search Page</a>
+					<a href="settings" >Edit Settings Page</a>
                 </li>
                 <li>
-					<a href="addFood" >Add Food Page</a>
+					<a href="foodSearch" >Food Addition Page</a>
                 </li>
                 <li>
 					<a href="showFood" >Users Food Showcase Page</a>
@@ -77,7 +77,7 @@
 	           </div>
 	       </div>
         <!-- /#page-content-wrapper -->
-
+		</div>
     </div>
     
 </body>

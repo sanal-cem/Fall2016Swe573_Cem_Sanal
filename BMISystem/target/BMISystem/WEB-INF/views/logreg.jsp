@@ -1,19 +1,22 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 	<title>BMI Calculator Login Page</title>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" 
-		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
+	<link rel="stylesheet" 
+		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 	<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
+		href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 </head>
 
 <body class="bdy" >
@@ -34,7 +37,7 @@
 					<li><a href="#register">Register</a></li>
 				</ul>
 				<div id="login">
-					<form:form commandName="logreg" method="POST" action="login">
+					<form:form commandName="user" method="POST" action="login">
 						<p class="desc">User Name: </p>
 						<form:input class="ui-button" path="uName" />
 							<br /><br />
@@ -46,31 +49,37 @@
 					</form:form>
 				</div>
 				<div id="register">
-					<form:form commandName="logreg" method="POST" action="reg">
+					<form:form commandName="user" method="POST" action="reg">
 						<p class="desc">User Name: </p>
-						<form:input class="form-control" path="uName" />
+						<form:input class="ui-button" path="uName" />
 							<br />
 						<p class="desc">Password: </p>
-						<form:input class="form-control" type="password" path="pass"/>
+						<form:input class="ui-button" type="password" path="pass"/>
 							<br />
 						<p class="desc">Name: </p>
-						<form:input class="form-control" path="name" />
+						<form:input class="ui-button" path="name" />
 							<br />
 						<p class="desc">Surname: </p>
-							<form:input class="form-control" path="surName" />
+							<form:input class="ui-button" path="surName" />
 							<br />
 						<p class="desc">Age</p>
-						<form:input class="form-control numbersOnly" path="age" />
+						<form:input class="ui-button numbersOnly" path="age" />
 							<br />
 						<p class="desc">Height</p>
-						<form:input class="form-control numbersOnly" path="height" />
+						<form:input class="ui-button numbersOnly" path="height" />
 							<br />
 						<p class="desc">Weight</p>
-						<form:input class="form-control numbersOnly" path="weight" />
+						<form:input class="ui-button numbersOnly" path="weight" />
+							<br />
+						<p class="desc">Gender</p>
+							<form:select class="ui-button" path="gender" >
+								<form:option value="M" >Male</form:option>
+								<form:option value="F" >Female</form:option>
+							</form:select>
 							<br />
 						<p class="desc">Comments</p>
 							<br />
-						<form:textarea class="form-control" cols="30" rows="6" path="comment" />
+						<form:textarea class="ui-button" cols="30" rows="6" path="comment" />
 							<br /><br />
 						<input class="ui-button ui-widget ui-corner-all" type="submit" value="Register" />
 						<br /><br />

@@ -111,7 +111,7 @@ Mockups will give a representation of the product’s visual appearance. Mockups
 
 4. [Database Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Database_Diagram.png)
 
-5. [Class Diagram](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Class_Diagram.png)
+5. [Class Diagrams](https://github.com/sanal-cem/Fall2016Swe573_Cem_Sanal/blob/master/DOC/Class_Diagrams)
 
 4. Sequence Diagrams
 

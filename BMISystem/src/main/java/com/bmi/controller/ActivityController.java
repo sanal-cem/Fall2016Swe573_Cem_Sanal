@@ -13,11 +13,7 @@ import com.bmi.service.ActivityService;
 
 @Controller
 public class ActivityController {
-	
-	/**
-	 * @uml.property  name="actService"
-	 * @uml.associationEnd  
-	 */
+
 	@Autowired
 	public ActivityService actService;
 	

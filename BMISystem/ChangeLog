@@ -1,3 +1,17 @@
+Version 0.18 (changes from BMI Calculator 0.17) - Released on 14 January 2016:
+* all: some classes and places of many functions changed. Refactoring started.
+* added: User Settings page.
+* added: FoodSearchController class
+* added: FNutMeasureList class
+* added: FNutrList class
+* added: FNutMeasures class
+* deleted: FNutrients class
+* fix: Food Searching and Adding Page combined and fixed for providing usability.
+* updated: Name change: RegLoginController class changed to AccountController class
+* updated: Name change: RegLoginService class changed to AccountService class
+* updated: Name change: FoodController class changed to FoodShowController class
+* updated: Name change: FoodService class changed to FoodShowService class
+
 Version 0.17 (changes from BMI Calculator 0.16) - Released on 8 January 2016:
 * added: org.json.json library added.
 * fix: USDA Database connection totally completed. Data could be fetched. (getAllFoodsUSDA function is corrected and searchFood function is replaced with foodList function.)

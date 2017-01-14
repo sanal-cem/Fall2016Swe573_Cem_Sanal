@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="FoodShowController" size="789,651" id="com.bmi.controller" metadata="uml2-1.0" initialized="true" tag="10" key="32303037303533312D313020424D4953797374656D">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.1" name="FoodShowService" location="299,45" size="175,117" id="com.bmi.service/FoodShowService">
+    <children xsi:type="editmodel:CompartmentEditModel" size="152,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="jdbcTemplate" id="com.bmi.service/FoodShowService#jdbcTemplate"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="110,36">
+      <children xsi:type="editmodel:MethodEditModel" name="setJdbcTemplate" id="com.bmi.service/FoodShowService#setJdbcTemplate(Lorg.springframework.jdbc.core.JdbcTemplate;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="showFood" id="com.bmi.service/FoodShowService#showFood(Lcom.bmi.domain.FoodList;Lcom.bmi.domain.FNutrList;Lcom.bmi.domain.FNutMeasureList;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.0" name="FoodList" location="15,240" size="136,171" id="com.bmi.domain/FoodList">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="113,108">
+      <children xsi:type="editmodel:MethodEditModel" name="FoodList" id="com.bmi.domain/FoodList#FoodList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="FoodList" id="com.bmi.domain/FoodList#FoodList(Ljava.util.ArrayList;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addFoodItem" id="com.bmi.domain/FoodList#addFoodItem(Lcom.bmi.model.FoodItem;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFoodList" id="com.bmi.domain/FoodList#getFoodList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFoodListName" id="com.bmi.domain/FoodList#getFoodListName(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setFoodList" id="com.bmi.domain/FoodList#setFoodList(Ljava.util.ArrayList;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.2" name="FNutrList" location="660,240" size="135,171" id="com.bmi.domain/FNutrList">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="112,108">
+      <children xsi:type="editmodel:MethodEditModel" name="FNutrList" id="com.bmi.domain/FNutrList#FNutrList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="FNutrList" id="com.bmi.domain/FNutrList#FNutrList(Ljava.util.ArrayList;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addFNutrient" id="com.bmi.domain/FNutrList#addFNutrient(Lcom.bmi.model.FNutrients;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFNutrList" id="com.bmi.domain/FNutrList#getFNutrList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFNutrListFood" id="com.bmi.domain/FNutrList#getFNutrListFood(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setFNutrList" id="com.bmi.domain/FNutrList#setFNutrList(Ljava.util.ArrayList;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.4/@sourceConnections.3" name="FNutMeasureList" location="299,480" size="175,171" id="com.bmi.domain/FNutMeasureList">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="152,108">
+      <children xsi:type="editmodel:MethodEditModel" name="FNutMeasureList" location="0,51" id="com.bmi.domain/FNutMeasureList#FNutMeasureList(Ljava.util.ArrayList;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="FNutMeasureList" id="com.bmi.domain/FNutMeasureList#FNutMeasureList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="addFNutMeasureItem" id="com.bmi.domain/FNutMeasureList#addFNutMeasureItem(Lcom.bmi.model.FNutMeasures;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFNutMeasureList" id="com.bmi.domain/FNutMeasureList#getFNutMeasureList()"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getFNutMeasureListFNutr" id="com.bmi.domain/FNutMeasureList#getFNutMeasureListFNutr(Ljava.lang.String;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setFNutMeasureList" id="com.bmi.domain/FNutMeasureList#setFNutMeasureList(Ljava.util.ArrayList;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="FoodShowController" location="274,274" size="226,103" id="com.bmi.controller/FoodShowController">
+    <children xsi:type="editmodel:CompartmentEditModel" size="203,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="foodShowService" id="com.bmi.controller/FoodShowController#foodShowService"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="102,36">
+      <children xsi:type="editmodel:MethodEditModel" name="setAppService" id="com.bmi.controller/FoodShowController#setAppService(Lcom.bmi.service.FoodShowService;)"/>
+      <children xsi:type="editmodel:MethodEditModel" name="showFoods" id="com.bmi.controller/FoodShowController#showFoods(Lorg.springframework.ui.Model;Lcom.bmi.domain.FoodList;Lcom.bmi.domain.FNutrList;Lcom.bmi.domain.FNutMeasureList;)"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.bmi.controller/FoodShowController-Soyatec::Import->com.bmi.domain/FoodList" source="//@children.4" target="//@children.1" targetEnd="//@children.4/@sourceConnections.0/@children.2" label="//@children.4/@sourceConnections.0/@children.0" sourceEnd="//@children.4/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,51" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="136,85"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.bmi.controller/FoodShowController->com.bmi.service/FoodShowService*com.bmi.controller/FoodShowController-Soyatec::Import->com.bmi.service/FoodShowService" source="//@children.4" target="//@children.0" targetEnd="//@children.4/@sourceConnections.1/@children.2" label="//@children.4/@sourceConnections.1/@children.0" sourceEnd="//@children.4/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="112,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="87,117"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.bmi.controller/FoodShowController-Soyatec::Import->com.bmi.domain/FNutrList" source="//@children.4" target="//@children.2" targetEnd="//@children.4/@sourceConnections.2/@children.2" label="//@children.4/@sourceConnections.2/@children.0" sourceEnd="//@children.4/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="226,51" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,85"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="com.bmi.controller/FoodShowController-Soyatec::Import->com.bmi.domain/FNutMeasureList" source="//@children.4" target="//@children.3" targetEnd="//@children.4/@sourceConnections.3/@children.2" label="//@children.4/@sourceConnections.3/@children.0" sourceEnd="//@children.4/@sourceConnections.3/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="41,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="112,103" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="87,0"/>
+    </sourceConnections>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" interactive="false" properties="open=com.bmi.controller/FoodShowController;wireOptions=7;Product=eUML2"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true" showDependencyStereotype="true" showInterfaceStereotype="true" innerClassSorter="Natural" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showPublicMethods="true" showPackageMethods="true" showStaticMethods="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3" showAttributeProperty="true"/>
+</editmodel:ClassDiagramEditModel>

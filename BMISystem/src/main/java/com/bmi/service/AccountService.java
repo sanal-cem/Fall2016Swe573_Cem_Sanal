@@ -5,25 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.bmi.model.User;
-
 /**
  * Created by Cem Þanal.
  */
-public class RegLoginService {
 
-	/**
-	 * @uml.property  name="jdbcTemplate"
-	 * @uml.associationEnd  
-	 */
+public class AccountService {
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
     public static User user = new User();
 
-	/**
-	 * @param jdbcTemplate
-	 * @uml.property  name="jdbcTemplate"
-	 */
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -37,7 +29,7 @@ public class RegLoginService {
 		        {
 		        	try {
 		    			String query = "SELECT UNAME, PASS, "
-		    					+ "NAME, SURNAME , AGE, "
+		    					+ "NAME, SURNAME , AGE, GENDER, "
 		    					+ "COMMENT, BMI FROM USERS "
 		    					+ "WHERE UNAME LIKE '"
 		    					+ userL.getuName() + "'"
@@ -54,6 +46,8 @@ public class RegLoginService {
 		    		    	userL.setSurName(row.get("SURNAME").toString());
 		    		    	user.setAge(row.get("AGE").toString());
 		    		    	userL.setAge(row.get("AGE").toString());
+		    		    	user.setGender(row.get("GENDER").toString());
+		    		    	userL.setGender(row.get("GENDER").toString());
 		    		    	user.setComment(row.get("COMMENT").toString());
 		    		    	userL.setComment(row.get("COMMENT").toString());
 		    		    	user.setBmi(Double.parseDouble(row.get("BMI").toString()));
@@ -77,19 +71,20 @@ public class RegLoginService {
 	    return "logreg";
 	}
 	
-	public String reg(User reg) {
+	public String reg(User userR) {
 		try {
 			String sql = "INSERT INTO USERS("
 					+ "UNAME, PASS, SURNAME, "
-					+ "NAME, AGE, COMMENT, "
+					+ "NAME, AGE, GENDER, COMMENT, "
 					+ "HEIGHT, WEIGHT, BMI "
-					+ ") values(?,?,?,?,?,?,?,?,?)";
+					+ ") values(?,?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] {
-					reg.getuName(), reg.getPass(),
-					reg.getSurName(), reg.getName(),
-					reg.getAge(), reg.getComment(),
-					reg.getHeight(), reg.getWeight(),
-					calcUsersBMI(reg)});
+					userR.getuName(), userR.getPass(),
+					userR.getSurName(), userR.getName(),
+					userR.getAge(), userR.getGender(),
+					userR.getComment(), userR.getHeight(),
+					userR.getWeight(), calcUsersBMI(userR)
+					});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -102,6 +97,8 @@ public class RegLoginService {
 
 		double weight = reg.getWeight();
 		double height = reg.getHeight();
+		// BMI gender'a göre hesaplanacak.
+		String gender = reg.getGender();
         double bmi = 0.0;
 
         if(height == 0) {
@@ -112,5 +109,27 @@ public class RegLoginService {
         }
 
         return bmi;
+	}
+	
+	public String update(User userU) {
+		try {
+			String sql = "UPDATE USERS "
+					+ "SET UNAME = ?, PASS = ?, SURNAME = ?, "
+					+ "NAME = ?, AGE = ?, GENDER = ?, COMMENT = ?, "
+					+ "HEIGHT = ?, WEIGHT = ?, BMI = ? "
+					+ "WHERE UNAME = '" + user.getuName() + "'";
+			jdbcTemplate.update(sql, new Object[] {
+					userU.getuName(), userU.getPass(),
+					userU.getSurName(), userU.getName(),
+					userU.getAge(), userU.getGender(),
+					userU.getComment(), userU.getHeight(),
+					userU.getWeight(), calcUsersBMI(userU)
+					});
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return "updFailed";
+		}
+		return "updSuccess";
 	}
 }

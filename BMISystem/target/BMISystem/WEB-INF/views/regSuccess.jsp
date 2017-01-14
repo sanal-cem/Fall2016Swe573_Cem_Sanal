@@ -17,11 +17,11 @@
 </head>
 
 <body class="bdy" >
-<div class="col-xs-3">
-	<h2 align="center">Registration Success</h2>
-	<h3>Hello <core:out value="${reg.name} ${reg.surName}" /></h3>
-	<p>Please Login Now.</p>
-	<a class="btn btn-default" href="logreg" >Login Page</a>
-</div>
+	<div class="col-xs-3">
+		<h2 align="center">Registration Success</h2>
+		<h3>Hello <core:out value="${user.name} ${user.surName}" /></h3>
+		<p>Please Login Now.</p>
+		<a class="btn btn-default" href="logreg" >Login Page</a>
+	</div>
 </body>
 </html>

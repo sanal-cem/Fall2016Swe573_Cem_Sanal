@@ -1,29 +1,23 @@
 package com.bmi.domain;
 
-import java.util.List;
-
+import java.util.ArrayList;
 import com.bmi.model.ActItem;
 /**
  * Created by Cem Þanal.
  */
 
 public class ActList {
-	
-	/**
-	 * @uml.property  name="acts"
-	 * @uml.associationEnd  multiplicity="(0 -1)" elementType="com.bmi.model.ActItem"
-	 */
-	private List<ActItem> acts;
+	private ArrayList<ActItem> acts;
 	
 	public ActList() {
-		
+		acts = new ArrayList<ActItem>();
 	}
 	
-	public ActList(List<ActItem> acts) {
+	public ActList(ArrayList<ActItem> acts) {
 		this.acts = acts;
 	}
 
-	public List<ActItem> getActList() {
+	public ArrayList<ActItem> getActList() {
 		return acts;
 	}
 	

@@ -8,20 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.bmi.model.ActItem;
+/**
+ * Created by Cem Þanal.
+ */
 
 public class ActivityService {
-	
-	/**
-	 * @uml.property  name="jdbcTemplate"
-	 * @uml.associationEnd  
-	 */
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	/**
-	 * @param jdbcTemplate
-	 * @uml.property  name="jdbcTemplate"
-	 */
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -32,7 +27,7 @@ public class ActivityService {
 					+ "UNAME, ACTID, ACTNAME, "
 					+ "ACTTYPE, ACTCALORY, ACTTIME"
 					+ ") values(?,?,?,?,?,?)";
-			jdbcTemplate.update(sql, new Object[] { RegLoginService.user.getuName(),
+			jdbcTemplate.update(sql, new Object[] { AccountService.user.getuName(),
 					act.getActId(), act.getActName(),
 					act.getActType(), act.getActClry(),
 					act.getActTime()			});
@@ -53,7 +48,7 @@ public class ActivityService {
 					+ "ACTNAME, ACTTYPE, ACTCALORY,"
 					+ "ACTTIME FROM UACTIVITY"
 					+ "  WHERE UNAME LIKE "
-					+ "'" + RegLoginService.user.getuName() + "'";
+					+ "'" + AccountService.user.getuName() + "'";
 			actRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> row : actRows){
 //			   *Every ActItem should be shown.
