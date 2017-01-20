@@ -12,9 +12,9 @@ public class User {
 	private String age;
 	private String comment;
 	private boolean isValid = false;
-	private double bmi;
-	private double height;
-	private double weight;
+	private float bmi;
+	private float height;
+	private float weight;
 	private String gender;
 	
 	public User() {
@@ -83,27 +83,27 @@ public class User {
 		this.isValid = isValid;
 	}
 
-	public double getBmi() {
+	public float getBmi() {
 		return bmi;
 	}
 
-	public void setBmi(double bmi) {
+	public void setBmi(float bmi) {
 		this.bmi = bmi;
 	}
 
-	public double getHeight() {
+	public float getHeight() {
 		return height;
 	}
 
-	public void setHeight(double height) {
+	public void setHeight(float height) {
 		this.height = height;
 	}
 	
-	public double getWeight() {
+	public float getWeight() {
 		return weight;
 	}
 
-	public void setWeight(double weight) {
+	public void setWeight(float weight) {
 		this.weight = weight;
 	}
 	

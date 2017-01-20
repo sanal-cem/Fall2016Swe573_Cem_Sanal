@@ -33,7 +33,7 @@
 					<a href="showFood" >Users Food Showcase Page</a>
                 </li>
                 <li>
-					<a href="addActivity" >Add Activity Page</a>
+					<a href="activityList" >Add Activity Page</a>
                 </li>
                 <li>
 					<a href="showActivity" >Users Activity Showcase Page</a>
@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 align="center">Adding New Activity Successful</h1>
-                        <h3>Activity name: <core:out value="${addActivity.actName}" /></h3>
+                        <h3>Activity Description: <core:out value="${actItem.actDesc}" /></h3>
                     </div>
                 </div>
             </div>

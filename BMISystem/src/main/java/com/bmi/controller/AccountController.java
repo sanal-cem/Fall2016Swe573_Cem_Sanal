@@ -16,10 +16,10 @@ import com.bmi.service.AccountService;
 public class AccountController {
 
 	@Autowired
-	public AccountService AccountService;
+	public AccountService accountService;
 
-	public void setAppService(AccountService regLogService) {
-		this.AccountService = regLogService;
+	public void setAppService(AccountService accountService) {
+		this.accountService = accountService;
 	}
 	
 	@RequestMapping("/logreg")
@@ -31,13 +31,13 @@ public class AccountController {
 	@RequestMapping("/reg")
 	public String loginForm(Model model, User user) {
 		model.addAttribute("user", user);
-		return AccountService.reg(user);
+		return accountService.reg(user);
 	}
 	
 	@RequestMapping("/login")
 	public String loginFunc(Model model, User user) {
 		model.addAttribute("user", user);
-		return AccountService.login(user);
+		return accountService.login(user);
 	}
 	
 	@RequestMapping("/loginSuccess")
@@ -64,14 +64,14 @@ public class AccountController {
 	
 	@RequestMapping("/settings")
 	public String settingsForm(Model model, User user) {
-		model.addAttribute("user", user);
+		model.addAttribute("user", AccountService.user);
 		return "settings";
 	}
 	
 	@RequestMapping("/update")
 	public String updateForm(Model model, User user) {
 		model.addAttribute("user", user);
-		return AccountService.update(user);
+		return accountService.update(user);
 	}
 	
 	@RequestMapping("/updSuccess")

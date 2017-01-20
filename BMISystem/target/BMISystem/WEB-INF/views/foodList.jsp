@@ -5,19 +5,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
 <html>
 <head>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" 
-		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/simple-sidebar.css">
+	<link rel="stylesheet" 
+		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+	<link rel="stylesheet" 
+		href="${pageContext.request.contextPath}/resources/css/datatable.css">
 </head>
-    
+
 <body class="bdy" >
     <div id="wrapper">
 
@@ -37,7 +42,7 @@
 					<a href="showFood" >Users Food Showcase Page</a>
                 </li>
                 <li>
-					<a href="addActivity" >Add Activity Page</a>
+					<a href="activityList" >Add Activity Page</a>
                 </li>
                 <li>
 					<a href="showActivity" >Users Activity Showcase Page</a>
@@ -48,43 +53,55 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-						<h2 align="center">Add Foods</h2>
-						<hr />
-						<!-- Shows Food, Nutrient and Measure information. -->
-						<core:forEach var="food" items="${foodList.getFoodList()}">
-						    <p class="desc"><b>Food Name:</b> <core:out value="${food.name}"/></p>
-						    <p class="desc"><b>Food Weight:</b> <core:out value="${food.weight}"/></p>
-						    <p class="desc"><b>Food Calory:</b> <core:out value="${food.fCalory}"/></p>
-							<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName">
-								<input class="hidden" type="text" name="foodName" value="${food.name}"></input>
-					            <input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Food"></input>
-				        	</form:form>
-						    <hr style="border: 1px solid #33FF49;" >
-						    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}">
-							    <p class="desc"><b>Nutrient Name:</b> <core:out value="${nutrient.nname}"/></p>
-							    <p class="desc"><b>Nutrient Unit:</b> <core:out value="${nutrient.nunit}"/></p>
-								<p class="desc"><b>Nutrient Value:</b> <core:out value="${nutrient.nvalue}"/></p>
-								<hr style="border: 1px solid #334FFF;" >
-								
-								<core:forEach var="measure" items="${fNutmsrList.getFNutMeasureListFNutr(nutrient.nid)}">
-									<p class="desc"><b>Measure id:</b> <core:out value="${measure.nid}"/></p>
-								    <p class="desc"><b>Measure Label:</b> <core:out value="${measure.label}"/></p>
-								    <p class="desc"><b>Measure Value:</b> <core:out value="${measure.value}"/></p>
-							    <hr style="border: 1px solid #9F33FF;" >
-							    </core:forEach>
-						    </core:forEach>
-						    <br />
-						    <br />
+            <div class="col-lg-12">
+				<h2 align="center">Add Foods</h2>
+				<hr />
+				<table class="paginated" >
+				<tbody>
+				<!-- Shows Food, Nutrient and Measure information. -->
+				<core:forEach var="food" items="${foodList.getFoodList()}">
+					<tr><td>
+				    <p class="desc"><b>Food Name:</b></p>
+				    </td><td>
+				    <p class="desc"><b><core:out value="${food.name}"/></b></p>
+				    </td></tr>
+				    <tr><td>
+				    <p class="desc"><b>Food Weight:</b></p>
+				    </td><td>
+				    <p class="desc"><b><core:out value="${food.weight}"/></b></p>
+				    </td></tr>
+				    <tr><td>
+				    <p class="desc"><b>Food Calory:</b></p>
+				    </td><td>
+				    <p class="desc"><b><core:out value="${food.fCalory}"/></b></p>
+					</td></tr>
+					<tr><td>
+						<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName">
+							<input class="hidden" type="text" name="foodName" value="${food.name}"></input>
+				            <input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Food"></input>
+			        	</form:form>
+			        </td></tr>
+			        <tr><td>
+				    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}">
+					    <p class="desc"><b>Nutrient Name: <core:out value="${nutrient.nname}"/></b></p>
+					    <p class="desc"><b>Nutrient Unit: <core:out value="${nutrient.nunit}"/></b></p>
+						<p class="desc"><b>Nutrient Value: <core:out value="${nutrient.nvalue}"/></b></p>
+						<br/>
+						<core:forEach var="measure" items="${fNutmsrList.getFNutMeasureListFNutr(nutrient.nid)}">
+							<p class="desc"><b>Measure id: <core:out value="${measure.nid}"/></b></p>
+						    <p class="desc"><b>Measure Label: <core:out value="${measure.label}"/></b></p>
+						    <p class="desc"><b>Measure Value: <core:out value="${measure.value}"/></b></p>
+						    <br/>
 					    </core:forEach>
-                    </div>
-                </div>
+		    		</core:forEach>
+		    		</td></tr>
+			    </core:forEach>
+			    </tbody>
+			    </table>
             </div>
         </div>
-        <!-- /#page-content-wrapper -->
-
     </div>
 </body>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/datatable.js"></script>
 </html>

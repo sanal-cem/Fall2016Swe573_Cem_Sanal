@@ -11,7 +11,6 @@ import com.bmi.domain.FoodList;
 import com.bmi.model.FoodItem;
 import com.bmi.domain.FNutMeasureList;
 import com.bmi.domain.FNutrList;
-import com.bmi.service.ActivityService;
 import com.bmi.service.USDAFoodService;
 /**
  * Created by Cem Þanal.

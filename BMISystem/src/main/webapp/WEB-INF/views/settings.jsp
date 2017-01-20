@@ -38,7 +38,7 @@
 					<a href="showFood" >Users Food Showcase Page</a>
                 </li>
                 <li>
-					<a href="addActivity" >Add Activity Page</a>
+					<a href="activityList" >Add Activity Page</a>
                 </li>
                 <li>
 					<a href="showActivity" >Users Activity Showcase Page</a>
@@ -55,29 +55,25 @@
                     	<div class="col-xs-3">
 							<form:form commandName="user" method="POST" action="update">
 								<p class="desc">User Name: </p>
-								<p><core:out value="${user.uName}"/></p>
-								<form:input class="form-control" path="uName" />
+								<form:input class="ui-button" path="uName" />
 									<br />
 								<p class="desc">Password: </p>
-								<p><core:out value="${user.pass}"/></p>
-								<form:input class="form-control" type="password" path="pass" />
+								<form:input class="ui-button" type="password" path="pass" />
 									<br />
 								<p class="desc">Name: </p>
-								<p><core:out value="${user.name}"/></p>
-								<form:input class="form-control" path="name"/>
+								<form:input class="ui-button" path="name"/>
 									<br />
 								<p class="desc">Surname: </p>
-								<p><core:out value="${user.surName}"/></p>
-								<form:input class="form-control" path="surName" />
+								<form:input class="ui-button" path="surName" />
 									<br />
 								<p class="desc">Age</p>
-								<form:input class="form-control numbersOnly" path="age" />
+								<form:input class="ui-button numbersOnly" path="age" />
 									<br />
 								<p class="desc">Height</p>
-								<form:input class="form-control numbersOnly" path="height" />
+								<form:input class="ui-button numbersOnly" path="height" />
 									<br />
 								<p class="desc">Weight</p>
-								<form:input class="form-control numbersOnly" path="weight" />
+								<form:input class="ui-button numbersOnly" path="weight" />
 									<br />
 								<p class="desc">Gender</p>
 									<form:select class="form-control" path="gender" >
@@ -103,11 +99,11 @@
 </body>
 <script type="text/javascript">
 $(function() {
-  $( ".numbersOnly" ).keyup(function () {
-	    if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
-	       this.value = this.value.replace(/[^0-9\.]/g, '');
-	    }
-	});
-}
+	  $( ".numbersOnly" ).keyup(function () {
+		    if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
+		       this.value = this.value.replace(/[^0-9\.]/g, '');
+		    }
+	  });
+});
 </script>
 </html>

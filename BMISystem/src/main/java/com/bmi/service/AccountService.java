@@ -30,7 +30,8 @@ public class AccountService {
 		        	try {
 		    			String query = "SELECT UNAME, PASS, "
 		    					+ "NAME, SURNAME , AGE, GENDER, "
-		    					+ "COMMENT, BMI FROM USERS "
+		    					+ "COMMENT, HEIGHT, WEIGHT, "
+		    					+ "BMI FROM USERS "
 		    					+ "WHERE UNAME LIKE '"
 		    					+ userL.getuName() + "'"
 		    					+ " AND PASS LIKE '"
@@ -50,8 +51,12 @@ public class AccountService {
 		    		    	userL.setGender(row.get("GENDER").toString());
 		    		    	user.setComment(row.get("COMMENT").toString());
 		    		    	userL.setComment(row.get("COMMENT").toString());
-		    		    	user.setBmi(Double.parseDouble(row.get("BMI").toString()));
-		    		    	userL.setBmi(Double.parseDouble(row.get("BMI").toString()));
+		    		    	user.setHeight(Float.parseFloat(row.get("HEIGHT").toString()));
+		    		    	userL.setHeight(Float.parseFloat(row.get("HEIGHT").toString()));
+		    		    	user.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
+		    		    	userL.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
+		    		    	user.setBmi(Float.parseFloat(row.get("BMI").toString()));
+		    		    	userL.setBmi(Float.parseFloat(row.get("BMI").toString()));
 		    		     }
 		    		    if(user.getName().isEmpty() && user.getSurName().isEmpty()) 
 		    		    	return "loginFailed";
@@ -93,13 +98,13 @@ public class AccountService {
 		return "regSuccess";
 	}
 	
-	public double calcUsersBMI(User reg) {
+	public float calcUsersBMI(User reg) {
 
-		double weight = reg.getWeight();
-		double height = reg.getHeight();
+		float weight = reg.getWeight();
+		float height = reg.getHeight();
 		// BMI gender'a göre hesaplanacak.
 		String gender = reg.getGender();
-        double bmi = 0.0;
+		float bmi = 0;
 
         if(height == 0) {
         	bmi = 0;
@@ -130,6 +135,14 @@ public class AccountService {
 			e.printStackTrace();
 			return "updFailed";
 		}
+    	user.setuName(userU.getuName());
+    	user.setPass(userU.getPass());
+    	user.setName(userU.getName());
+    	user.setSurName(userU.getSurName());
+    	user.setAge(userU.getAge());
+    	user.setGender(userU.getGender());
+    	user.setComment(userU.getComment());
+    	user.setBmi(calcUsersBMI(userU));
 		return "updSuccess";
 	}
 }

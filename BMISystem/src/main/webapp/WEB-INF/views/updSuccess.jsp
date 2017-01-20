@@ -37,7 +37,7 @@
 					<a href="showFood" >Users Food Showcase Page</a>
                 </li>
                 <li>
-					<a href="addActivity" >Add Activity Page</a>
+					<a href="activityList" >Add Activity Page</a>
                 </li>
                 <li>
 					<a href="showActivity" >Users Activity Showcase Page</a>

@@ -3,6 +3,7 @@
    "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 	<title>Your Activities</title>
@@ -38,7 +39,7 @@
 					<a href="showFood" >Users Food Showcase Page</a>
                 </li>
                 <li>
-					<a href="addActivity" >Add Activity Page</a>
+					<a href="activityList" >Add Activity Page</a>
                 </li>
                 <li>
 					<a href="showActivity" >Users Activity Showcase Page</a>
@@ -54,23 +55,15 @@
                     <div class="col-lg-12">
 						<div class="container">
 							<div id="AddAct">
-								<div class="col-xs-3">
-									<h2 align="center">Your Activities</h2>
-									<hr />
-									<Table>
-								    	<tr>
-											<td><p class="desc"><b>Activity ID:</b> <core:out value="${showActivity.actId}" /></p></td>
-										</tr><tr>
-											<td><p class="desc"><b>Activity Name:</b> <core:out value="${showActivity.actName}" /></p></td>
-										</tr><tr>
-											<td><p class="desc"><b>Activity Type:</b> <core:out value="${showActivity.actType}" /></p></td>
-										</tr><tr>
-											<td><p class="desc"><b>Activity Calory:</b> <core:out value="${showActivity.actClry}" /></p></td>
-										</tr><tr>
-											<td><p class="desc"><b>Activity Date:</b> <core:out value="${showActivity.actTime.toString().substring(0, 10)}" /></p></td>
-								    	</tr>
-								    </Table>
-								</div>
+								<h2 align="center">Your Activities</h2>
+								<hr />
+								<core:forEach var="actItem" items="${actList.getActList()}">
+								    <p class="desc"><b>Activity ID:</b> <core:out value="${actItem.actId}"/></p>
+								    <p class="desc"><b>Activity Description:</b> <core:out value="${actItem.actDesc}"/></p>
+									<p class="desc"><b>Activity Duration:</b> <core:out value="${uActList.getUActListID(actItem.actId).duration}"/></p>
+									<p class="desc"><b>Activity Start Date:</b> <fmt:formatDate value="${uActList.getUActListID(actItem.actId).tstart}" pattern="dd-MM-yyyy"/></p>
+							    	<hr style="border: 1px solid #334FFF;" >
+							    </core:forEach>
 							</div>
 						</div>
 	               </div>
