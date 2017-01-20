@@ -51,7 +51,9 @@ public class ActivityController {
 	}
 	
     @RequestMapping(value = "/showActivity")
-	public String showUsersActivity(Model model, ActivityList actList, UserActivityList uActList) {
+	public String showUsersActivity(Model model,
+			ActivityList actList,
+			UserActivityList uActList) {
     	model.addAttribute("actList", actList);
     	model.addAttribute("uActList", uActList);
     	return actService.showUsersActivity(actList, uActList);
@@ -59,7 +61,7 @@ public class ActivityController {
 	
 	@RequestMapping("/newActivitySuccess")
 	public String actSuccessForm(Model model,
-			@ModelAttribute("actItem") ActivityItem actItem) {
+			@ModelAttribute("actID") String actID) {
 		return "newActivitySuccess";
 	}
 

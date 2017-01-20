@@ -24,7 +24,10 @@ public class FoodShowController {
 	}
 	
     @RequestMapping(value = "/showFood")
-	public String showFoods(Model model, FoodList foodList, FNutrList fNutrList, FNutMeasureList fnutmsrList) {
+	public String showFoods(Model model,
+			FoodList foodList,
+			FNutrList fNutrList,
+			FNutMeasureList fnutmsrList) {
     	model.addAttribute("showFood", foodList);
 		model.addAttribute("fNutrList", fNutrList);
 		model.addAttribute("fnutmsrList", fnutmsrList);

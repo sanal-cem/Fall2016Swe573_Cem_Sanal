@@ -2,6 +2,7 @@ Version 0.19 (changes from BMI Calculator 0.18) - Released on 20 January 2016:
 * added: Activity search, addition and show pages.
 * added: Activity search, addition and show functions into ActivityService class.
 * added: UserActivityList, ActivityGroupList, ActivityList classes.
+* bug, fix: Login bug found.
 
 Version 0.18 (changes from BMI Calculator 0.17) - Released on 14 January 2016:
 * all: some classes and places of many functions changed. Refactoring started.

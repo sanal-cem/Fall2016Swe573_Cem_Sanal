@@ -23,19 +23,22 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/logreg")
-	public String logRegForm(Model model, User user) {
+	public String logRegForm(Model model,
+			User user) {
 		model.addAttribute("user", user);
 		return "logreg";
 	}
 	
 	@RequestMapping("/reg")
-	public String loginForm(Model model, User user) {
+	public String loginForm(Model model,
+			User user) {
 		model.addAttribute("user", user);
 		return accountService.reg(user);
 	}
 	
 	@RequestMapping("/login")
-	public String loginFunc(Model model, User user) {
+	public String loginFunc(Model model,
+			User user) {
 		model.addAttribute("user", user);
 		return accountService.login(user);
 	}
@@ -63,13 +66,15 @@ public class AccountController {
 	}
 	
 	@RequestMapping("/settings")
-	public String settingsForm(Model model, User user) {
+	public String settingsForm(Model model,
+			User user) {
 		model.addAttribute("user", AccountService.user);
 		return "settings";
 	}
 	
 	@RequestMapping("/update")
-	public String updateForm(Model model, User user) {
+	public String updateForm(Model model,
+			User user) {
 		model.addAttribute("user", user);
 		return accountService.update(user);
 	}

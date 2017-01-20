@@ -23,52 +23,54 @@ public class AccountService {
 	public String login(User userL) {
 	    try
 	    {
-		    	user.setuName(userL.getuName());
-		        user.setPass(userL.getPass());
-		        if(user.getIsValid())
-		        {
-		        	try {
-		    			String query = "SELECT UNAME, PASS, "
-		    					+ "NAME, SURNAME , AGE, GENDER, "
-		    					+ "COMMENT, HEIGHT, WEIGHT, "
-		    					+ "BMI FROM USERS "
-		    					+ "WHERE UNAME LIKE '"
-		    					+ userL.getuName() + "'"
-		    					+ " AND PASS LIKE '"
-		    					+ userL.getPass() + "'";
-		    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
-		    		    	user.setuName(row.get("UNAME").toString());
-		    		    	userL.setuName(row.get("UNAME").toString());
-		    		    	user.setPass(row.get("PASS").toString());
-		    		    	userL.setPass(row.get("PASS").toString());
-		    		    	user.setName(row.get("NAME").toString());
-		    		    	userL.setName(row.get("NAME").toString());
-		    		    	user.setSurName(row.get("SURNAME").toString());
-		    		    	userL.setSurName(row.get("SURNAME").toString());
-		    		    	user.setAge(row.get("AGE").toString());
-		    		    	userL.setAge(row.get("AGE").toString());
-		    		    	user.setGender(row.get("GENDER").toString());
-		    		    	userL.setGender(row.get("GENDER").toString());
-		    		    	user.setComment(row.get("COMMENT").toString());
-		    		    	userL.setComment(row.get("COMMENT").toString());
-		    		    	user.setHeight(Float.parseFloat(row.get("HEIGHT").toString()));
-		    		    	userL.setHeight(Float.parseFloat(row.get("HEIGHT").toString()));
-		    		    	user.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
-		    		    	userL.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
-		    		    	user.setBmi(Float.parseFloat(row.get("BMI").toString()));
-		    		    	userL.setBmi(Float.parseFloat(row.get("BMI").toString()));
-		    		     }
-		    		    if(user.getName().isEmpty() && user.getSurName().isEmpty()) 
-		    		    	return "loginFailed";
-		    		} catch (Exception e) {
-		    			System.out.println(e.getMessage());
-		    			e.printStackTrace();
-		    			return "loginFailed";
-		    		}
-		        	return "loginSuccess";
-		        }else
-		        	//notValid
-		            return "logreg";
+        if(user.getIsValid())
+        {
+        	try {
+    			String query = "SELECT UNAME, PASS, "
+    					+ "NAME, SURNAME , AGE, GENDER, "
+    					+ "COMMENT, HEIGHT, WEIGHT, "
+    					+ "BMI FROM USERS "
+    					+ "WHERE UNAME LIKE '"
+    					+ userL.getuName() + "'"
+    					+ " AND PASS LIKE '"
+    					+ userL.getPass() + "'";
+    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
+    		    	user.setuName(row.get("UNAME").toString());
+    		    	userL.setuName(row.get("UNAME").toString());
+    		    	user.setPass(row.get("PASS").toString());
+    		    	userL.setPass(row.get("PASS").toString());
+    		    	user.setName(row.get("NAME").toString());
+    		    	userL.setName(row.get("NAME").toString());
+    		    	user.setSurName(row.get("SURNAME").toString());
+    		    	userL.setSurName(row.get("SURNAME").toString());
+    		    	user.setAge(row.get("AGE").toString());
+    		    	userL.setAge(row.get("AGE").toString());
+    		    	user.setGender(row.get("GENDER").toString());
+    		    	userL.setGender(row.get("GENDER").toString());
+    		    	user.setComment(row.get("COMMENT").toString());
+    		    	userL.setComment(row.get("COMMENT").toString());
+    		    	user.setHeight(Float.parseFloat(row.get("HEIGHT").toString()));
+    		    	userL.setHeight(Float.parseFloat(row.get("HEIGHT").toString()));
+    		    	user.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
+    		    	userL.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
+    		    	user.setBmi(Float.parseFloat(row.get("BMI").toString()));
+    		    	userL.setBmi(Float.parseFloat(row.get("BMI").toString()));
+    		     }
+    		} catch (Exception e) {
+    			System.out.println(e.getMessage());
+    			e.printStackTrace();
+    			return "loginFailed";
+    		}
+	    	if(user.getPass().equals(userL.getPass()) == false)
+	    		return "loginFailed";
+	    	
+	    	if(user.getuName().equals(userL.getuName()) == false)
+	    		return "loginFailed";
+
+        	return "loginSuccess";
+        }else
+        	//notValid
+            return "logreg";
 	    } catch (Throwable exc)
 	    {
 	        System.out.println(exc);

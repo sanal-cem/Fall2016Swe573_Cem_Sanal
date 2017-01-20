@@ -33,7 +33,11 @@ public class FoodSearchController {
     }
     
     @RequestMapping(value = "/foodList", method = RequestMethod.GET, params = {"keyword"})
-	public String foodList(@RequestParam(value = "keyword") String keyword, Model model, FoodList foodList, FNutrList fNutrList, FNutMeasureList fnutmsrList) {
+	public String foodList(@RequestParam(value = "keyword") String keyword,
+			Model model,
+			FoodList foodList,
+			FNutrList fNutrList,
+			FNutMeasureList fnutmsrList) {
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("fNutrList", fNutrList);
 		model.addAttribute("fNutmsrList", fnutmsrList);
@@ -42,20 +46,23 @@ public class FoodSearchController {
 	}
 	
 	@RequestMapping(value = "/addFood", method = RequestMethod.GET, params = {"foodName"})
-	public String addFood(@RequestParam(value = "foodName") String foodName, Model model) {
+	public String addFood(@RequestParam(value = "foodName") String foodName,
+			Model model) {
 		// users' chosen foodItem
 		model.addAttribute("foodName", foodName);
 		return USDAfoodService.addFood(foodName);
 	}
 	
 	@RequestMapping("/newFoodSuccess")
-	public String foodSuccessForm(Model model, FoodItem food) {
+	public String foodSuccessForm(Model model,
+			FoodItem food) {
 		model.addAttribute("food", food);
 		return "newFoodSuccess";
 	}
 
 	@RequestMapping("/newFoodFailed")
-	public String foodFailForm(Model model, FoodItem food) {
+	public String foodFailForm(Model model,
+			FoodItem food) {
 		model.addAttribute("food", food);
 		return "newFoodFailed";
 	}

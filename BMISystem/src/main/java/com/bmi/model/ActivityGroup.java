@@ -2,9 +2,9 @@ package com.bmi.model;
 
 public class ActivityGroup {
 
-	String uName;
-	String actGrpId;
-	String actName;
+	private String uName;
+	private String actGrpId;
+	private String actName;
 	
 	public ActivityGroup() {
 		
