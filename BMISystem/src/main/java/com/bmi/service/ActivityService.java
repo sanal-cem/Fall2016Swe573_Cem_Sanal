@@ -1,6 +1,5 @@
 package com.bmi.service;
 
-import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,6 +8,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +29,13 @@ public class ActivityService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	@Autowired(required=true)
+	private HttpServletRequest request;
+	
 	private ActivityList actListGlbl = new ActivityList();
 	private ActivityGroupList actGroupListGlbl = new ActivityGroupList();
 	private UserActivityList userActListGlbl = new UserActivityList();
-    private static final String jsonLoc = "C:/Users/Cem/Documents/workspace-sts-3.8.2.RELEASE/BMISystem/src/main/webapp/resources/json/";
-
+    
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
 	}
@@ -241,6 +243,7 @@ public class ActivityService {
 		return "showActivity";
 	}
 	public boolean JSONActivityFetching(ActivityList actList, ActivityGroupList actGroupList) {
+		String jsonLoc = request.getSession().getServletContext().getRealPath("/") + "resources\\json\\";
 		String actLink = jsonLoc + "activity.json";
 		String actGrpLink = jsonLoc + "activityGroup.json";
 		

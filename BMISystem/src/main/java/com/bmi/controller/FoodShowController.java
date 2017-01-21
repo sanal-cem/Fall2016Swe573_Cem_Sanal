@@ -28,9 +28,9 @@ public class FoodShowController {
 			FoodList foodList,
 			FNutrList fNutrList,
 			FNutMeasureList fnutmsrList) {
-    	model.addAttribute("showFood", foodList);
+    	model.addAttribute("foods", foodList);
 		model.addAttribute("fNutrList", fNutrList);
-		model.addAttribute("fnutmsrList", fnutmsrList);
+		model.addAttribute("fNutmsrList", fnutmsrList);
     	return foodShowService.showFood(foodList, fNutrList, fnutmsrList);
 	}
 	

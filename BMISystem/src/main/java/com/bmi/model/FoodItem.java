@@ -14,12 +14,13 @@ public class FoodItem {
     private float weight;
     private String measure;
     private float fCalory;
+    private int amount;
     
 	public FoodItem() {
 		
 	}
 	
-	public FoodItem(String uName, String offset, String group, String name, String ndbno, String ds, float weight, String measure, float fCalory) {
+	public FoodItem(String uName, String offset, String group, String name, String ndbno, String ds, float weight, String measure, float fCalory, int amount) {
 		this.uName = uName;
 		this.offset = offset;
 		this.group = group;
@@ -29,6 +30,7 @@ public class FoodItem {
 		this.weight = weight;
 		this.measure = measure;
 		this.fCalory = fCalory;
+		this.amount = amount;
 	}
 	
 	public String getuName() {
@@ -63,11 +65,11 @@ public class FoodItem {
         this.name = name;
     }
 
-    public String getndbno() {
+    public String getNdbno() {
         return ndbno;
     }
 
-    public void setndbno(String ndbno) {
+    public void setNdbno(String ndbno) {
         this.ndbno = ndbno;
     }
 
@@ -101,6 +103,14 @@ public class FoodItem {
 	
 	public void setfCalory(Float fCalory) {
 		this.fCalory = fCalory;
+	}
+	
+	public int getAmount() {
+		return amount;
+	}
+	
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 }
 

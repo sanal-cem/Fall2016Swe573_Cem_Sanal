@@ -29,7 +29,7 @@ public class AccountService {
     			String query = "SELECT UNAME, PASS, "
     					+ "NAME, SURNAME , AGE, GENDER, "
     					+ "COMMENT, HEIGHT, WEIGHT, "
-    					+ "BMI FROM USERS "
+    					+ "BMI, WEIGHTTYPE FROM USERS "
     					+ "WHERE UNAME LIKE '"
     					+ userL.getuName() + "'"
     					+ " AND PASS LIKE '"
@@ -55,6 +55,8 @@ public class AccountService {
     		    	userL.setWeight(Float.parseFloat(row.get("WEIGHT").toString()));
     		    	user.setBmi(Float.parseFloat(row.get("BMI").toString()));
     		    	userL.setBmi(Float.parseFloat(row.get("BMI").toString()));
+    		    	user.setWeightType(row.get("WEIGHTTYPE").toString());
+    		    	userL.setWeightType(row.get("WEIGHTTYPE").toString());
     		     }
     		} catch (Exception e) {
     			System.out.println(e.getMessage());
@@ -69,7 +71,7 @@ public class AccountService {
 
         	return "loginSuccess";
         }else
-        	//notValid
+        	//user name or password are not Valid
             return "logreg";
 	    } catch (Throwable exc)
 	    {
@@ -79,18 +81,21 @@ public class AccountService {
 	}
 	
 	public String reg(User userR) {
+		float uBMI = calcUsersBMI(userR);
+		userR.setBmi(uBMI);
+		findUWeightType(userR);
 		try {
 			String sql = "INSERT INTO USERS("
 					+ "UNAME, PASS, SURNAME, "
 					+ "NAME, AGE, GENDER, COMMENT, "
-					+ "HEIGHT, WEIGHT, BMI "
+					+ "HEIGHT, WEIGHT, BMI, WEIGHTTYPE "
 					+ ") values(?,?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] {
 					userR.getuName(), userR.getPass(),
 					userR.getSurName(), userR.getName(),
 					userR.getAge(), userR.getGender(),
 					userR.getComment(), userR.getHeight(),
-					userR.getWeight(), calcUsersBMI(userR)
+					userR.getWeight(), uBMI, userR.getWeightType()
 					});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -100,37 +105,64 @@ public class AccountService {
 		return "regSuccess";
 	}
 	
-	public float calcUsersBMI(User reg) {
+	protected float calcUsersBMI(User u) {
 
-		float weight = reg.getWeight();
-		float height = reg.getHeight();
-		// BMI gender'a göre hesaplanacak.
-		String gender = reg.getGender();
+		float weight = u.getWeight();
+		float height = u.getHeight();
+		String gender = u.getGender();
 		float bmi = 0;
 
         if(height == 0) {
         	bmi = 0;
         }
         else {
-        	bmi = ((weight * 703)/(height * height));
+        	//metric calculation.
+        	bmi = ((weight)/(height * height));
         }
-
         return bmi;
+	}
+	//calculates weight situation considering gender.
+	protected void findUWeightType(User u) {
+		if(u.getGender() == "M"){
+			if (u.getBmi() > 27.2 ) {
+				u.setWeightType("O");
+			}
+			else if (u.getBmi() <= 27.2 ) {
+				u.setWeightType("N");
+			}
+			else if (u.getBmi() <= 18.5 ) {
+				u.setWeightType("U");
+			}
+		}
+		else {
+			if (u.getBmi() > 25 ) {
+				u.setWeightType("O");
+			}
+			else if (u.getBmi() <= 18.5 ) {
+				u.setWeightType("U");
+			}
+			else if (u.getBmi() <= 25 ) {
+				u.setWeightType("N");
+			}
+		}
 	}
 	
 	public String update(User userU) {
+		float uBMI = calcUsersBMI(userU);
+		userU.setBmi(uBMI);
+		findUWeightType(userU);
 		try {
 			String sql = "UPDATE USERS "
 					+ "SET UNAME = ?, PASS = ?, SURNAME = ?, "
 					+ "NAME = ?, AGE = ?, GENDER = ?, COMMENT = ?, "
-					+ "HEIGHT = ?, WEIGHT = ?, BMI = ? "
+					+ "HEIGHT = ?, WEIGHT = ?, BMI = ?, WEIGHTTYPE = ? "
 					+ "WHERE UNAME = '" + user.getuName() + "'";
 			jdbcTemplate.update(sql, new Object[] {
 					userU.getuName(), userU.getPass(),
 					userU.getSurName(), userU.getName(),
 					userU.getAge(), userU.getGender(),
 					userU.getComment(), userU.getHeight(),
-					userU.getWeight(), calcUsersBMI(userU)
+					userU.getWeight(), uBMI, userU.getWeightType()
 					});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -144,7 +176,8 @@ public class AccountService {
     	user.setAge(userU.getAge());
     	user.setGender(userU.getGender());
     	user.setComment(userU.getComment());
-    	user.setBmi(calcUsersBMI(userU));
+    	user.setBmi(uBMI);
+    	user.setWeightType(userU.getWeightType());
 		return "updSuccess";
 	}
 }

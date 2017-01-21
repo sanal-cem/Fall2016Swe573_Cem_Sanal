@@ -61,23 +61,18 @@
 				<!-- Shows Food, Nutrient and Measure information. -->
 				<core:forEach var="food" items="${foodList.getFoodList()}">
 					<tr><td>
-				    <p class="desc"><b>Food Name:</b></p>
-				    </td><td>
-				    <p class="desc"><b><core:out value="${food.name}"/></b></p>
+				    <p class="desc"><b>Food Name: </b><b><core:out value="${food.name}"/></b></p>
 				    </td></tr>
 				    <tr><td>
-				    <p class="desc"><b>Food Weight:</b></p>
-				    </td><td>
-				    <p class="desc"><b><core:out value="${food.weight}"/></b></p>
+				    <p class="desc"><b>Food Weight: </b><b><core:out value="${food.weight}"/></b></p>
 				    </td></tr>
 				    <tr><td>
-				    <p class="desc"><b>Food Calory:</b></p>
-				    </td><td>
-				    <p class="desc"><b><core:out value="${food.fCalory}"/></b></p>
+				    <p class="desc"><b>Food Calory: </b><b><core:out value="${food.fCalory}"/></b></p>
 					</td></tr>
 					<tr><td>
-						<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName">
+						<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName, amount">
 							<input class="hidden" type="text" name="foodName" value="${food.name}"></input>
+							<p class="desc"><b>Food Amount: <input class="ui-button numbersOnly" type="text" name="amount" /></b></p>
 				            <input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Food"></input>
 			        	</form:form>
 			        </td></tr>
@@ -103,5 +98,15 @@
     </div>
 </body>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/datatable.js"></script>
+	src="${pageContext.request.contextPath}/resources/js/datatable.js">
+</script>
+<script type="text/javascript">
+	$( function() {
+		$( ".numbersOnly" ).keyup(function () {
+		   if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
+		      this.value = this.value.replace(/[^0-9\.]/g, '');
+		   }
+		});
+	});
+</script>
 </html>

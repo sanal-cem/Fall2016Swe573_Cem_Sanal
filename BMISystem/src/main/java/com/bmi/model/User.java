@@ -16,6 +16,7 @@ public class User {
 	private float height;
 	private float weight;
 	private String gender;
+	private String weightType;
 	
 	public User() {
 		isValid = true;
@@ -113,5 +114,13 @@ public class User {
 
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	
+	public String getWeightType() {
+		return weightType;
+	}
+	
+	public void setWeightType(String weightType) {
+		this.weightType = weightType;
 	}
 }

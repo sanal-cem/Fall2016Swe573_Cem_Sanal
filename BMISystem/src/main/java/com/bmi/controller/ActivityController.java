@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bmi.domain.ActivityGroupList;
 import com.bmi.domain.ActivityList;
 import com.bmi.domain.UserActivityList;
-import com.bmi.model.ActivityItem;
 import com.bmi.service.ActivityService;
 /**
  * Created by Cem Þanal.

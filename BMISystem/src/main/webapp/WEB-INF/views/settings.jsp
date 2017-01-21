@@ -57,23 +57,30 @@
 								<p class="desc">User Name: </p>
 								<form:input class="ui-button" path="uName" />
 									<br />
+									<br />
 								<p class="desc">Password: </p>
 								<form:input class="ui-button" type="password" path="pass" />
+									<br />
 									<br />
 								<p class="desc">Name: </p>
 								<form:input class="ui-button" path="name"/>
 									<br />
+									<br />
 								<p class="desc">Surname: </p>
 								<form:input class="ui-button" path="surName" />
+									<br />
 									<br />
 								<p class="desc">Age</p>
 								<form:input class="ui-button numbersOnly" path="age" />
 									<br />
+									<br />
 								<p class="desc">Height</p>
 								<form:input class="ui-button numbersOnly" path="height" />
 									<br />
+									<br />
 								<p class="desc">Weight</p>
 								<form:input class="ui-button numbersOnly" path="weight" />
+									<br />
 									<br />
 								<p class="desc">Gender</p>
 									<form:select class="form-control" path="gender" >
@@ -81,8 +88,8 @@
 										<form:option value="F" >Female</form:option>
 									</form:select>
 									<br />
-								<p class="desc">Comments</p>
 									<br />
+								<p class="desc">Comments</p>
 								<form:textarea class="form-control" cols="30" rows="6" path="comment" />
 									<br /><br />
 								<input class="ui-button ui-widget ui-corner-all" type="submit" value="update" />

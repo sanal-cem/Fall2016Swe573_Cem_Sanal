@@ -35,12 +35,34 @@ public class FoodShowService {
 		// get food items.
 		try {
 			foodItem = new FoodItem();
-			String query = "SELECT UNAME, FNAME, "
-					+ "FNDBNO, FWEIGHT, FCALORY "
+			String query = "SELECT UNAME, FOFFSET, "
+					+ "FGROUP, FNAME, FNDBNO, FDS, "
+					+ "FWEIGHT, FMEASURE, FCALORY "
 					+ "FROM FOODS WHERE UNAME LIKE "
 					+ "'" + AccountService.user.getuName() + "'";
 		    foodRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> row : foodRows){
+		       
+		       if(row.get("UNAME") != null) {
+		    	   foodItem.setuName(row.get("UNAME").toString());
+		       }
+		       else {
+		    	   foodItem.setuName(" ");
+		       }
+		       
+		       if(row.get("FOFFSET") != null) {
+		    	   foodItem.setWeight(Integer.parseInt(row.get("FOFFSET").toString()));
+		       }
+		       else {
+		    	   foodItem.setWeight(0);
+		       }
+		       
+		       if(row.get("FGROUP") != null) {
+		    	   foodItem.setGroup(row.get("FGROUP").toString());
+		       }
+		       else {
+		    	   foodItem.setGroup(" ");
+		       }
 		       
 		       if(row.get("FNAME") != null) {
 		    	   foodItem.setName(row.get("FNAME").toString());
@@ -50,10 +72,17 @@ public class FoodShowService {
 		       }
 		       
 		       if(row.get("FNDBNO") != null) {
-		    	   foodItem.setndbno(row.get("FNDBNO").toString());
+		    	   foodItem.setNdbno(row.get("FNDBNO").toString());
 		       }
 		       else {
-		    	   foodItem.setndbno(" ");
+		    	   foodItem.setNdbno(" ");
+		       }
+		       
+		       if(row.get("FDS") != null) {
+		    	   foodItem.setDs(row.get("FDS").toString());
+		       }
+		       else {
+		    	   foodItem.setDs(" ");
 		       }
 
 		       if(row.get("FWEIGHT") != null) {
@@ -61,6 +90,13 @@ public class FoodShowService {
 		       }
 		       else {
 		    	   foodItem.setWeight(0);
+		       }
+		       
+		       if(row.get("FMEASURE") != null) {
+		    	   foodItem.setMeasure(row.get("FMEASURE").toString());
+		       }
+		       else {
+		    	   foodItem.setMeasure(" ");
 		       }
 		       
 		       if(row.get("FCALORY") != null) {
@@ -75,12 +111,19 @@ public class FoodShowService {
 		       // get nutrient items.
 		       fNutrient = new FNutrients();
 		       query = "SELECT FNDBNO, NID, "
-						+ "NNAME, NUNIT, NVALUE "
+						+ "NNAME, NGROUP, NUNIT, NVALUE "
 						+ "FROM FNUTRIENTS WHERE FNDBNO LIKE "
-						+ "'" + foodItem.getndbno() + "'";
+						+ "'" + foodItem.getNdbno() + "'";
 			   nutrRows = jdbcTemplate.queryForList(query);
 			   for(Map<String, Object> nrow : nutrRows){
 			       
+			       if(nrow.get("FNDBNO") != null) {
+			    	   fNutrient.setFndbno(nrow.get("FNDBNO").toString());
+			       }
+			       else {
+			    	   fNutrient.setFndbno(" ");
+			       }
+				   
 			       if(nrow.get("NID") != null) {
 			    	   fNutrient.setNid(nrow.get("NID").toString());
 			       }
@@ -93,6 +136,13 @@ public class FoodShowService {
 			       }
 			       else {
 			    	   fNutrient.setNname(" ");
+			       }
+			       
+			       if(nrow.get("NGROUP") != null) {
+			    	   fNutrient.setGroup(nrow.get("NGROUP").toString());
+			       }
+			       else {
+			    	   fNutrient.setGroup(" ");
 			       }
 			       
 			       if(nrow.get("NUNIT") != null) {
@@ -113,8 +163,8 @@ public class FoodShowService {
 			   
 			   // get measure items.
 		       fNutrMeasure = new FNutMeasures();
-		       query = "SELECT NID, LABEL, VALUE "
-						+ "FROM FNUTMEASURES "
+		       query = "SELECT NID, LABEL, EQV, "
+						+ "QTY, VALUE FROM FNUTMEASURES "
 		    		    + "WHERE NID LIKE "
 						+ "'" + fNutrient.getNid() + "'";
 			   measRows = jdbcTemplate.queryForList(query);
@@ -132,6 +182,20 @@ public class FoodShowService {
 			       }
 			       else {
 			    	   fNutrMeasure.setLabel(" ");
+			       }
+			       
+			       if(mrow.get("EQV") != null) {
+			    	   fNutrMeasure.setEqv(Float.parseFloat(mrow.get("EQV").toString()));
+			       }
+			       else {
+			    	   fNutrMeasure.setEqv(Float.parseFloat("0"));
+			       }
+			       
+			       if(mrow.get("QTY") != null) {
+			    	   fNutrMeasure.setQty(Float.parseFloat(mrow.get("QTY").toString()));
+			       }
+			       else {
+			    	   fNutrMeasure.setQty(Float.parseFloat("0"));
 			       }
 
 			       if(mrow.get("VALUE") != null) {

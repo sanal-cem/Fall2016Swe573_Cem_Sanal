@@ -53,7 +53,22 @@
                     <div class="col-lg-12">
                         <h1 align="center">Login Success!</h1>
                         <h3>Hello <core:out value="${user.name} ${user.surName}" /></h3>
-                        <h3>Your BMI: <core:out value="${user.bmi}" /></h3>
+                        <p class="desc" ><b>Your BMI: <core:out value="${user.bmi}" /></b></p>
+                        <p class="desc" ><b>Your Situation: You are 
+							<core:choose>
+						    <core:when test="${user.weightType.equals('O')}">
+						        Overweight.
+						        <br />
+						    </core:when>
+						    <core:when test="${user.weightType.equals('N')}">
+						        Normal.
+						        <br />
+						    </core:when>
+						    <core:otherwise>
+						        Underweight.
+						        <br />
+						    </core:otherwise>
+						</core:choose></b></p>
                     </div>
                 </div>
             </div>

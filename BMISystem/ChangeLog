@@ -1,10 +1,17 @@
-Version 0.19 (changes from BMI Calculator 0.18) - Released on 20 January 2016:
+Version 0.2 (changes from BMI Calculator 0.19) - Released on  January 2016:
+* added: Displaying Users situation after login.
+* fix: BMI Calculation function fixed considering metric calculation.
+* added: Amount option for Food Addition.
+* fix: Nutrients and Measures of Food addition and Users Food Pages were incorrectly shown. Corrected.
+* fix: JSON Activity information fetching from local dynamically.
+
+Version 0.19 (changes from BMI Calculator 0.18) - Released on 20 January 2017:
 * added: Activity search, addition and show pages.
 * added: Activity search, addition and show functions into ActivityService class.
 * added: UserActivityList, ActivityGroupList, ActivityList classes.
 * bug, fix: Login bug found.
 
-Version 0.18 (changes from BMI Calculator 0.17) - Released on 14 January 2016:
+Version 0.18 (changes from BMI Calculator 0.17) - Released on 14 January 2017:
 * all: some classes and places of many functions changed. Refactoring started.
 * added: User Settings page.
 * added: FoodSearchController class
@@ -18,7 +25,7 @@ Version 0.18 (changes from BMI Calculator 0.17) - Released on 14 January 2016:
 * updated: Name change: FoodController class changed to FoodShowController class
 * updated: Name change: FoodService class changed to FoodShowService class
 
-Version 0.17 (changes from BMI Calculator 0.16) - Released on 8 January 2016:
+Version 0.17 (changes from BMI Calculator 0.16) - Released on 8 January 2017:
 * added: org.json.json library added.
 * fix: USDA Database connection totally completed. Data could be fetched. (getAllFoodsUSDA function is corrected and searchFood function is replaced with foodList function.)
 * deleted: gson library isn't needed.
@@ -35,7 +42,7 @@ Version 0.16 (changes from BMI Calculator 0.15) - Released on 4 January 2016:
 * added, fix: <core:out values are set for showing users information in all pages.
 * updated: Primary keys of USERS, UFOOD and UACTIVITY tables are set.
 
-Version 0.15 (changes from BMI Calculator 0.14) - Released on 2 January 2016:
+Version 0.15 (changes from BMI Calculator 0.14) - Released on 2 January 2017:
 * added, req: Using libraries locally. - Performed with JSP structure.
 * gui: Background image inserted.
 * fix: Controllers totally fixed. (No unneccessary connectors.)

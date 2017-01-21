@@ -25,7 +25,7 @@ import com.bmi.service.AccountService;
 public class USDAFoodService {
 
     private static final String API_KEY = "J1JqoqoyHlHqBle6EQi3Vj1p356YJZYulgiYvzLp";
-    private static final String SEARCH_URL = "http://api.nal.usda.gov/ndb/search/?format=json&max=10&offset=0&api_key=" + API_KEY + "&q=";
+    private static final String SEARCH_URL = "http://api.nal.usda.gov/ndb/search/?format=json&max=50&offset=0&api_key=" + API_KEY + "&q=";
     private static final String FOOD_URL = "http://api.nal.usda.gov/ndb/reports/?type=b&format=json&api_key=" + API_KEY + "&ndbno=";
     
 	@Autowired
@@ -78,7 +78,7 @@ public class USDAFoodService {
 	            		, jObj.getString("name")
 	            		, jObj.getString("ndbno")
 	            		, jObj.getString("ds")
-	            		, 0, " ", 0);
+	            		, 0, " ", 0, 0);
 		        
 		        foodList.addFoodItem(foodItem);
 		        foodListGlbl.addFoodItem(foodItem);
@@ -93,7 +93,7 @@ public class USDAFoodService {
 	
 	public boolean USDAgetFoodNutrients(FoodItem foodItem, FoodList foodList, FNutrList fNutrList, FNutMeasureList fnutmsrList) {
 		
-		String fndbno = foodItem.getndbno();
+		String fndbno = foodItem.getNdbno();
 		try {
 			JSONObject outerObject = new JSONObject(USDAConnection(FOOD_URL + fndbno));
 		    JSONObject innerObject = outerObject.getJSONObject("report");
@@ -150,21 +150,22 @@ public class USDAFoodService {
 	}
 	
 	// adds food, nutrients and measures into the local database.
-	public String addFood(String foodName) {
+	public String addFood(String foodName, String amount) {
 		FoodItem foodItem = new FoodItem();
 		foodItem = foodListGlbl.getFoodListName(foodName);
 		try {
 				String sql = "INSERT INTO FOODS( "
 						+ "UNAME, FOFFSET, FGROUP, "
-						+ "FNAME, FNDBNO, FDS, "
-						+ "FWEIGHT, FMEASURE, FCALORY"
-						+ ") values(?,?,?,?,?,?,?,?,?)";
+						+ "FNAME, FNDBNO, FDS, FWEIGHT, "
+						+ "FMEASURE, FCALORY, AMOUNT"
+						+ ") values(?,?,?,?,?,?,?,?,?,?)";
 				jdbcTemplate.update(sql, new Object[] {
 						AccountService.user.getuName(),
 						foodItem.getOffset(), foodItem.getGroup(),
-						foodName, foodItem.getndbno(),
+						foodName, foodItem.getNdbno(),
 						foodItem.getDs(), foodItem.getWeight(),
-						foodItem.getMeasure(), foodItem.getfCalory()});
+						foodItem.getMeasure(), foodItem.getfCalory(),
+						Integer.parseInt(amount)});
 			
 			
 			FNutrients nutrient;
@@ -172,7 +173,7 @@ public class USDAFoodService {
 			FNutMeasures measure;
 			ArrayList<FNutMeasures> fnutmsrList;
 			
-			fNutrList = fNutrListGlbl.getFNutrListFood(foodItem.getndbno());
+			fNutrList = fNutrListGlbl.getFNutrListFood(foodItem.getNdbno());
 			int nutrListSize = fNutrList.size();
 			for(int i = 0; i < nutrListSize; i++) {
 				nutrient = new FNutrients();
@@ -182,7 +183,7 @@ public class USDAFoodService {
 						+ " NGROUP, NUNIT, NVALUE"
 						+ ") values(?,?,?,?,?,?)";
 				jdbcTemplate.update(sql, new Object[] {
-						foodItem.getndbno(), nutrient.getNid(),
+						foodItem.getNdbno(), nutrient.getNid(),
 						nutrient.getNname(), nutrient.getGroup(),
 						nutrient.getNunit(), nutrient.getNvalue()});
 				
