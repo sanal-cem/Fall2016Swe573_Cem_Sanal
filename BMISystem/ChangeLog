@@ -1,4 +1,4 @@
-Version 0.2 (changes from BMI Calculator 0.19) - Released on  January 2016:
+Version 0.2 (changes from BMI Calculator 0.19) - Released on 21 January 2016:
 * added: Displaying Users situation after login.
 * fix: BMI Calculation function fixed considering metric calculation.
 * added: Amount option for Food Addition.

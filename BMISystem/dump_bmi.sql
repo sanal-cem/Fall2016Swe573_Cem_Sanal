@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `fnutmeasures`
+-- Tablo için tablo yapısı `FNUTMEASURES`
 --
 
-CREATE TABLE `fnutmeasures` (
+CREATE TABLE `FNUTMEASURES` (
   `NID` varchar(32) DEFAULT NULL,
   `LABEL` varchar(64) DEFAULT NULL,
   `EQV` float DEFAULT NULL,
@@ -35,10 +35,10 @@ CREATE TABLE `fnutmeasures` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `fnutmeasures`
+-- Tablo döküm verisi `FNUTMEASURES`
 --
 
-INSERT INTO `fnutmeasures` (`NID`, `LABEL`, `EQV`, `QTY`, `VALUE`) VALUES
+INSERT INTO `FNUTMEASURES` (`NID`, `LABEL`, `EQV`, `QTY`, `VALUE`) VALUES
 ('255', 'strip', 30, 1, 13.99),
 ('255', 'serving', 184, 1, 85.82),
 ('255', 'serving 1/2 cup', 126, 1, 107.98),
@@ -581,10 +581,10 @@ INSERT INTO `fnutmeasures` (`NID`, `LABEL`, `EQV`, `QTY`, `VALUE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `fnutrients`
+-- Tablo için tablo yapısı `FNUTRIENTS`
 --
 
-CREATE TABLE `fnutrients` (
+CREATE TABLE `FNUTRIENTS` (
   `FNDBNO` varchar(32) DEFAULT NULL,
   `NID` varchar(32) DEFAULT NULL,
   `NNAME` varchar(64) DEFAULT NULL,
@@ -594,10 +594,10 @@ CREATE TABLE `fnutrients` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `fnutrients`
+-- Tablo döküm verisi `FNUTRIENTS`
 --
 
-INSERT INTO `fnutrients` (`FNDBNO`, `NID`, `NNAME`, `NGROUP`, `NUNIT`, `NVALUE`) VALUES
+INSERT INTO `FNUTRIENTS` (`FNDBNO`, `NID`, `NNAME`, `NGROUP`, `NUNIT`, `NVALUE`) VALUES
 ('22943', '255', 'Water', 'Proximates', 'g', 51.3),
 ('22943', '208', 'Energy', 'Proximates', 'kcal', 198),
 ('22943', '203', 'Protein', 'Proximates', 'g', 7.06),
@@ -613,10 +613,10 @@ INSERT INTO `fnutrients` (`FNDBNO`, `NID`, `NNAME`, `NGROUP`, `NUNIT`, `NVALUE`)
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `foods`
+-- Tablo için tablo yapısı `FOODS`
 --
 
-CREATE TABLE `foods` (
+CREATE TABLE `FOODS` (
   `UNAME` varchar(64) DEFAULT NULL,
   `FOFFSET` int(11) DEFAULT NULL,
   `FGROUP` varchar(64) DEFAULT NULL,
@@ -630,19 +630,19 @@ CREATE TABLE `foods` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `foods`
+-- Tablo döküm verisi `FOODS`
 --
 
-INSERT INTO `foods` (`UNAME`, `FOFFSET`, `FGROUP`, `FNAME`, `FNDBNO`, `FDS`, `FWEIGHT`, `FMEASURE`, `FCALORY`, `AMOUNT`) VALUES
+INSERT INTO `FOODS` (`UNAME`, `FOFFSET`, `FGROUP`, `FNAME`, `FNDBNO`, `FDS`, `FWEIGHT`, `FMEASURE`, `FCALORY`, `AMOUNT`) VALUES
 ('cemsanal@yandex.ru', 5, 'Meals, Entrees, and Side Dishes', 'SUPPER BAKES MEAL KITS, Cheesy Chicken with pasta (chicken not included)', '22943', 'SR', 0, ' ', 0, 10);
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `uactivity`
+-- Tablo için tablo yapısı `UACTIVITY`
 --
 
-CREATE TABLE `uactivity` (
+CREATE TABLE `UACTIVITY` (
   `UNAME` varchar(64) DEFAULT NULL,
   `ACTID` varchar(32) NOT NULL,
   `DURATION` float DEFAULT NULL,
@@ -650,39 +650,39 @@ CREATE TABLE `uactivity` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `uactivity`
+-- Tablo döküm verisi `UACTIVITY`
 --
 
-INSERT INTO `uactivity` (`UNAME`, `ACTID`, `DURATION`, `TSTART`) VALUES
+INSERT INTO `UACTIVITY` (`UNAME`, `ACTID`, `DURATION`, `TSTART`) VALUES
 ('cemsanal@yandex.ru', '100', 348.5, '2019-04-01');
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `uactivitygrp`
+-- Tablo için tablo yapısı `UACTIVITYGRP`
 --
 
-CREATE TABLE `uactivitygrp` (
+CREATE TABLE `UACTIVITYGRP` (
   `UNAME` varchar(64) DEFAULT NULL,
   `ACTGRPID` varchar(32) NOT NULL,
   `ACTNAME` varchar(128) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `uactivitygrp`
+-- Tablo döküm verisi `UACTIVITYGRP`
 --
 
-INSERT INTO `uactivitygrp` (`UNAME`, `ACTGRPID`, `ACTNAME`) VALUES
+INSERT INTO `UACTIVITYGRP` (`UNAME`, `ACTGRPID`, `ACTNAME`) VALUES
 ('cemsanal@yandex.ru', '18', 'Water Activities'),
 ('cemsanal@yandex.ru', '4', 'Fishing and Hunting');
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `uactivityinfo`
+-- Tablo için tablo yapısı `UACTIVITYINFO`
 --
 
-CREATE TABLE `uactivityinfo` (
+CREATE TABLE `UACTIVITYINFO` (
   `UNAME` varchar(64) DEFAULT NULL,
   `ACTID` varchar(32) NOT NULL,
   `ACTCODE` varchar(32) DEFAULT NULL,
@@ -692,20 +692,20 @@ CREATE TABLE `uactivityinfo` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `uactivityinfo`
+-- Tablo döküm verisi `UACTIVITYINFO`
 --
 
-INSERT INTO `uactivityinfo` (`UNAME`, `ACTID`, `ACTCODE`, `ACTMETS`, `ACTGROUPID`, `ACTDESC`) VALUES
+INSERT INTO `UACTIVITYINFO` (`UNAME`, `ACTID`, `ACTCODE`, `ACTMETS`, `ACTGROUPID`, `ACTDESC`) VALUES
 ('cemsanal@yandex.ru', '709', '18110', 4, '18', 'paddle boat'),
 ('cemsanal@yandex.ru', '100', '04061', 1.8, '4', 'fishing, jog or line, standing, general');
 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `users`
+-- Tablo için tablo yapısı `USERS`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE `USERS` (
   `UNAME` varchar(64) NOT NULL,
   `PASS` varchar(256) DEFAULT NULL,
   `NAME` varchar(32) DEFAULT NULL,
@@ -720,10 +720,10 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Tablo döküm verisi `users`
+-- Tablo döküm verisi `USERS`
 --
 
-INSERT INTO `users` (`UNAME`, `PASS`, `NAME`, `SURNAME`, `AGE`, `GENDER`, `COMMENT`, `HEIGHT`, `WEIGHT`, `BMI`, `WEIGHTTYPE`) VALUES
+INSERT INTO `USERS` (`UNAME`, `PASS`, `NAME`, `SURNAME`, `AGE`, `GENDER`, `COMMENT`, `HEIGHT`, `WEIGHT`, `BMI`, `WEIGHTTYPE`) VALUES
 ('asd2@asd2.com', 'cemcem', 'asd2', 'asd2', '34', 'F', 'deneme wehfuwerf &#305;&#305;&#305;&#305;&#305;&#305; &#287;&#287;&#287;&#287;&#287;&#287; üüüü', 18.1, 55.1, 0.168188, 'U'),
 ('asd@asd.com', 'cemcem', 'Cem', 'Sanal', '27', 'F', 'adsfsdfsrgfewrg deneme askjhda', 1.8, 68, 20.9877, 'N'),
 ('cem-sanal@hotmail.com', 'cemcem', 'Cem1', 'Sanal1', '26', 'M', 'Female comment deneme 1234', 1.81, 67.7, 20.6648, 'N'),
@@ -736,33 +736,33 @@ INSERT INTO `users` (`UNAME`, `PASS`, `NAME`, `SURNAME`, `AGE`, `GENDER`, `COMME
 --
 
 --
--- Tablo için indeksler `foods`
+-- Tablo için indeksler `FOODS`
 --
-ALTER TABLE `foods`
+ALTER TABLE `FOODS`
   ADD PRIMARY KEY (`FNAME`);
 
 --
--- Tablo için indeksler `uactivity`
+-- Tablo için indeksler `UACTIVITY`
 --
-ALTER TABLE `uactivity`
+ALTER TABLE `UACTIVITY`
   ADD PRIMARY KEY (`ACTID`);
 
 --
--- Tablo için indeksler `uactivitygrp`
+-- Tablo için indeksler `UACTIVITYGRP`
 --
-ALTER TABLE `uactivitygrp`
+ALTER TABLE `UACTIVITYGRP`
   ADD PRIMARY KEY (`ACTGRPID`);
 
 --
--- Tablo için indeksler `uactivityinfo`
+-- Tablo için indeksler `UACTIVITYINFO`
 --
-ALTER TABLE `uactivityinfo`
+ALTER TABLE `UACTIVITYINFO`
   ADD PRIMARY KEY (`ACTID`);
 
 --
--- Tablo için indeksler `users`
+-- Tablo için indeksler `USERS`
 --
-ALTER TABLE `users`
+ALTER TABLE `USERS`
   ADD PRIMARY KEY (`UNAME`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
