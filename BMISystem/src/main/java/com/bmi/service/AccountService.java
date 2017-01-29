@@ -1,9 +1,14 @@
 package com.bmi.service;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.bmi.domain.UHistoryList;
+import com.bmi.model.UHistory;
 import com.bmi.model.User;
 /**
  * Created by Cem Þanal.
@@ -20,7 +25,7 @@ public class AccountService {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	public String login(User userL) {
+	public String login(User userL, UHistoryList uHistList) {
 	    try
 	    {
         if(user.getIsValid())
@@ -69,6 +74,30 @@ public class AccountService {
 	    	if(user.getuName().equals(userL.getuName()) == false)
 	    		return "loginFailed";
 
+	    	SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
+	    	Date hDate;
+	    	UHistory uHist;
+        	try {
+    			String query = "SELECT UNAME, IDATE, "
+    					+ "WEIGHT, BMI, CALORIE "
+    					+ "FROM UHISTORY "
+    					+ "WHERE UNAME LIKE '"
+    					+ userL.getuName() + "'";
+    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
+    		    	//DEÐÝÞTÝRÝLECEKLER
+    		    	hDate = dd.parse(row.get("IDATE").toString());
+    		    	uHist = new UHistory(row.get("UNAME").toString(),
+    		    			hDate,
+    		    			Float.parseFloat(row.get("WEIGHT").toString()),
+    		    			Float.parseFloat(row.get("BMI").toString()),
+    		    			Float.parseFloat(row.get("CALORIE").toString()));
+    		    	uHistList.addUHistItem(uHist);
+    		     }
+    		} catch (Exception e) {
+    			System.out.println(e.getMessage());
+    			e.printStackTrace();
+    		}
+	    	
         	return "loginSuccess";
         }else
         	//user name or password are not Valid
@@ -84,12 +113,13 @@ public class AccountService {
 		float uBMI = calcUsersBMI(userR);
 		userR.setBmi(uBMI);
 		findUWeightType(userR);
+		
 		try {
 			String sql = "INSERT INTO USERS("
 					+ "UNAME, PASS, SURNAME, "
 					+ "NAME, AGE, GENDER, COMMENT, "
 					+ "HEIGHT, WEIGHT, BMI, WEIGHTTYPE "
-					+ ") values(?,?,?,?,?,?,?,?,?,?)";
+					+ ") values(?,?,?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] {
 					userR.getuName(), userR.getPass(),
 					userR.getSurName(), userR.getName(),
@@ -102,6 +132,23 @@ public class AccountService {
 			e.printStackTrace();
 			return "regFailed";
 		}
+		
+		Calendar dtoday = Calendar.getInstance();
+		dtoday.set(Calendar.HOUR_OF_DAY, 0);
+		try {
+			String sql = "INSERT INTO UHISTORY "
+					+ "(UNAME, IDATE, WEIGHT, BMI, CALORIE)"
+					+ "VALUES (?,?,?,?,?) ";
+			jdbcTemplate.update(sql, new Object[] {
+					userR.getuName(), dtoday,
+					userR.getWeight(), uBMI, 0
+					});
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return "regFailed";
+		}
+		
 		return "regSuccess";
 	}
 	
@@ -109,7 +156,6 @@ public class AccountService {
 
 		float weight = u.getWeight();
 		float height = u.getHeight();
-		String gender = u.getGender();
 		float bmi = 0;
 
         if(height == 0) {
@@ -151,6 +197,8 @@ public class AccountService {
 		float uBMI = calcUsersBMI(userU);
 		userU.setBmi(uBMI);
 		findUWeightType(userU);
+		Calendar dtoday = Calendar.getInstance();
+		dtoday.set(Calendar.HOUR_OF_DAY, 0);
 		try {
 			String sql = "UPDATE USERS "
 					+ "SET UNAME = ?, PASS = ?, SURNAME = ?, "
@@ -176,8 +224,25 @@ public class AccountService {
     	user.setAge(userU.getAge());
     	user.setGender(userU.getGender());
     	user.setComment(userU.getComment());
+    	user.setHeight(userU.getHeight());
+    	user.setWeight(userU.getWeight());
     	user.setBmi(uBMI);
     	user.setWeightType(userU.getWeightType());
+    	
+		try {
+			String sql = "INSERT INTO UHISTORY "
+					+ "(UNAME, IDATE, WEIGHT, BMI, CALORIE)"
+					+ "VALUES (?,?,?,?,?) ";
+			jdbcTemplate.update(sql, new Object[] {
+					user.getuName(), dtoday,
+					userU.getWeight(), uBMI, 0
+					});
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			return "updFailed";
+		}
+    	
 		return "updSuccess";
 	}
 }

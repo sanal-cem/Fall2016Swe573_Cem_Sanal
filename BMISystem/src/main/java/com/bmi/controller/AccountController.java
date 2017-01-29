@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bmi.domain.UHistoryList;
 import com.bmi.model.User;
 import com.bmi.service.AccountService;
 /**
@@ -38,14 +39,16 @@ public class AccountController {
 	
 	@RequestMapping("/login")
 	public String loginFunc(Model model,
-			User user) {
+			User user, UHistoryList uHistList) {
 		model.addAttribute("user", user);
-		return accountService.login(user);
+		model.addAttribute("uHistList", uHistList);
+		return accountService.login(user, uHistList);
 	}
 	
 	@RequestMapping("/loginSuccess")
 	public String loginSuccessForm(Model model,
-			@ModelAttribute("user") User user) {
+			@ModelAttribute("user") User user,
+			@ModelAttribute("uHistList") UHistoryList uHistList) {
 		return "loginSuccess";
 		}
 	

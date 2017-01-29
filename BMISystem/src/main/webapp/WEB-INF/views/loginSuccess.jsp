@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 	<title>New Food</title>
@@ -9,6 +10,37 @@
 		src="${pageContext.request.contextPath}/resources/js/jquery.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/resources/js/jsapi.js"></script>
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["corechart"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
+	
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Date');
+ 			data.addColumn('number', 'Weight');
+			data.addColumn('number', 'BMI');
+			data.addColumn('number', 'Calorie');
+			data.addRows([
+				<core:forEach var="uHist" items="${uHistList.getUHistList()}">
+					[ '<fmt:formatDate value="${uHist.IDate}" pattern="dd-MM-yyyy"/>', ${uHist.weight}, ${uHist.bmi}, ${uHist.calorie} ],
+				</core:forEach>
+			]);
+	        var options = {
+	        	'title' : 'Your BMI Graph',
+	        	is3D : true,
+	        	tooltip :  {showColorCode: true},
+	        	'width' : 1000,
+	        	'height' : 540,
+	        	'min' : 0,
+	        };
+	        
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+	
+	        chart.draw(data, options);
+	      }
+	</script>
 	<link rel="stylesheet" 
 		href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
@@ -69,12 +101,12 @@
 						        <br />
 						    </core:otherwise>
 						</core:choose></b></p>
+						<div id="chart_div"></div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
-
     </div>
 </body>
 </html>

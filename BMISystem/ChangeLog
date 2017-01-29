@@ -1,3 +1,12 @@
+Version 0.21 (changes from BMI Calculator 0.2) - Released on 29 January 2016:
+* fix, gui: Food and Activity Showcase pages should be fixed to be more user friendly.
+* added, gui: Dropdown added into foodList and activityList pages for providing user friendly food and activity search and addition pages.
+* added: Dynamic Search function for activities added into ActivityService class.
+* added: Users weight, calory, BMI and other historical data saved into UHISTORY table.
+* added, gui: User weight tracking, BMI tracking, increased and decreased calories tracking graph added.
+* fix: Showing activity duration using units such as minutes or hours.
+* fix: Activity and Food tables changed in the database.
+
 Version 0.2 (changes from BMI Calculator 0.19) - Released on 21 January 2016:
 * added: Displaying Users situation after login.
 * fix: BMI Calculation function fixed considering metric calculation.

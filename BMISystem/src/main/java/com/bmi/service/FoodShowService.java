@@ -5,10 +5,10 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import com.bmi.domain.FNutMeasureList;
+import com.bmi.domain.FMeasureList;
 import com.bmi.domain.FNutrList;
 import com.bmi.domain.FoodList;
-import com.bmi.model.FNutMeasures;
+import com.bmi.model.FMeasures;
 import com.bmi.model.FNutrients;
 import com.bmi.model.FoodItem;
 /**
@@ -25,37 +25,22 @@ public class FoodShowService {
 	}
 	
 	// show food from local database.
-	public String showFood(FoodList foodList, FNutrList fNutrList, FNutMeasureList fnutmsrList) {
+	public String showFood(FoodList foodList, FNutrList fNutrList, FMeasureList fnutmsrList) {
 		List<Map<String, Object>> foodRows = null;
 		List<Map<String, Object>> nutrRows = null;
 		List<Map<String, Object>> measRows = null;
 		FNutrients fNutrient;
 		FoodItem foodItem;
-		FNutMeasures fNutrMeasure;
+		FMeasures fNutrMeasure;
 		// get food items.
 		try {
-			foodItem = new FoodItem();
-			String query = "SELECT UNAME, FOFFSET, "
-					+ "FGROUP, FNAME, FNDBNO, FDS, "
-					+ "FWEIGHT, FMEASURE, FCALORY "
-					+ "FROM FOODS WHERE UNAME LIKE "
+			String query = "SELECT FGROUP, FNAME, FNDBNO, "
+					+ "FWEIGHT, FMEASURE, FCALORY, AMOUNT "
+					+ "FROM UFOODS WHERE UNAME LIKE "
 					+ "'" + AccountService.user.getuName() + "'";
 		    foodRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> row : foodRows){
-		       
-		       if(row.get("UNAME") != null) {
-		    	   foodItem.setuName(row.get("UNAME").toString());
-		       }
-		       else {
-		    	   foodItem.setuName(" ");
-		       }
-		       
-		       if(row.get("FOFFSET") != null) {
-		    	   foodItem.setWeight(Integer.parseInt(row.get("FOFFSET").toString()));
-		       }
-		       else {
-		    	   foodItem.setWeight(0);
-		       }
+		    	foodItem = new FoodItem();
 		       
 		       if(row.get("FGROUP") != null) {
 		    	   foodItem.setGroup(row.get("FGROUP").toString());
@@ -76,13 +61,6 @@ public class FoodShowService {
 		       }
 		       else {
 		    	   foodItem.setNdbno(" ");
-		       }
-		       
-		       if(row.get("FDS") != null) {
-		    	   foodItem.setDs(row.get("FDS").toString());
-		       }
-		       else {
-		    	   foodItem.setDs(" ");
 		       }
 
 		       if(row.get("FWEIGHT") != null) {
@@ -105,18 +83,27 @@ public class FoodShowService {
 		       else {
 		    	   foodItem.setfCalory(Float.parseFloat("0"));
 		       }
+		       
+		       if(row.get("AMOUNT") != null) {
+		    	   foodItem.setAmount(Integer.parseInt(row.get("AMOUNT").toString()));
+		       }
+		       else {
+		    	   foodItem.setAmount(Integer.parseInt("0"));
+		       }
 
 		       foodList.addFoodItem(foodItem);
 
 		       // get nutrient items.
-		       fNutrient = new FNutrients();
 		       query = "SELECT FNDBNO, NID, "
 						+ "NNAME, NGROUP, NUNIT, NVALUE "
-						+ "FROM FNUTRIENTS WHERE FNDBNO LIKE "
-						+ "'" + foodItem.getNdbno() + "'";
+						+ "FROM UFNUTRIENTS WHERE FNDBNO LIKE '"
+						+  foodItem.getNdbno()
+						+ "' AND UNAME LIKE '" + AccountService.user.getuName()
+						+ "' AND FNAME LIKE '" + foodItem.getName() + "'";
 			   nutrRows = jdbcTemplate.queryForList(query);
 			   for(Map<String, Object> nrow : nutrRows){
-			       
+				   fNutrient = new FNutrients();
+				   
 			       if(nrow.get("FNDBNO") != null) {
 			    	   fNutrient.setFndbno(nrow.get("FNDBNO").toString());
 			       }
@@ -159,24 +146,24 @@ public class FoodShowService {
 			    	   fNutrient.setNvalue(Float.parseFloat("0"));
 			       }
 			       fNutrList.addFNutrient(fNutrient);
-			    }
+			   }
 			   
 			   // get measure items.
-		       fNutrMeasure = new FNutMeasures();
-		       query = "SELECT NID, LABEL, EQV, "
-						+ "QTY, VALUE FROM FNUTMEASURES "
-		    		    + "WHERE NID LIKE "
-						+ "'" + fNutrient.getNid() + "'";
+		       query = "SELECT FNAME, LABEL, EQV, "
+						+ "QTY, VALUE FROM UFMEASURES "
+		    		    + "WHERE UNAME LIKE '" + AccountService.user.getuName()
+						+ "' AND FNAME LIKE '" + foodItem.getName() + "'";
 			   measRows = jdbcTemplate.queryForList(query);
 			   for(Map<String, Object> mrow : measRows){
+				   fNutrMeasure = new FMeasures();
 			       
-			       if(mrow.get("NID") != null) {
-			    	   fNutrMeasure.setNid(mrow.get("NID").toString());
+			       if(mrow.get("FNAME") != null) {
+			    	   fNutrMeasure.setFName(mrow.get("FNAME").toString());
 			       }
 			       else {
-			    	   fNutrMeasure.setNid(" ");
+			    	   fNutrMeasure.setFName(" ");
 			       }
-			       
+				   
 			       if(mrow.get("LABEL") != null) {
 			    	   fNutrMeasure.setLabel(mrow.get("LABEL").toString());
 			       }
@@ -204,7 +191,7 @@ public class FoodShowService {
 			       else {
 			    	   fNutrMeasure.setValue(Float.parseFloat("0"));
 			       }
-			       fnutmsrList.addFNutMeasureItem(fNutrMeasure);
+			       fnutmsrList.addFMeasureItem(fNutrMeasure);
 			    }
 		    }
 		} catch (Exception e) {

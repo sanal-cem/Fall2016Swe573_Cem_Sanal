@@ -56,6 +56,11 @@
             <div class="col-lg-12">
 				<h2 align="center">Add Foods</h2>
 				<hr />
+				<select name="selDropDown" class="form-control" onchange="setItems(this);">
+					<core:forEach var="food" items="${foodList.getFoodList()}" varStatus="loop">
+						<option value="${loop.count}" class="btn btn-primary dropdown-toggle">${food.name}</option>
+					</core:forEach>
+				</select>
 				<table class="paginated" >
 				<tbody>
 				<!-- Shows Food, Nutrient and Measure information. -->
@@ -64,10 +69,10 @@
 				    <p class="desc"><b>Food Name: </b><b><core:out value="${food.name}"/></b></p>
 				    </td></tr>
 				    <tr><td>
-				    <p class="desc"><b>Food Weight: </b><b><core:out value="${food.weight}"/></b></p>
+				    <p class="desc"><b>Food Weight: </b><b><core:out value="${String.valueOf(food.weight)}"/></b></p>
 				    </td></tr>
 				    <tr><td>
-				    <p class="desc"><b>Food Calory: </b><b><core:out value="${food.fCalory}"/></b></p>
+				    <p class="desc"><b>Food Calory: </b><b><core:out value="${String.valueOf(food.fCalory)}"/></b></p>
 					</td></tr>
 					<tr><td>
 						<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName, amount">
@@ -77,17 +82,17 @@
 			        	</form:form>
 			        </td></tr>
 			        <tr><td>
+			        <hr style="border: 1px solid #33FF49;" >
 				    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}">
 					    <p class="desc"><b>Nutrient Name: <core:out value="${nutrient.nname}"/></b></p>
 					    <p class="desc"><b>Nutrient Unit: <core:out value="${nutrient.nunit}"/></b></p>
 						<p class="desc"><b>Nutrient Value: <core:out value="${nutrient.nvalue}"/></b></p>
-						<br/>
-						<core:forEach var="measure" items="${fNutmsrList.getFNutMeasureListFNutr(nutrient.nid)}">
-							<p class="desc"><b>Measure id: <core:out value="${measure.nid}"/></b></p>
-						    <p class="desc"><b>Measure Label: <core:out value="${measure.label}"/></b></p>
-						    <p class="desc"><b>Measure Value: <core:out value="${measure.value}"/></b></p>
-						    <br/>
-					    </core:forEach>
+						<hr style="border: 1px solid #334FFF;" >
+					</core:forEach>
+					<core:forEach var="measure" items="${fMsrList.getFMeasureList(food.name)}">
+					    <p class="desc"><b>Measure Label: <core:out value="${measure.label}"/></b></p>
+					    <p class="desc"><b>Measure Value: <core:out value="${measure.value}"/></b></p>
+					    <hr style="border: 1px solid #9F33FF;" >
 		    		</core:forEach>
 		    		</td></tr>
 			    </core:forEach>
@@ -97,9 +102,6 @@
         </div>
     </div>
 </body>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/datatable.js">
-</script>
 <script type="text/javascript">
 	$( function() {
 		$( ".numbersOnly" ).keyup(function () {
@@ -108,5 +110,8 @@
 		   }
 		});
 	});
+</script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/ddDataTable.js">
 </script>
 </html>

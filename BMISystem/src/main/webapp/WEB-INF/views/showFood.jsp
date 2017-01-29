@@ -17,6 +17,8 @@
 		href="${pageContext.request.contextPath}/resources/css/homeStyle.css">
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/simple-sidebar.css">
+	<link rel="stylesheet" 
+		href="${pageContext.request.contextPath}/resources/css/datatable.css">
 </head>
 
 <body class="bdy" >
@@ -54,34 +56,47 @@
                     <div class="col-lg-12">
 						<h2 align="center">Your Foods</h2>
 						<hr />
+						<table class="paginated" >
+						<tbody>
 						<!-- Shows Food, Nutrient and Measure information. -->
-						<core:forEach var="foods" items="${foodList.getFoodList()}">
-						    <p class="desc"><b>Food Name:</b> <core:out value="${foods.name}"/></p>
-						    <p class="desc"><b>Food Weight:</b> <core:out value="${foods.weight}"/></p>
-						    <p class="desc"><b>Food Calory:</b> <core:out value="${foods.fCalory}"/></p>
-
-						    <hr style="border: 1px solid #33FF49;" >
-						    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(foods.ndbno)}">
+						<core:forEach var="food" items="${foodList.getFoodList()}">
+							<tr><td>
+						    <p class="desc"><b>Food Name:</b> <core:out value="${food.name}"/></p>
+						    </td></tr>
+						    <tr><td>
+						    <p class="desc"><b>Weight:</b> <core:out value="${String.valueOf(food.weight)}"/></p>
+						    </td></tr>
+						    <tr><td>
+						    <p class="desc"><b>Amount:</b> <core:out value="${String.valueOf(food.amount)}"/></p>
+						    </td></tr>
+						    <tr><td>
+						    <p class="desc"><b>Calory:</b> <core:out value="${String.valueOf(food.fCalory)}"/></p>
+							</td></tr>
+							<tr><td>
+							<hr style="border: 1px solid #33FF49;" >
+						    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}">
 							    <p class="desc"><b>Nutrient Name:</b> <core:out value="${nutrient.nname}"/></p>
 							    <p class="desc"><b>Nutrient Unit:</b> <core:out value="${nutrient.nunit}"/></p>
 								<p class="desc"><b>Nutrient Value:</b> <core:out value="${nutrient.nvalue}"/></p>
 								<hr style="border: 1px solid #334FFF;" >
-								
-								<core:forEach var="measure" items="${fNutmsrList.getFNutMeasureListFNutr(nutrient.nid)}">
-									<p class="desc"><b>Measure id:</b> <core:out value="${measure.nid}"/></p>
-								    <p class="desc"><b>Measure Label:</b> <core:out value="${measure.label}"/></p>
-								    <p class="desc"><b>Measure Value:</b> <core:out value="${measure.value}"/></p>
-							    <hr style="border: 1px solid #9F33FF;" >
-							    </core:forEach>
+							</core:forEach>
+							<core:forEach var="measure" items="${fMsrList.getFMeasureList(food.name)}">
+							    <p class="desc"><b>Measure Label:</b> <core:out value="${measure.label}"/></p>
+							    <p class="desc"><b>Measure Value:</b> <core:out value="${measure.value}"/></p>
+						    	<hr style="border: 1px solid #9F33FF;" >
 						    </core:forEach>
-						    <br />
-						    <br />
+						    </td></tr>
 					    </core:forEach>
+					    </tbody>
+			   	 		</table>
 					</div>
-                   </div>
-               </div>
-           </div>
-       </div>
+                </div>
+            </div>
+        </div>
+    </div>
        <!-- /#page-content-wrapper -->
 </body>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/dataTable.js">
+</script>
 </html>

@@ -4,8 +4,8 @@
 	}
 	
 	thead {
-		background: #000;
-		color: #fff;
+		background: #404040;
+		color: #FFFFFF;
 	}
 	
 	td {
@@ -21,15 +21,15 @@
 	div.pager span {
 		display: inline-block;
 		width: 2em;
-		height. 2em;
+		height: 2em;
 		line-height: 2;
 		text-align: center;
 		cursor: pointer;
-		background: #000;
-		color: #fff;
+		background: #404040;
+		color: #FFFFFF;
 		margin-right: 0.5em;
 	}
 	
 	div.pager span.active {
-		background: #c00;
+		background: #FF0000;
 	}

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bmi.domain.FNutMeasureList;
+import com.bmi.domain.FMeasureList;
 import com.bmi.domain.FNutrList;
 import com.bmi.domain.FoodList;
 import com.bmi.service.FoodShowService;
@@ -27,11 +27,11 @@ public class FoodShowController {
 	public String showFoods(Model model,
 			FoodList foodList,
 			FNutrList fNutrList,
-			FNutMeasureList fnutmsrList) {
-    	model.addAttribute("foods", foodList);
+			FMeasureList fMsrList) {
+    	model.addAttribute("foodList", foodList);
 		model.addAttribute("fNutrList", fNutrList);
-		model.addAttribute("fNutmsrList", fnutmsrList);
-    	return foodShowService.showFood(foodList, fNutrList, fnutmsrList);
+		model.addAttribute("fMsrList", fMsrList);
+    	return foodShowService.showFood(foodList, fNutrList, fMsrList);
 	}
 	
 }

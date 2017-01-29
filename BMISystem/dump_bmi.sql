@@ -1,590 +1,136 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 21 Oca 2017, 19:54:45
--- Sunucu sürümü: 5.7.14-log
--- PHP Sürümü: 5.6.25
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: bmi
+-- ------------------------------------------------------
+-- Server version	5.7.14-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Veritabanı: `bmi`
+-- Table structure for table `UACTIVITY`
 --
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `UACTIVITY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UACTIVITY` (
+  `UNAME` varchar(64) DEFAULT NULL,
+  `ACTID` varchar(32) NOT NULL,
+  `DURATION` float DEFAULT NULL,
+  `TSTART` date DEFAULT NULL,
+  PRIMARY KEY (`ACTID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tablo için tablo yapısı `FNUTMEASURES`
+-- Dumping data for table `UACTIVITY`
 --
 
-CREATE TABLE `FNUTMEASURES` (
-  `NID` varchar(32) DEFAULT NULL,
+LOCK TABLES `UACTIVITY` WRITE;
+/*!40000 ALTER TABLE `UACTIVITY` DISABLE KEYS */;
+INSERT INTO `UACTIVITY` VALUES ('cemsanal@yandex.ru','100',348.5,'2019-04-01'),('cemsanal@yandex.com','7',150,'2018-07-01');
+/*!40000 ALTER TABLE `UACTIVITY` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UACTIVITYGRP`
+--
+
+DROP TABLE IF EXISTS `UACTIVITYGRP`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UACTIVITYGRP` (
+  `UNAME` varchar(64) DEFAULT NULL,
+  `ACTGRPID` varchar(32) NOT NULL,
+  `ACTNAME` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`ACTGRPID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UACTIVITYGRP`
+--
+
+LOCK TABLES `UACTIVITYGRP` WRITE;
+/*!40000 ALTER TABLE `UACTIVITYGRP` DISABLE KEYS */;
+INSERT INTO `UACTIVITYGRP` VALUES ('cemsanal@yandex.ru','18','Water Activities'),('cemsanal@yandex.ru','4','Fishing and Hunting'),('cemsanal@yandex.com','1','Bicycling');
+/*!40000 ALTER TABLE `UACTIVITYGRP` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UACTIVITYINFO`
+--
+
+DROP TABLE IF EXISTS `UACTIVITYINFO`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UACTIVITYINFO` (
+  `UNAME` varchar(64) DEFAULT NULL,
+  `ACTID` varchar(32) NOT NULL,
+  `ACTCODE` varchar(32) DEFAULT NULL,
+  `ACTMETS` float DEFAULT NULL,
+  `ACTGROUPID` varchar(32) DEFAULT NULL,
+  `ACTDESC` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`ACTID`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UACTIVITYINFO`
+--
+
+LOCK TABLES `UACTIVITYINFO` WRITE;
+/*!40000 ALTER TABLE `UACTIVITYINFO` DISABLE KEYS */;
+INSERT INTO `UACTIVITYINFO` VALUES ('cemsanal@yandex.ru','709','18110',4,'18','paddle boat'),('cemsanal@yandex.ru','100','04061',1.8,'4','fishing, jog or line, standing, general'),('cemsanal@yandex.com','7','01013',5.8,'1','bicycling, on dirt or farm road, moderate pace');
+/*!40000 ALTER TABLE `UACTIVITYINFO` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `UFMEASURES`
+--
+
+DROP TABLE IF EXISTS `UFMEASURES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UFMEASURES` (
+  `UNAME` varchar(64) DEFAULT NULL,
+  `FNAME` varchar(128) DEFAULT NULL,
   `LABEL` varchar(64) DEFAULT NULL,
   `EQV` float DEFAULT NULL,
   `QTY` float DEFAULT NULL,
   `VALUE` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tablo döküm verisi `FNUTMEASURES`
+-- Dumping data for table `UFMEASURES`
 --
 
-INSERT INTO `FNUTMEASURES` (`NID`, `LABEL`, `EQV`, `QTY`, `VALUE`) VALUES
-('255', 'strip', 30, 1, 13.99),
-('255', 'serving', 184, 1, 85.82),
-('255', 'serving 1/2 cup', 126, 1, 107.98),
-('255', 'box (NLEA serving size)', 85, 0.167, 43.6),
-('255', 'box (NLEA serving)', 103, 0.167, 43.26),
-('255', 'box (NLEA serving)', 94, 0.167, 45.87),
-('255', 'serving (NLEA serving)', 94, 1, 43.24),
-('255', 'box (NLEA serving)', 81, 0.167, 43.09),
-('255', 'serving', 81, 1, 43.09),
-('255', 'serving 1/6 box', 84, 1, 44.94),
-('255', 'box', 505, 1, 270.18),
-('208', 'strip', 30, 1, 81),
-('208', 'serving', 184, 1, 499),
-('208', 'g', 122, 122, 210),
-('208', 'BITES', 71, 5, 180),
-('208', 'cup', 245, 1, 120),
-('208', 'serving 1/2 cup', 126, 1, 79),
-('208', 'box (NLEA serving size)', 85, 0.167, 168),
-('208', 'box (NLEA serving)', 103, 0.167, 227),
-('208', 'box (NLEA serving)', 94, 0.167, 185),
-('208', 'serving (NLEA serving)', 94, 1, 197),
-('208', 'box (NLEA serving)', 81, 0.167, 153),
-('208', 'serving', 81, 1, 153),
-('208', 'serving 1/6 box', 84, 1, 160),
-('208', 'box', 505, 1, 960),
-('208', 'g', 48, 48, 100),
-('208', 'g', 77, 77, 250),
-('208', 'oz', 56, 2, 100),
-('208', 'g', 48, 48, 100),
-('208', 'g', 77, 77, 130),
-('208', 'g', 340, 340, 258),
-('208', 'cup', 155, 1, 220),
-('208', 'g', 85, 85, 140),
-('208', 'g', 77, 77, 250),
-('208', 'g', 80, 80, 260),
-('208', 'g', 48, 48, 100),
-('208', 'g', 48, 48, 100),
-('208', 'g', 48, 48, 100),
-('208', 'cup', 60, 1, 230),
-('208', 'oz', 112, 4, 240),
-('208', 'g', 85, 85, 210),
-('208', 'oz', 84, 3, 160),
-('208', 'g', 298, 298, 530),
-('208', 'g', 48, 48, 60),
-('208', 'g', 60, 60, 120),
-('208', 'g', 255, 255, 260),
-('208', 'oz', 56, 2, 130),
-('208', 'cup', 140, 0.75, 181),
-('208', 'oz', 70, 2.5, 240),
-('208', 'cup', 33, 0.25, 120),
-('208', 'tsp', 4, 1, 10),
-('208', 'g', 34, 34, 160),
-('208', 'g', 85, 85, 140),
-('208', 'oz', 140, 5, 350),
-('208', 'g', 312, 312, 371),
-('208', 'g', 139, 139, 441),
-('208', 'cup', 245, 1, 140),
-('208', 'cup', 245, 1, 100),
-('208', 'cup', 245, 1, 120),
-('208', 'g', 85, 85, 250),
-('208', 'oz', 113.4, 4, 342),
-('208', 'g', 106, 106, 90),
-('208', 'g', 283, 283, 340),
-('208', 'cup', 113, 0.5, 140),
-('203', 'strip', 30, 1, 5.77),
-('203', 'serving', 184, 1, 35.36),
-('203', 'g', 122, 122, 8),
-('203', 'BITES', 71, 5, 10),
-('203', 'cup', 245, 1, 8.99),
-('203', 'serving 1/2 cup', 126, 1, 3),
-('203', 'box (NLEA serving size)', 85, 0.167, 6),
-('203', 'box (NLEA serving)', 103, 0.167, 10.05),
-('203', 'box (NLEA serving)', 94, 0.167, 4),
-('203', 'serving (NLEA serving)', 94, 1, 4),
-('203', 'box (NLEA serving)', 81, 0.167, 4),
-('203', 'serving', 81, 1, 4),
-('203', 'serving 1/6 box', 84, 1, 4.99),
-('203', 'box', 505, 1, 30),
-('203', 'g', 48, 48, 6),
-('203', 'g', 77, 77, 10),
-('203', 'oz', 56, 2, 8),
-('203', 'g', 48, 48, 6),
-('203', 'g', 77, 77, 14),
-('203', 'g', 340, 340, 14.99),
-('203', 'cup', 155, 1, 10),
-('203', 'g', 85, 85, 14),
-('203', 'g', 77, 77, 10),
-('203', 'g', 80, 80, 12),
-('203', 'g', 48, 48, 6),
-('203', 'g', 48, 48, 6),
-('203', 'g', 48, 48, 6),
-('203', 'cup', 60, 1, 8),
-('203', 'oz', 112, 4, 21),
-('203', 'g', 85, 85, 10),
-('203', 'oz', 84, 3, 12),
-('203', 'g', 298, 298, 19.01),
-('203', 'g', 48, 48, 6),
-('203', 'g', 60, 60, 7),
-('203', 'g', 255, 255, 12.01),
-('203', 'oz', 56, 2, 11),
-('203', 'cup', 140, 0.75, 5),
-('203', 'oz', 70, 2.5, 7),
-('203', 'cup', 33, 0.25, 4),
-('203', 'tsp', 4, 1, 0),
-('203', 'g', 34, 34, 3),
-('203', 'g', 85, 85, 6),
-('203', 'oz', 140, 5, 7),
-('203', 'g', 312, 312, 22),
-('203', 'g', 139, 139, 17),
-('203', 'cup', 245, 1, 6),
-('203', 'cup', 245, 1, 7.01),
-('203', 'cup', 245, 1, 7.01),
-('203', 'g', 85, 85, 16),
-('203', 'oz', 113.4, 4, 20),
-('203', 'g', 106, 106, 9),
-('203', 'g', 283, 283, 15.99),
-('203', 'cup', 113, 0.5, 14),
-('204', 'strip', 30, 1, 4.18),
-('204', 'serving', 184, 1, 25.67),
-('204', 'g', 122, 122, 4.5),
-('204', 'BITES', 71, 5, 11),
-('204', 'cup', 245, 1, 3.5),
-('204', 'serving 1/2 cup', 126, 1, 2),
-('204', 'box (NLEA serving size)', 85, 0.167, 4),
-('204', 'box (NLEA serving)', 103, 0.167, 1.01),
-('204', 'box (NLEA serving)', 94, 0.167, 1),
-('204', 'serving (NLEA serving)', 94, 1, 1),
-('204', 'box (NLEA serving)', 81, 0.167, 1),
-('204', 'serving', 81, 1, 1),
-('204', 'serving 1/6 box', 84, 1, 2.99),
-('204', 'box', 505, 1, 17.98),
-('204', 'g', 48, 48, 8),
-('204', 'g', 77, 77, 16),
-('204', 'oz', 56, 2, 8),
-('204', 'g', 48, 48, 8),
-('204', 'g', 77, 77, 7),
-('204', 'g', 340, 340, 2.52),
-('204', 'cup', 155, 1, 6),
-('204', 'g', 85, 85, 7),
-('204', 'g', 77, 77, 16),
-('204', 'g', 80, 80, 18),
-('204', 'g', 48, 48, 8),
-('204', 'g', 48, 48, 8),
-('204', 'g', 48, 48, 8),
-('204', 'cup', 60, 1, 1.5),
-('204', 'oz', 112, 4, 17),
-('204', 'g', 85, 85, 13),
-('204', 'oz', 84, 3, 7),
-('204', 'g', 298, 298, 44.01),
-('204', 'g', 48, 48, 4),
-('204', 'g', 60, 60, 10),
-('204', 'g', 255, 255, 1.99),
-('204', 'oz', 56, 2, 9),
-('204', 'cup', 140, 0.75, 3),
-('204', 'oz', 70, 2.5, 1.5),
-('204', 'cup', 33, 0.25, 2),
-('204', 'tsp', 4, 1, 0),
-('204', 'g', 34, 34, 8),
-('204', 'g', 85, 85, 2.5),
-('204', 'oz', 140, 5, 19),
-('204', 'g', 312, 312, 8.99),
-('204', 'g', 139, 139, 21),
-('204', 'cup', 245, 1, 2.99),
-('204', 'cup', 245, 1, 2.99),
-('204', 'cup', 245, 1, 2.99),
-('204', 'g', 85, 85, 13),
-('204', 'oz', 113.4, 4, 15),
-('204', 'g', 106, 106, 3),
-('204', 'g', 283, 283, 18),
-('204', 'cup', 113, 0.5, 4),
-('205', 'strip', 30, 1, 5.17),
-('205', 'serving', 184, 1, 31.74),
-('205', 'g', 122, 122, 35),
-('205', 'BITES', 71, 5, 10),
-('205', 'cup', 245, 1, 13.01),
-('205', 'serving 1/2 cup', 126, 1, 12),
-('205', 'box (NLEA serving size)', 85, 0.167, 27),
-('205', 'box (NLEA serving)', 103, 0.167, 44.22),
-('205', 'box (NLEA serving)', 94, 0.167, 40),
-('205', 'serving (NLEA serving)', 94, 1, 43),
-('205', 'box (NLEA serving)', 81, 0.167, 32),
-('205', 'serving', 81, 1, 32),
-('205', 'serving 1/6 box', 84, 1, 28.93),
-('205', 'box', 505, 1, 173.92),
-('205', 'g', 48, 48, 1),
-('205', 'g', 77, 77, 14),
-('205', 'oz', 56, 2, 0),
-('205', 'g', 48, 48, 1),
-('205', 'g', 77, 77, 2),
-('205', 'g', 340, 340, 46),
-('205', 'cup', 155, 1, 29.99),
-('205', 'g', 85, 85, 6),
-('205', 'g', 77, 77, 14),
-('205', 'g', 80, 80, 13),
-('205', 'g', 48, 48, 1),
-('205', 'g', 48, 48, 1),
-('205', 'g', 48, 48, 1),
-('205', 'cup', 60, 1, 45),
-('205', 'oz', 112, 4, 0),
-('205', 'g', 85, 85, 13),
-('205', 'oz', 84, 3, 13),
-('205', 'g', 298, 298, 19.01),
-('205', 'g', 48, 48, 1),
-('205', 'g', 60, 60, 1),
-('205', 'g', 255, 255, 49.01),
-('205', 'oz', 56, 2, 1),
-('205', 'cup', 140, 0.75, 35),
-('205', 'oz', 70, 2.5, 50),
-('205', 'cup', 33, 0.25, 21),
-('205', 'tsp', 4, 1, 1),
-('205', 'g', 34, 34, 20),
-('205', 'g', 85, 85, 24),
-('205', 'oz', 140, 5, 35),
-('205', 'g', 312, 312, 52.01),
-('205', 'g', 139, 139, 47),
-('205', 'cup', 245, 1, 22),
-('205', 'cup', 245, 1, 17),
-('205', 'cup', 245, 1, 17),
-('205', 'g', 85, 85, 16),
-('205', 'oz', 113.4, 4, 36),
-('205', 'g', 106, 106, 7),
-('205', 'g', 283, 283, 27.99),
-('205', 'cup', 113, 0.5, 12),
-('291', 'strip', 30, 1, 0.4),
-('291', 'serving', 184, 1, 2.2),
-('291', 'g', 122, 122, 1),
-('291', 'BITES', 71, 5, 0),
-('291', 'cup', 245, 1, 1),
-('291', 'serving 1/2 cup', 126, 1, 1),
-('291', 'box (NLEA serving size)', 85, 0.167, 1),
-('291', 'box (NLEA serving)', 103, 0.167, 2.1),
-('291', 'box (NLEA serving)', 94, 0.167, 1),
-('291', 'serving (NLEA serving)', 94, 1, 2),
-('291', 'box (NLEA serving)', 81, 0.167, 2),
-('291', 'serving', 81, 1, 2),
-('291', 'serving 1/6 box', 84, 1, 2),
-('291', 'box', 505, 1, 12.1),
-('291', 'g', 48, 48, 0),
-('291', 'g', 77, 77, 4),
-('291', 'oz', 56, 2, 0),
-('291', 'g', 48, 48, 0),
-('291', 'g', 77, 77, 0),
-('291', 'g', 340, 340, 3.1),
-('291', 'cup', 155, 1, 2),
-('291', 'g', 85, 85, 1),
-('291', 'g', 77, 77, 4),
-('291', 'g', 80, 80, 2),
-('291', 'g', 48, 48, 0),
-('291', 'g', 48, 48, 0),
-('291', 'g', 48, 48, 0),
-('291', 'cup', 60, 1, 1),
-('291', 'oz', 112, 4, 0),
-('291', 'g', 85, 85, 0),
-('291', 'oz', 84, 3, 1),
-('291', 'g', 298, 298, 3.9),
-('291', 'g', 48, 48, 0),
-('291', 'g', 60, 60, 0),
-('291', 'g', 255, 255, 3.1),
-('291', 'oz', 56, 2, 0),
-('291', 'cup', 140, 0.75, 1),
-('291', 'oz', 70, 2.5, 1),
-('291', 'cup', 33, 0.25, 2),
-('291', 'g', 34, 34, 1),
-('291', 'g', 85, 85, 2),
-('291', 'oz', 140, 5, 1),
-('291', 'g', 312, 312, 5.9),
-('291', 'g', 139, 139, 1.9),
-('291', 'cup', 245, 1, 2),
-('291', 'cup', 245, 1, 1),
-('291', 'cup', 245, 1, 1),
-('291', 'g', 85, 85, 1),
-('291', 'g', 106, 106, 0),
-('291', 'g', 283, 283, 2),
-('291', 'cup', 113, 0.5, 2),
-('269', 'strip', 30, 1, 0.12),
-('269', 'serving', 184, 1, 0.74),
-('269', 'g', 122, 122, 3),
-('269', 'BITES', 71, 5, 1),
-('269', 'cup', 245, 1, 2.99),
-('269', 'serving 1/2 cup', 126, 1, 1),
-('269', 'box (NLEA serving size)', 85, 0.167, 4),
-('269', 'box (NLEA serving)', 103, 0.167, 7.03),
-('269', 'box (NLEA serving)', 94, 0.167, 2),
-('269', 'serving (NLEA serving)', 94, 1, 3),
-('269', 'box (NLEA serving)', 81, 0.167, 4),
-('269', 'serving', 81, 1, 4),
-('269', 'serving 1/6 box', 84, 1, 2.99),
-('269', 'box', 505, 1, 17.98),
-('269', 'g', 48, 48, 0),
-('269', 'g', 77, 77, 0),
-('269', 'oz', 56, 2, 0),
-('269', 'g', 48, 48, 0),
-('269', 'g', 77, 77, 1),
-('269', 'g', 340, 340, 11.02),
-('269', 'cup', 155, 1, 10),
-('269', 'g', 85, 85, 3),
-('269', 'g', 77, 77, 0),
-('269', 'g', 80, 80, 0),
-('269', 'g', 48, 48, 0),
-('269', 'g', 48, 48, 0),
-('269', 'g', 48, 48, 0),
-('269', 'cup', 60, 1, 2),
-('269', 'oz', 112, 4, 0),
-('269', 'g', 85, 85, 0),
-('269', 'oz', 84, 3, 1),
-('269', 'g', 298, 298, 3.99),
-('269', 'g', 48, 48, 0),
-('269', 'g', 60, 60, 0),
-('269', 'g', 255, 255, 14.99),
-('269', 'oz', 56, 2, 0),
-('269', 'cup', 140, 0.75, 2),
-('269', 'oz', 70, 2.5, 2),
-('269', 'cup', 33, 0.25, 3),
-('269', 'tsp', 4, 1, 1),
-('269', 'g', 34, 34, 1),
-('269', 'g', 85, 85, 3),
-('269', 'oz', 140, 5, 11),
-('269', 'g', 312, 312, 34.01),
-('269', 'g', 139, 139, 5),
-('269', 'cup', 245, 1, 2.01),
-('269', 'cup', 245, 1, 2.01),
-('269', 'cup', 245, 1, 2.01),
-('269', 'g', 85, 85, 4),
-('269', 'oz', 113.4, 4, 1),
-('269', 'g', 106, 106, 3),
-('269', 'g', 283, 283, 0),
-('269', 'cup', 113, 0.5, 8),
-('307', 'strip', 30, 1, 231),
-('307', 'serving', 184, 1, 1415),
-('307', 'g', 122, 122, 379),
-('307', 'BITES', 71, 5, 360),
-('307', 'cup', 245, 1, 941),
-('307', 'serving 1/2 cup', 126, 1, 480),
-('307', 'box (NLEA serving size)', 85, 0.167, 840),
-('307', 'box (NLEA serving)', 103, 0.167, 763),
-('307', 'box (NLEA serving)', 94, 0.167, 780),
-('307', 'serving (NLEA serving)', 94, 1, 780),
-('307', 'box (NLEA serving)', 81, 0.167, 600),
-('307', 'serving', 81, 1, 600),
-('307', 'serving 1/6 box', 84, 1, 738),
-('307', 'box', 505, 1, 4439),
-('307', 'g', 48, 48, 460),
-('307', 'g', 77, 77, 600),
-('307', 'oz', 56, 2, 530),
-('307', 'g', 48, 48, 460),
-('307', 'g', 77, 77, 530),
-('307', 'g', 340, 340, 1091),
-('307', 'cup', 155, 1, 910),
-('307', 'g', 85, 85, 810),
-('307', 'g', 77, 77, 600),
-('307', 'g', 80, 80, 710),
-('307', 'g', 48, 48, 460),
-('307', 'g', 48, 48, 490),
-('307', 'g', 48, 48, 460),
-('307', 'cup', 60, 1, 680),
-('307', 'oz', 112, 4, 80),
-('307', 'g', 85, 85, 510),
-('307', 'g', 298, 298, 1061),
-('307', 'g', 48, 48, 355),
-('307', 'g', 60, 60, 530),
-('307', 'g', 255, 255, 701),
-('307', 'oz', 56, 2, 460),
-('307', 'cup', 140, 0.75, 540),
-('307', 'oz', 70, 2.5, 930),
-('307', 'cup', 33, 0.25, 650),
-('307', 'tsp', 4, 1, 860),
-('307', 'g', 34, 34, 820),
-('307', 'g', 85, 85, 480),
-('307', 'oz', 140, 5, 580),
-('307', 'g', 312, 312, 599),
-('307', 'g', 139, 139, 610),
-('307', 'cup', 245, 1, 649),
-('307', 'cup', 245, 1, 789),
-('307', 'cup', 245, 1, 419),
-('307', 'g', 85, 85, 990),
-('307', 'oz', 113.4, 4, 499),
-('307', 'g', 106, 106, 570),
-('307', 'g', 283, 283, 990),
-('307', 'cup', 113, 0.5, 380),
-('606', 'strip', 30, 1, 0.748),
-('606', 'serving', 184, 1, 4.587),
-('606', 'g', 122, 122, 1),
-('606', 'BITES', 71, 5, 3.5),
-('606', 'cup', 245, 1, 1.004),
-('606', 'serving 1/2 cup', 126, 1, 0.5),
-('606', 'box (NLEA serving size)', 85, 0.167, 1),
-('606', 'box (NLEA serving)', 103, 0.167, 0.503),
-('606', 'box (NLEA serving)', 94, 0.167, 0.5),
-('606', 'serving (NLEA serving)', 94, 1, 0.5),
-('606', 'box (NLEA serving)', 81, 0.167, 0.5),
-('606', 'serving', 81, 1, 0.5),
-('606', 'serving 1/6 box', 84, 1, 0.998),
-('606', 'box', 505, 1, 5.999),
-('606', 'g', 48, 48, 2.5),
-('606', 'g', 77, 77, 4),
-('606', 'oz', 56, 2, 2),
-('606', 'g', 48, 48, 2.5),
-('606', 'g', 77, 77, 2.5),
-('606', 'g', 340, 340, 0.51),
-('606', 'cup', 155, 1, 1.5),
-('606', 'g', 85, 85, 2),
-('606', 'g', 77, 77, 4),
-('606', 'g', 80, 80, 4),
-('606', 'g', 48, 48, 2.5),
-('606', 'g', 48, 48, 2.5),
-('606', 'g', 48, 48, 2.5),
-('606', 'cup', 60, 1, 0),
-('606', 'oz', 112, 4, 4.5),
-('606', 'g', 85, 85, 3),
-('606', 'oz', 84, 3, 1.5),
-('606', 'g', 298, 298, 10.01),
-('606', 'g', 48, 48, 1),
-('606', 'g', 60, 60, 3),
-('606', 'g', 255, 255, 0),
-('606', 'oz', 56, 2, 2.5),
-('606', 'cup', 140, 0.75, 0),
-('606', 'oz', 70, 2.5, 0),
-('606', 'cup', 33, 0.25, 0.5),
-('606', 'tsp', 4, 1, 0),
-('606', 'g', 34, 34, 4),
-('606', 'g', 85, 85, 0.5),
-('606', 'oz', 140, 5, 3),
-('606', 'g', 312, 312, 1.5),
-('606', 'g', 139, 139, 4),
-('606', 'cup', 245, 1, 1.49),
-('606', 'cup', 245, 1, 1),
-('606', 'cup', 245, 1, 1),
-('606', 'g', 85, 85, 7),
-('606', 'oz', 113.4, 4, 2.49),
-('606', 'g', 106, 106, 1),
-('606', 'g', 283, 283, 6),
-('606', 'cup', 113, 0.5, 0.99),
-('605', 'strip', 30, 1, 0.016),
-('605', 'serving', 184, 1, 0.096),
-('605', 'g', 122, 122, 0),
-('605', 'BITES', 71, 5, 0),
-('605', 'cup', 245, 1, 0),
-('605', 'serving 1/2 cup', 126, 1, 0),
-('605', 'box (NLEA serving size)', 85, 0.167, 0.5),
-('605', 'box (NLEA serving)', 103, 0.167, 0),
-('605', 'box (NLEA serving)', 94, 0.167, 0),
-('605', 'serving (NLEA serving)', 94, 1, 0),
-('605', 'box (NLEA serving)', 81, 0.167, 0),
-('605', 'serving', 81, 1, 0),
-('605', 'serving 1/6 box', 84, 1, 0),
-('605', 'box', 505, 1, 0),
-('605', 'g', 48, 48, 0),
-('605', 'g', 77, 77, 0),
-('605', 'oz', 56, 2, 0),
-('605', 'g', 48, 48, 0),
-('605', 'g', 77, 77, 0),
-('605', 'g', 340, 340, 0),
-('605', 'cup', 155, 1, 0),
-('605', 'g', 85, 85, 0),
-('605', 'g', 77, 77, 0),
-('605', 'g', 80, 80, 0),
-('605', 'g', 48, 48, 0),
-('605', 'g', 48, 48, 0),
-('605', 'g', 48, 48, 0),
-('605', 'cup', 60, 1, 0),
-('605', 'oz', 112, 4, 0),
-('605', 'g', 85, 85, 0),
-('605', 'oz', 84, 3, 0),
-('605', 'g', 298, 298, 0.51),
-('605', 'g', 48, 48, 0),
-('605', 'g', 60, 60, 0),
-('605', 'g', 255, 255, 0),
-('605', 'oz', 56, 2, 0),
-('605', 'cup', 140, 0.75, 0),
-('605', 'oz', 70, 2.5, 0),
-('605', 'cup', 33, 0.25, 0),
-('605', 'tsp', 4, 1, 0),
-('605', 'g', 34, 34, 0),
-('605', 'g', 85, 85, 0),
-('605', 'oz', 140, 5, 0),
-('605', 'g', 312, 312, 0),
-('605', 'g', 139, 139, 1.5),
-('605', 'cup', 245, 1, 0),
-('605', 'cup', 245, 1, 0),
-('605', 'cup', 245, 1, 0),
-('605', 'g', 85, 85, 0),
-('605', 'oz', 113.4, 4, 0),
-('605', 'g', 106, 106, 0),
-('605', 'g', 283, 283, 2.01),
-('605', 'cup', 113, 0.5, 0),
-('601', 'strip', 30, 1, 14),
-('601', 'serving', 184, 1, 88),
-('601', 'g', 122, 122, 20),
-('601', 'BITES', 71, 5, 25),
-('601', 'cup', 245, 1, 24),
-('601', 'serving 1/2 cup', 126, 1, 5),
-('601', 'box (NLEA serving size)', 85, 0.167, 5),
-('601', 'box (NLEA serving)', 103, 0.167, 5),
-('601', 'box (NLEA serving)', 94, 0.167, 5),
-('601', 'serving (NLEA serving)', 94, 1, 5),
-('601', 'box (NLEA serving)', 81, 0.167, 5),
-('601', 'serving', 81, 1, 5),
-('601', 'serving 1/6 box', 84, 1, 5),
-('601', 'box', 505, 1, 30),
-('601', 'g', 48, 48, 45),
-('601', 'g', 77, 77, 35),
-('601', 'oz', 56, 2, 35),
-('601', 'g', 48, 48, 45),
-('601', 'g', 77, 77, 60),
-('601', 'g', 340, 340, 34),
-('601', 'cup', 155, 1, 50),
-('601', 'g', 85, 85, 70),
-('601', 'g', 77, 77, 35),
-('601', 'g', 80, 80, 30),
-('601', 'g', 48, 48, 45),
-('601', 'g', 48, 48, 45),
-('601', 'g', 48, 48, 45),
-('601', 'cup', 60, 1, 0),
-('601', 'oz', 112, 4, 100),
-('601', 'g', 85, 85, 35),
-('601', 'oz', 84, 3, 30),
-('601', 'g', 298, 298, 60),
-('601', 'g', 48, 48, 45),
-('601', 'g', 60, 60, 55),
-('601', 'g', 255, 255, 26),
-('601', 'oz', 56, 2, 50),
-('601', 'cup', 140, 0.75, 0),
-('601', 'oz', 70, 2.5, 0),
-('601', 'cup', 33, 0.25, 20),
-('601', 'tsp', 4, 1, 0),
-('601', 'g', 34, 34, 0),
-('601', 'g', 85, 85, 5),
-('601', 'oz', 140, 5, 15),
-('601', 'g', 312, 312, 44),
-('601', 'g', 139, 139, 25),
-('601', 'cup', 245, 1, 34),
-('601', 'cup', 245, 1, 24),
-('601', 'cup', 245, 1, 24),
-('601', 'g', 85, 85, 55),
-('601', 'oz', 113.4, 4, 88),
-('601', 'g', 106, 106, 35),
-('601', 'g', 283, 283, 51),
-('601', 'cup', 113, 0.5, 31);
-
--- --------------------------------------------------------
+LOCK TABLES `UFMEASURES` WRITE;
+/*!40000 ALTER TABLE `UFMEASURES` DISABLE KEYS */;
+INSERT INTO `UFMEASURES` VALUES ('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,140),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,12),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,8),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,3),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,1),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,20),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,1.8),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,90),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,430),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,150.3),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,170),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,2),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0.16),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,1.8),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0.999),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,1.998),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,5.004),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','PIECES',90,2,0),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,131),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,2.5),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,12.01),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1.1),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1.99),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,40),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1.08),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,591),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,2.3),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1999),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,0.51),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,0),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,40),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,131),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,2.5),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,12.01),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1.1),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1.99),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,40),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1.08),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,591),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,2.3),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,1999),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,0.51),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,0),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','g',284,284,40),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,379),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,44.99),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,15),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,13.01),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,0.9),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,11.01),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,59),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,2.7),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,461),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,4.8),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,300),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,4),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,0),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,236),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,379),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,44.99),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,15),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,13.01),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,0.9),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,11.01),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,59),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,2.7),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,461),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,4.8),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,300),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,4),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,0),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,236),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,379),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,44.99),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,15),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,13.01),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,0.9),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,11.01),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,59),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,2.7),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,461),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,4.8),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,300),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,4),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,0),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','oz',227,8,236),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,50),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,6),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,2.5),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,1),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,1),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,0.36),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,170),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,100),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,1),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,0),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','g',32,32,25),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,120),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,3.99),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,2.99),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,21),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,1),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,6),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,39),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,1.08),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,480),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,0),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,399),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,2.01),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,0),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','cup',245,1,5);
+/*!40000 ALTER TABLE `UFMEASURES` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Tablo için tablo yapısı `FNUTRIENTS`
+-- Table structure for table `UFNUTRIENTS`
 --
 
-CREATE TABLE `FNUTRIENTS` (
+DROP TABLE IF EXISTS `UFNUTRIENTS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UFNUTRIENTS` (
+  `UNAME` varchar(64) DEFAULT NULL,
+  `FNAME` varchar(128) DEFAULT NULL,
   `FNDBNO` varchar(32) DEFAULT NULL,
   `NID` varchar(32) DEFAULT NULL,
   `NNAME` varchar(64) DEFAULT NULL,
@@ -592,119 +138,84 @@ CREATE TABLE `FNUTRIENTS` (
   `NUNIT` varchar(16) DEFAULT NULL,
   `NVALUE` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tablo döküm verisi `FNUTRIENTS`
+-- Dumping data for table `UFNUTRIENTS`
 --
 
-INSERT INTO `FNUTRIENTS` (`FNDBNO`, `NID`, `NNAME`, `NGROUP`, `NUNIT`, `NVALUE`) VALUES
-('22943', '255', 'Water', 'Proximates', 'g', 51.3),
-('22943', '208', 'Energy', 'Proximates', 'kcal', 198),
-('22943', '203', 'Protein', 'Proximates', 'g', 7.06),
-('22943', '204', 'Total lipid (fat)', 'Proximates', 'g', 4.71),
-('22943', '205', 'Carbohydrate, by difference', 'Proximates', 'g', 31.76),
-('22943', '291', 'Fiber, total dietary', 'Proximates', 'g', 1.2),
-('22943', '269', 'Sugars, total', 'Proximates', 'g', 4.71),
-('22943', '307', 'Sodium, Na', 'Minerals', 'mg', 988),
-('22943', '606', 'Fatty acids, total saturated', 'Lipids', 'g', 1.176),
-('22943', '605', 'Fatty acids, total trans', 'Lipids', 'g', 0.588),
-('22943', '601', 'Cholesterol', 'Lipids', 'mg', 6);
-
--- --------------------------------------------------------
+LOCK TABLES `UFNUTRIENTS` WRITE;
+/*!40000 ALTER TABLE `UFNUTRIENTS` DISABLE KEYS */;
+INSERT INTO `UFNUTRIENTS` VALUES ('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','208','Energy','Proximates','kcal',156),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','203','Protein','Proximates','g',13.33),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','204','Total lipid (fat)','Proximates','g',8.89),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','205','Carbohydrate, by difference','Proximates','g',3.33),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','291','Fiber, total dietary','Proximates','g',1.1),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','269','Sugars, total','Proximates','g',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','301','Calcium, Ca','Minerals','mg',22),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','303','Iron, Fe','Minerals','mg',2),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','306','Potassium, K','Minerals','mg',100),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','307','Sodium, Na','Minerals','mg',478),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','401','Vitamin C, total ascorbic acid','Vitamins','mg',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','404','Thiamin','Vitamins','mg',167),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','405','Riboflavin','Vitamins','mg',188.889),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','406','Niacin','Vitamins','mg',2.222),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','415','Vitamin B-6','Vitamins','mg',0.178),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','418','Vitamin B-12','Vitamins','µg',2),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','318','Vitamin A, IU','Vitamins','IU',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','606','Fatty acids, total saturated','Lipids','g',1.11),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','645','Fatty acids, total monounsaturated','Lipids','g',2.22),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','646','Fatty acids, total polyunsaturated','Lipids','g',5.56),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','601','Cholesterol','Lipids','mg',0),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','208','Energy','Proximates','kcal',46),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','204','Total lipid (fat)','Proximates','g',0.88),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','205','Carbohydrate, by difference','Proximates','g',4.23),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','291','Fiber, total dietary','Proximates','g',0.4),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','269','Sugars, total','Proximates','g',0.7),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','301','Calcium, Ca','Minerals','mg',14),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','303','Iron, Fe','Minerals','mg',0.38),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','307','Sodium, Na','Minerals','mg',208),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','401','Vitamin C, total ascorbic acid','Vitamins','mg',0.8),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','318','Vitamin A, IU','Vitamins','IU',704),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','606','Fatty acids, total saturated','Lipids','g',0.18),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','601','Cholesterol','Lipids','mg',14),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','208','Energy','Proximates','kcal',46),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','204','Total lipid (fat)','Proximates','g',0.88),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','205','Carbohydrate, by difference','Proximates','g',4.23),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','291','Fiber, total dietary','Proximates','g',0.4),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','269','Sugars, total','Proximates','g',0.7),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','301','Calcium, Ca','Minerals','mg',14),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','303','Iron, Fe','Minerals','mg',0.38),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','307','Sodium, Na','Minerals','mg',208),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','401','Vitamin C, total ascorbic acid','Vitamins','mg',0.8),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','318','Vitamin A, IU','Vitamins','IU',704),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','606','Fatty acids, total saturated','Lipids','g',0.18),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','601','Cholesterol','Lipids','mg',14),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','208','Energy','Proximates','kcal',167),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','203','Protein','Proximates','g',19.82),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','204','Total lipid (fat)','Proximates','g',6.61),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','205','Carbohydrate, by difference','Proximates','g',5.73),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','291','Fiber, total dietary','Proximates','g',0.4),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','269','Sugars, total','Proximates','g',4.85),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','301','Calcium, Ca','Minerals','mg',26),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','303','Iron, Fe','Minerals','mg',1.19),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','307','Sodium, Na','Minerals','mg',203),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','401','Vitamin C, total ascorbic acid','Vitamins','mg',2.1),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','318','Vitamin A, IU','Vitamins','IU',132),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','606','Fatty acids, total saturated','Lipids','g',1.76),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','601','Cholesterol','Lipids','mg',104),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','208','Energy','Proximates','kcal',167),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','203','Protein','Proximates','g',19.82),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','204','Total lipid (fat)','Proximates','g',6.61),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','205','Carbohydrate, by difference','Proximates','g',5.73),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','291','Fiber, total dietary','Proximates','g',0.4),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','269','Sugars, total','Proximates','g',4.85),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','301','Calcium, Ca','Minerals','mg',26),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','303','Iron, Fe','Minerals','mg',1.19),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','307','Sodium, Na','Minerals','mg',203),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','401','Vitamin C, total ascorbic acid','Vitamins','mg',2.1),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','318','Vitamin A, IU','Vitamins','IU',132),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','606','Fatty acids, total saturated','Lipids','g',1.76),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','601','Cholesterol','Lipids','mg',104),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','208','Energy','Proximates','kcal',167),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','203','Protein','Proximates','g',19.82),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','204','Total lipid (fat)','Proximates','g',6.61),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','205','Carbohydrate, by difference','Proximates','g',5.73),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','291','Fiber, total dietary','Proximates','g',0.4),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','269','Sugars, total','Proximates','g',4.85),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','301','Calcium, Ca','Minerals','mg',26),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','303','Iron, Fe','Minerals','mg',1.19),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','307','Sodium, Na','Minerals','mg',203),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','401','Vitamin C, total ascorbic acid','Vitamins','mg',2.1),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','318','Vitamin A, IU','Vitamins','IU',132),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','606','Fatty acids, total saturated','Lipids','g',1.76),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','601','Cholesterol','Lipids','mg',104),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','208','Energy','Proximates','kcal',156),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','203','Protein','Proximates','g',18.75),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','204','Total lipid (fat)','Proximates','g',7.81),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','205','Carbohydrate, by difference','Proximates','g',3.12),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','269','Sugars, total','Proximates','g',3.12),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','303','Iron, Fe','Minerals','mg',1.12),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','307','Sodium, Na','Minerals','mg',531),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','318','Vitamin A, IU','Vitamins','IU',312),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','606','Fatty acids, total saturated','Lipids','g',3.12),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','601','Cholesterol','Lipids','mg',78),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','208','Energy','Proximates','kcal',49),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','203','Protein','Proximates','g',1.63),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','204','Total lipid (fat)','Proximates','g',1.22),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','205','Carbohydrate, by difference','Proximates','g',8.57),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','291','Fiber, total dietary','Proximates','g',0.4),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','269','Sugars, total','Proximates','g',2.45),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','301','Calcium, Ca','Minerals','mg',16),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','303','Iron, Fe','Minerals','mg',0.44),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','307','Sodium, Na','Minerals','mg',196),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','401','Vitamin C, total ascorbic acid','Vitamins','mg',0),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','318','Vitamin A, IU','Vitamins','IU',163),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','606','Fatty acids, total saturated','Lipids','g',0.82),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','601','Cholesterol','Lipids','mg',2);
+/*!40000 ALTER TABLE `UFNUTRIENTS` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Tablo için tablo yapısı `FOODS`
+-- Table structure for table `UFOODS`
 --
 
-CREATE TABLE `FOODS` (
+DROP TABLE IF EXISTS `UFOODS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UFOODS` (
   `UNAME` varchar(64) DEFAULT NULL,
   `FOFFSET` int(11) DEFAULT NULL,
-  `FGROUP` varchar(64) DEFAULT NULL,
+  `FGROUP` varchar(64) NOT NULL,
   `FNAME` varchar(128) NOT NULL,
   `FNDBNO` varchar(32) DEFAULT NULL,
   `FDS` varchar(32) DEFAULT NULL,
   `FWEIGHT` float DEFAULT NULL,
   `FMEASURE` varchar(64) DEFAULT NULL,
   `FCALORY` float DEFAULT NULL,
-  `AMOUNT` int(11) DEFAULT NULL
+  `AMOUNT` int(11) DEFAULT NULL,
+  PRIMARY KEY (`FNAME`,`FGROUP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tablo döküm verisi `FOODS`
+-- Dumping data for table `UFOODS`
 --
 
-INSERT INTO `FOODS` (`UNAME`, `FOFFSET`, `FGROUP`, `FNAME`, `FNDBNO`, `FDS`, `FWEIGHT`, `FMEASURE`, `FCALORY`, `AMOUNT`) VALUES
-('cemsanal@yandex.ru', 5, 'Meals, Entrees, and Side Dishes', 'SUPPER BAKES MEAL KITS, Cheesy Chicken with pasta (chicken not included)', '22943', 'SR', 0, ' ', 0, 10);
-
--- --------------------------------------------------------
+LOCK TABLES `UFOODS` WRITE;
+/*!40000 ALTER TABLE `UFOODS` DISABLE KEYS */;
+INSERT INTO `UFOODS` VALUES ('cemsanal@yandex.com',0,'Branded Food Products Database','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','BL',0,' ',0,5),('cemsanal@yandex.com',5,'Branded Food Products Database','AHOLD, CHICKEN NOODLE SOUP, UPC: 688267154928','45045909','BL',0,' ',0,9),('cemsanal@yandex.com',9,'Branded Food Products Database','AHOLD, CHIPOTLE BBQ CHICKEN LEG & THIGH, UPC: 688267003868','45044197','BL',0,' ',0,13),('cemsanal@yandex.com',45,'Branded Food Products Database','AL FRESCO, COUNTRY STYLE CHICKEN SAUSAGE, UPC: 030771097060','45121195','BL',0,' ',0,80),('cemsanal@yandex.com',17,'Branded Food Products Database','AHOLD, THAI STYLE CHICKEN CURRY SOUP, UPC: 688267155970','45063252','BL',0,' ',0,19);
+/*!40000 ALTER TABLE `UFOODS` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Tablo için tablo yapısı `UACTIVITY`
+-- Table structure for table `UHISTORY`
 --
 
-CREATE TABLE `UACTIVITY` (
-  `UNAME` varchar(64) DEFAULT NULL,
-  `ACTID` varchar(32) NOT NULL,
-  `DURATION` float DEFAULT NULL,
-  `TSTART` date DEFAULT NULL
+DROP TABLE IF EXISTS `UHISTORY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `UHISTORY` (
+  `UNAME` varchar(64) NOT NULL,
+  `IDATE` date NOT NULL,
+  `WEIGHT` float DEFAULT NULL,
+  `BMI` float NOT NULL,
+  `CALORIE` float DEFAULT NULL,
+  PRIMARY KEY (`IDATE`,`UNAME`,`BMI`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tablo döküm verisi `UACTIVITY`
+-- Dumping data for table `UHISTORY`
 --
 
-INSERT INTO `UACTIVITY` (`UNAME`, `ACTID`, `DURATION`, `TSTART`) VALUES
-('cemsanal@yandex.ru', '100', 348.5, '2019-04-01');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `UACTIVITYGRP`
---
-
-CREATE TABLE `UACTIVITYGRP` (
-  `UNAME` varchar(64) DEFAULT NULL,
-  `ACTGRPID` varchar(32) NOT NULL,
-  `ACTNAME` varchar(128) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+LOCK TABLES `UHISTORY` WRITE;
+/*!40000 ALTER TABLE `UHISTORY` DISABLE KEYS */;
+INSERT INTO `UHISTORY` VALUES ('cemsanal@yandex.com','2017-01-28',70.5,31.3333,0),('cemsanal@yandex.com','2017-01-28',67.4,29.9556,0),('cemsanal@yandex.com','2017-01-28',69.2,21.1227,0);
+/*!40000 ALTER TABLE `UHISTORY` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Tablo döküm verisi `UACTIVITYGRP`
+-- Table structure for table `USERS`
 --
 
-INSERT INTO `UACTIVITYGRP` (`UNAME`, `ACTGRPID`, `ACTNAME`) VALUES
-('cemsanal@yandex.ru', '18', 'Water Activities'),
-('cemsanal@yandex.ru', '4', 'Fishing and Hunting');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `UACTIVITYINFO`
---
-
-CREATE TABLE `UACTIVITYINFO` (
-  `UNAME` varchar(64) DEFAULT NULL,
-  `ACTID` varchar(32) NOT NULL,
-  `ACTCODE` varchar(32) DEFAULT NULL,
-  `ACTMETS` float DEFAULT NULL,
-  `ACTGROUPID` varchar(32) DEFAULT NULL,
-  `ACTDESC` varchar(128) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Tablo döküm verisi `UACTIVITYINFO`
---
-
-INSERT INTO `UACTIVITYINFO` (`UNAME`, `ACTID`, `ACTCODE`, `ACTMETS`, `ACTGROUPID`, `ACTDESC`) VALUES
-('cemsanal@yandex.ru', '709', '18110', 4, '18', 'paddle boat'),
-('cemsanal@yandex.ru', '100', '04061', 1.8, '4', 'fishing, jog or line, standing, general');
-
--- --------------------------------------------------------
-
---
--- Tablo için tablo yapısı `USERS`
---
-
+DROP TABLE IF EXISTS `USERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USERS` (
   `UNAME` varchar(64) NOT NULL,
   `PASS` varchar(256) DEFAULT NULL,
@@ -716,55 +227,28 @@ CREATE TABLE `USERS` (
   `HEIGHT` float DEFAULT NULL,
   `WEIGHT` float DEFAULT NULL,
   `BMI` float DEFAULT NULL,
-  `WEIGHTTYPE` varchar(32) DEFAULT NULL
+  `WEIGHTTYPE` varchar(32) DEFAULT NULL,
+  PRIMARY KEY (`UNAME`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Tablo döküm verisi `USERS`
+-- Dumping data for table `USERS`
 --
 
-INSERT INTO `USERS` (`UNAME`, `PASS`, `NAME`, `SURNAME`, `AGE`, `GENDER`, `COMMENT`, `HEIGHT`, `WEIGHT`, `BMI`, `WEIGHTTYPE`) VALUES
-('asd2@asd2.com', 'cemcem', 'asd2', 'asd2', '34', 'F', 'deneme wehfuwerf &#305;&#305;&#305;&#305;&#305;&#305; &#287;&#287;&#287;&#287;&#287;&#287; üüüü', 18.1, 55.1, 0.168188, 'U'),
-('asd@asd.com', 'cemcem', 'Cem', 'Sanal', '27', 'F', 'adsfsdfsrgfewrg deneme askjhda', 1.8, 68, 20.9877, 'N'),
-('cem-sanal@hotmail.com', 'cemcem', 'Cem1', 'Sanal1', '26', 'M', 'Female comment deneme 1234', 1.81, 67.7, 20.6648, 'N'),
-('cemsanal@yandex.com', 'cemcem', 'Cem', 'Sanal', '27', 'M', 'deneme comment Cem 123435 wergyer', 1.5, 68.3, 30.3556, 'O'),
-('cemsanal@yandex.ru', 'cemcem', 'Cem', 'Sanal', '26', 'M', 'deneme 12343 deneme 312454', 1.82, 68.5, 20.6799, 'N'),
-('uskudarli', 'yemek123456', 'S', 'Uskudarli', '23', 'F', ' ', 2.05, 90, 15055.3, '');
+LOCK TABLES `USERS` WRITE;
+/*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
+INSERT INTO `USERS` VALUES ('asd2@asd2.com','cemcem','asd2','asd2','34','F','deneme wehfuwerf &#305;&#305;&#305;&#305;&#305;&#305; &#287;&#287;&#287;&#287;&#287;&#287; üüüü',18.1,55.1,0.168188,'U'),('asd@asd.com','cemcem','Cem','Sanal','27','F','adsfsdfsrgfewrg deneme askjhda',1.8,68,20.9877,'N'),('cem-sanal@hotmail.com','cemcem','Cem1','Sanal1','26','M','Female comment deneme 1234',1.81,67.7,20.6648,'N'),('cemsanal@yandex.com','cemcem','Cem','Sanal','27','M','deneme comment Cem 123435 wergyer',1.81,69.2,21.1227,'N'),('cemsanal@yandex.ru','cemcem','Cem','Sanal','26','M','deneme 233479 deneme owekroe',1.81,68,20.7564,'N'),('uskudarli','yemek123456','S','Uskudarli','23','F',' ',2.05,90,15055.3,''),('asd3@asd3.com','cemcem','Asd3','Asd3','23','F','deneme weujwfeu 2345435 sdfsdf',1.75,74,24.1633,'N');
+/*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Dökümü yapılmış tablolar için indeksler
---
-
---
--- Tablo için indeksler `FOODS`
---
-ALTER TABLE `FOODS`
-  ADD PRIMARY KEY (`FNAME`);
-
---
--- Tablo için indeksler `UACTIVITY`
---
-ALTER TABLE `UACTIVITY`
-  ADD PRIMARY KEY (`ACTID`);
-
---
--- Tablo için indeksler `UACTIVITYGRP`
---
-ALTER TABLE `UACTIVITYGRP`
-  ADD PRIMARY KEY (`ACTGRPID`);
-
---
--- Tablo için indeksler `UACTIVITYINFO`
---
-ALTER TABLE `UACTIVITYINFO`
-  ADD PRIMARY KEY (`ACTID`);
-
---
--- Tablo için indeksler `USERS`
---
-ALTER TABLE `USERS`
-  ADD PRIMARY KEY (`UNAME`);
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2017-01-29 20:21:22

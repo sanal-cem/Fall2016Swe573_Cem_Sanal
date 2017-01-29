@@ -3,31 +3,42 @@ package com.bmi.model;
  * Created by Cem Þanal.
  */
 
-public class FNutMeasures {
-	private String nid;
+public class FMeasures {
+	
+	private String uName;
+	private String fName;
     private String label;
     private float eqv;
 	private float qty;
     private float value;
     
-	public FNutMeasures() {
+	public FMeasures() {
 		
 	}
 	
-	public FNutMeasures(String nid, String label, float eqv, float qty, float value) {
-		this.nid = nid;
+	public FMeasures(String uName, String fName, String label, float eqv, float qty, float value) {
+		this.uName = uName;
+		this.fName = fName;
 		this.label = label;
 		this.eqv = eqv;
 		this.qty = qty;
 		this.value = value;
 	}
 	
-	public String getNid() {
-		return nid;
+	public String getUName() {
+		return uName;
 	}
 
-	public void setNid(String nid) {
-		this.nid = nid;
+	public void setUName(String uName) {
+		this.uName = uName;
+	}
+	
+	public String getFName() {
+		return fName;
+	}
+
+	public void setFName(String fName) {
+		this.fName = fName;
 	}
 	
 	public String getLabel() {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bmi.domain.FoodList;
 import com.bmi.model.FoodItem;
-import com.bmi.domain.FNutMeasureList;
+import com.bmi.domain.FMeasureList;
 import com.bmi.domain.FNutrList;
 import com.bmi.service.USDAFoodService;
 /**
@@ -38,11 +38,11 @@ public class FoodSearchController {
 			Model model,
 			FoodList foodList,
 			FNutrList fNutrList,
-			FNutMeasureList fnutmsrList) {
+			FMeasureList fMsrList) {
 		model.addAttribute("foodList", foodList);
 		model.addAttribute("fNutrList", fNutrList);
-		model.addAttribute("fNutmsrList", fnutmsrList);
-		USDAfoodService.USDAFoodFetching(foodList, fNutrList, fnutmsrList, keyword);
+		model.addAttribute("fMsrList", fMsrList);
+		USDAfoodService.USDAFoodFetching(foodList, fNutrList, fMsrList, keyword);
 		return "foodList";
 	}
 	

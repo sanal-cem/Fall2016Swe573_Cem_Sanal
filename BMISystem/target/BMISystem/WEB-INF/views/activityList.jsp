@@ -56,14 +56,14 @@
                     <div class="col-lg-12">
 						<h2 align="center">Add Activity</h2>
 						<hr />
+						<select name="selDropDown" class="form-control" onchange="setItems(this);">
+							<core:forEach var="actItem" items="${actList.getActList()}" varStatus="loop">
+								<option value="${loop.count}" class="btn btn-primary dropdown-toggle">${actItem.actDesc}</option>
+							</core:forEach>
+						</select>
 						<table class="paginated" >
 							<tbody>
 							<core:forEach var="actItem" items="${actList.getActList()}">
-								<tr><td>
-							    	<p class="desc"><b>Activity ID:</b></p>
-							    </td><td>
-							    	<p class="desc"><b><core:out value="${actItem.actId}"/></b></p>
-							    </td></tr>
 							    <tr><td>
 							    	<p class="desc"><b>Activity Description:</b></p>
 							    </td><td>
@@ -79,16 +79,19 @@
 							    </td><td>
 							    	<p class="desc"><b><core:out value="${actGrpList.getActGroupListID(actItem.actGroupID).actName}"/></b></p>
 							    </td></tr>
-							    <tr><td>
 							    <form:form method="GET" commandName="addActivity" action="addActivity" modelAttribute="duration, date, actID">
-										<p class="desc"><b>Activity Duration:</b></p><p class="desc"><input class="ui-button numbersOnly" type="text" name="duration" ></p>
+							    	<tr><td>
+										<p class="desc"><b>Activity Duration (Minutes):</b></p><p class="desc"><input class="ui-button numbersOnly" type="text" name="duration" ></p>
 						            	<br/>
 						            	<p class="desc"><b>Activity Date:</b></p><p class="desc"><input class="ui-button datepicker" type="text" name="date" ></p>
 						            	<br/>
 						            	<input class="hidden" type="text" value="<core:out value="${actItem.actId}"/>" name="actID" ></input>
+						            </td></tr>
+						            <tr><td>
 						            	<input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Activity"></input>
+						        	</td></tr>
 						        </form:form>
-						        </td></tr>
+						        
 							 </core:forEach>
 							 </tbody>
 			   	 		 </table>
@@ -101,9 +104,9 @@
     </div>
 </body>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/datatable.js">
+	src="${pageContext.request.contextPath}/resources/js/ddDataTable.js">
 </script>
-	
+
 <script type="text/javascript">
 	$( function() {
 		$( ".datepicker" ).datepicker();

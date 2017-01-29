@@ -54,6 +54,7 @@ $('table.paginated').each(function() {
 			$table.trigger('repaginate');
 			$(this).addClass('active').siblings().removeClass('active');
 			})
+	// Append to pager.
 	.appendTo($pager).addClass('clickable');
   
 	$pager.insertBefore($table).find('span.page-number:first').addClass('active');

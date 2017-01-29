@@ -5,6 +5,8 @@ package com.bmi.model;
 
 public class FNutrients {
 	
+	private String uName;
+	private String fName;
     private String fndbno;
     private String nid;
 	private String nname;
@@ -16,13 +18,31 @@ public class FNutrients {
 		
 	}
 	
-	public FNutrients(String fndbno, String nid, String nname, String group, String nunit, float nvalue) {
+	public FNutrients(String uName, String fName, String fndbno, String nid, String nname, String group, String nunit, float nvalue) {
+		this.uName = uName;
+		this.fName = fName;
 		this.fndbno = fndbno;
 		this.nid = nid;
 		this.nname = nname;
 		this.group = group;
 		this.nunit = nunit;
 		this.nvalue = nvalue;
+	}
+	
+	public String getUName() {
+		return uName;
+	}
+
+	public void setUName(String uName) {
+		this.uName = uName;
+	}
+	
+	public String getFName() {
+		return fName;
+	}
+
+	public void setFName(String fName) {
+		this.fName = fName;
 	}
 	
 	public String getFndbno() {
