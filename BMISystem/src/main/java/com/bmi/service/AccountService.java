@@ -32,13 +32,13 @@ public class AccountService {
         {
         	try {
     			String query = "SELECT UNAME, PASS, "
-    					+ "NAME, SURNAME , AGE, GENDER, "
-    					+ "COMMENT, HEIGHT, WEIGHT, "
-    					+ "BMI, WEIGHTTYPE FROM USERS "
-    					+ "WHERE UNAME LIKE '"
-    					+ userL.getuName() + "'"
-    					+ " AND PASS LIKE '"
-    					+ userL.getPass() + "'";
+    					+ " NAME, SURNAME , AGE, GENDER, "
+    					+ " COMMENT, HEIGHT, WEIGHT, "
+    					+ " BMI, WEIGHTTYPE FROM USERS "
+    					+ " WHERE UNAME LIKE "
+    					+ '"' + userL.getuName() + '"'
+    					+ " AND PASS LIKE " + '"'
+    					+ userL.getPass() + '"';
     		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
     		    	user.setuName(row.get("UNAME").toString());
     		    	userL.setuName(row.get("UNAME").toString());
@@ -79,18 +79,18 @@ public class AccountService {
 	    	UHistory uHist;
         	try {
     			String query = "SELECT UNAME, IDATE, "
-    					+ "WEIGHT, BMI, CALORIE "
-    					+ "FROM UHISTORY "
-    					+ "WHERE UNAME LIKE '"
-    					+ userL.getuName() + "'";
+    					+ " WEIGHT, BMI "
+    					+ " FROM UHISTORY "
+    					+ " WHERE UNAME LIKE " + '"'
+    					+ userL.getuName() + '"';
     		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
     		    	//DEÐÝÞTÝRÝLECEKLER
     		    	hDate = dd.parse(row.get("IDATE").toString());
     		    	uHist = new UHistory(row.get("UNAME").toString(),
     		    			hDate,
     		    			Float.parseFloat(row.get("WEIGHT").toString()),
-    		    			Float.parseFloat(row.get("BMI").toString()),
-    		    			Float.parseFloat(row.get("CALORIE").toString()));
+    		    			Float.parseFloat(row.get("BMI").toString())
+    		    			);
     		    	uHistList.addUHistItem(uHist);
     		     }
     		} catch (Exception e) {
@@ -116,9 +116,9 @@ public class AccountService {
 		
 		try {
 			String sql = "INSERT INTO USERS("
-					+ "UNAME, PASS, SURNAME, "
-					+ "NAME, AGE, GENDER, COMMENT, "
-					+ "HEIGHT, WEIGHT, BMI, WEIGHTTYPE "
+					+ " UNAME, PASS, SURNAME, "
+					+ " NAME, AGE, GENDER, COMMENT, "
+					+ " HEIGHT, WEIGHT, BMI, WEIGHTTYPE "
 					+ ") values(?,?,?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] {
 					userR.getuName(), userR.getPass(),
@@ -137,11 +137,11 @@ public class AccountService {
 		dtoday.set(Calendar.HOUR_OF_DAY, 0);
 		try {
 			String sql = "INSERT INTO UHISTORY "
-					+ "(UNAME, IDATE, WEIGHT, BMI, CALORIE)"
-					+ "VALUES (?,?,?,?,?) ";
+					+ " (UNAME, IDATE, WEIGHT, BMI)"
+					+ " VALUES (?,?,?,?) ";
 			jdbcTemplate.update(sql, new Object[] {
 					userR.getuName(), dtoday,
-					userR.getWeight(), uBMI, 0
+					userR.getWeight(), uBMI
 					});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -201,10 +201,10 @@ public class AccountService {
 		dtoday.set(Calendar.HOUR_OF_DAY, 0);
 		try {
 			String sql = "UPDATE USERS "
-					+ "SET UNAME = ?, PASS = ?, SURNAME = ?, "
-					+ "NAME = ?, AGE = ?, GENDER = ?, COMMENT = ?, "
-					+ "HEIGHT = ?, WEIGHT = ?, BMI = ?, WEIGHTTYPE = ? "
-					+ "WHERE UNAME = '" + user.getuName() + "'";
+					+ " SET UNAME = ?, PASS = ?, SURNAME = ?, "
+					+ " NAME = ?, AGE = ?, GENDER = ?, COMMENT = ?, "
+					+ " HEIGHT = ?, WEIGHT = ?, BMI = ?, WEIGHTTYPE = ? "
+					+ " WHERE UNAME = '" + user.getuName() + "'";
 			jdbcTemplate.update(sql, new Object[] {
 					userU.getuName(), userU.getPass(),
 					userU.getSurName(), userU.getName(),
@@ -231,11 +231,11 @@ public class AccountService {
     	
 		try {
 			String sql = "INSERT INTO UHISTORY "
-					+ "(UNAME, IDATE, WEIGHT, BMI, CALORIE)"
-					+ "VALUES (?,?,?,?,?) ";
+					+ " (UNAME, IDATE, WEIGHT, BMI)"
+					+ " VALUES (?,?,?,?) ";
 			jdbcTemplate.update(sql, new Object[] {
 					user.getuName(), dtoday,
-					userU.getWeight(), uBMI, 0
+					userU.getWeight(), uBMI
 					});
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

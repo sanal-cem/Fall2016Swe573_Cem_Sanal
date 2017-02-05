@@ -5,18 +5,20 @@ import java.util.Date;
 public class UserActivity {
 	private String actId;
 	private String uName;
-	private double duration;
+	private float duration;
 	private Date tstart;
+	private float calorie;
 	
 	public UserActivity() {
 		
 	}
 	
-	public UserActivity(String uName, String actId, double duration, Date tstart) {
+	public UserActivity(String uName, String actId, float duration, Date tstart, float calorie) {
 		this.uName = uName;
 		this.actId = actId;
 		this.duration = duration;
 		this.tstart = tstart;
+		this.calorie = calorie;
 	}
 
     public String getActId() {
@@ -35,11 +37,11 @@ public class UserActivity {
         this.uName = uName;
     }
     
-    public double getDuration() {
+    public float getDuration() {
         return duration;
     }
 
-    public void setDuration(double duration) {
+    public void setDuration(float duration) {
         this.duration = duration;
     }
     
@@ -49,5 +51,13 @@ public class UserActivity {
 
     public void setTstart(Date tstart) {
         this.tstart = tstart;
+    }
+    
+    public float getCalorie() {
+        return calorie;
+    }
+
+    public void setCalorie(float cal) {
+        this.calorie = cal;
     }
 }

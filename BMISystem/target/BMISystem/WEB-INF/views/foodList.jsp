@@ -11,6 +11,9 @@
 		src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
 	<script type="text/javascript"
 		src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/ddDataTable.js">
+</script>
 	<link rel="stylesheet"
 		href="${pageContext.request.contextPath}/resources/css/jquery-ui.css">
 	<link rel="stylesheet"
@@ -68,33 +71,49 @@
 					<tr><td>
 				    <p class="desc"><b>Food Name: </b><b><core:out value="${food.name}"/></b></p>
 				    </td></tr>
-				    <tr><td>
-				    <p class="desc"><b>Food Weight: </b><b><core:out value="${String.valueOf(food.weight)}"/></b></p>
-				    </td></tr>
-				    <tr><td>
-				    <p class="desc"><b>Food Calory: </b><b><core:out value="${String.valueOf(food.fCalory)}"/></b></p>
-					</td></tr>
 					<tr><td>
-						<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName, amount">
+						<form:form method="GET" commandName="addFood" action="addFood" modelAttribute="foodName, amount, date, nunit">
 							<input class="hidden" type="text" name="foodName" value="${food.name}"></input>
-							<p class="desc"><b>Food Amount: <input class="ui-button numbersOnly" type="text" name="amount" /></b></p>
+							<p class="desc"><b>Food Amount: </b></p><p class="desc"><input class="ui-button numbersOnly" type="text" name="amount" /></p>
+						    <p class="desc"><b>Eating Date: </b></p><p class="desc"><input class="ui-button datepicker" type="text" name="date" ></p>
+	    					<p class="desc"><b>Food Unit: </b></p>
+							<select class="form-control" name="nunit" >
+								<core:forEach var="nutr" items="${fNutrList.getFNutrListFood(food.ndbno)}" varStatus="status">
+									<core:set var="unitExists" value="${false}" />
+							        <core:if test="${(status.index - 1) > 0}">
+							            <core:forEach var="prvsUnit" items="${fNutrList.getFNutrListFood(food.ndbno)}" begin="0" end="${status.index - 1}" varStatus="inner">
+							                <core:if test="${nutr.nunit == prvsUnit.nunit}">
+							                    <core:set var="unitExists" value="${true}" />
+							                </core:if>
+							            </core:forEach>
+							        </core:if>
+							        <core:if test="${not unitExists}">
+							            <option value="${nutr.nunit}">${nutr.nunit}</option>
+							        </core:if>
+							    </core:forEach>
+							</select>
+							<br />
 				            <input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Food"></input>
 			        	</form:form>
 			        </td></tr>
 			        <tr><td>
 			        <hr style="border: 1px solid #33FF49;" >
-				    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}">
-					    <p class="desc"><b>Nutrient Name: <core:out value="${nutrient.nname}"/></b></p>
+					</td></tr>
+				    <tr><td>
+ 				    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}" >
+					    <p class="desc"><b>Nutrient Name: <core:out value="${nutrient.nName}"/></b></p>
 					    <p class="desc"><b>Nutrient Unit: <core:out value="${nutrient.nunit}"/></b></p>
 						<p class="desc"><b>Nutrient Value: <core:out value="${nutrient.nvalue}"/></b></p>
 						<hr style="border: 1px solid #334FFF;" >
 					</core:forEach>
+					</td></tr>
+		    		<tr><td>
 					<core:forEach var="measure" items="${fMsrList.getFMeasureList(food.name)}">
 					    <p class="desc"><b>Measure Label: <core:out value="${measure.label}"/></b></p>
 					    <p class="desc"><b>Measure Value: <core:out value="${measure.value}"/></b></p>
 					    <hr style="border: 1px solid #9F33FF;" >
 		    		</core:forEach>
-		    		</td></tr>
+					</td></tr>
 			    </core:forEach>
 			    </tbody>
 			    </table>
@@ -104,14 +123,13 @@
 </body>
 <script type="text/javascript">
 	$( function() {
+		$( ".datepicker" ).datepicker();
+		
 		$( ".numbersOnly" ).keyup(function () {
 		   if (this.value != this.value.replace(/[^0-9\.]/g, '')) {
 		      this.value = this.value.replace(/[^0-9\.]/g, '');
 		   }
 		});
 	});
-</script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/ddDataTable.js">
 </script>
 </html>

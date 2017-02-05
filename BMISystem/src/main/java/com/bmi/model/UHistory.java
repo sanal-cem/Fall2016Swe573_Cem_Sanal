@@ -11,18 +11,16 @@ public class UHistory {
 	private Date IDate;
 	private Float weight;
 	private Float bmi;
-	private Float calorie;
 	
 	public UHistory() {
 	}
 	
-    public UHistory(String uName, Date IDate, Float weight, Float bmi, Float calorie)
+    public UHistory(String uName, Date IDate, Float weight, Float bmi)
     {
         this.uName = uName;
         this.IDate = IDate;
         this.weight = weight;
         this.bmi = bmi;
-        this.calorie = calorie;
     }
 
 	public String getuName() {
@@ -55,13 +53,5 @@ public class UHistory {
 
 	public void setBmi(Float bmi) {
 		this.bmi = bmi;
-	}
-	
-	public Float getCalorie() {
-		return calorie;
-	}
-
-	public void setCalorie(Float calorie) {
-		this.calorie = calorie;
 	}
 }

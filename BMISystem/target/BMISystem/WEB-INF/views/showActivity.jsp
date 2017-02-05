@@ -59,8 +59,9 @@
 								<hr />
 								<core:forEach var="actItem" items="${actList.getActList()}">
 								    <p class="desc"><b>Activity Description: <core:out value="${actItem.actDesc}"/></b></p>
-									<p class="desc"><b>Activity Duration: <core:out value="${Math.round(uActList.getUActListID(actItem.actId).duration / 24)}"/> days <core:out value="${uActList.getUActListID(actItem.actId).duration % 24}"/> hours</b></p>
+									<p class="desc"><b>Activity Duration: <core:out value="${Math.round(uActList.getUActListID(actItem.actId).duration / 60)}"/> hours <core:out value="${uActList.getUActListID(actItem.actId).duration % 60}"/> minutes</b></p>
 									<p class="desc"><b>Activity Start Date: <fmt:formatDate value="${uActList.getUActListID(actItem.actId).tstart}" pattern="dd-MM-yyyy"/></b></p>
+									<p class="desc"><b>Spent calories: <core:out value="${uActList.getUActListID(actItem.actId).calorie}"/></b></p>
 							    	<hr style="border: 1px solid #334FFF;" >
 							    </core:forEach>
 							</div>

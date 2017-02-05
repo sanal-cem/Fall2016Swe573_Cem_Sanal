@@ -1,18 +1,21 @@
 package com.bmi.model;
+
+import java.util.Date;
 /**
  * Created by Cem Þanal.
  */
 
 public class FoodItem {
 
+    private String uName;
+    private Date fDate;
     private String offset;
     private String group;
 	private String name;
 	private String ndbno;
     private String ds;
-    private String uName;
-    private float weight;
     private String measure;
+    private String funit;
     private float fCalory;
     private int amount;
     
@@ -20,15 +23,16 @@ public class FoodItem {
 		
 	}
 	
-	public FoodItem(String uName, String offset, String group, String name, String ndbno, String ds, float weight, String measure, float fCalory, int amount) {
+	public FoodItem(String uName, Date fDate, String offset, String group, String name, String ndbno, String ds, String measure, String funit, float fCalory, int amount) {
 		this.uName = uName;
+		this.fDate = fDate;
 		this.offset = offset;
 		this.group = group;
 		this.name = name;
 		this.ndbno = ndbno;
 		this.ds = ds;
-		this.weight = weight;
 		this.measure = measure;
+		this.funit = funit;
 		this.fCalory = fCalory;
 		this.amount = amount;
 	}
@@ -39,6 +43,14 @@ public class FoodItem {
 
 	public void setuName(String uName) {
 		this.uName = uName;
+	}
+	
+	public Date getfDate() {
+		return fDate;
+	}
+
+	public void setfDate(Date fDate) {
+		this.fDate = fDate;
 	}
 
     public String getOffset() {
@@ -80,14 +92,6 @@ public class FoodItem {
     public void setDs(String ds) {
         this.ds = ds;
     }
-
-	public double getWeight() {
-		return weight;
-	}
-
-	public void setWeight(float weight) {
-		this.weight = weight;
-	}
 	
 	public String getMeasure() {
 		return measure;
@@ -96,6 +100,14 @@ public class FoodItem {
 	public void setMeasure(String measure) {
 		this.measure = measure;
 	}
+	
+    public String getFunit() {
+        return funit;
+    }
+
+    public void setFunit(String funit) {
+        this.funit = funit;
+    }
     
 	public Float getfCalory() {
 		return fCalory;

@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bmi.domain.UserActivityList;
+import com.bmi.domain.FoodList;
 import com.bmi.domain.UHistoryList;
 import com.bmi.model.User;
 import com.bmi.service.AccountService;
@@ -48,7 +50,9 @@ public class AccountController {
 	@RequestMapping("/loginSuccess")
 	public String loginSuccessForm(Model model,
 			@ModelAttribute("user") User user,
-			@ModelAttribute("uHistList") UHistoryList uHistList) {
+			@ModelAttribute("uHistList") UHistoryList uHistList,
+			@ModelAttribute("uActList") UserActivityList uActList,
+			@ModelAttribute("foodList") FoodList foodList) {
 		return "loginSuccess";
 		}
 	

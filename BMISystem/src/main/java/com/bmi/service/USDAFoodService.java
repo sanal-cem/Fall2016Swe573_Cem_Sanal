@@ -1,6 +1,9 @@
 package com.bmi.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -10,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import java.util.Date;
 
 import com.bmi.domain.FMeasureList;
 import com.bmi.domain.FNutrList;
@@ -70,15 +74,20 @@ public class USDAFoodService {
 	        for (int i = 0; i < n; i++) {
 	          // Get each food one by one
 				JSONObject jObj = jsonArray.getJSONObject(i);
-	
+				
+				Calendar cToday = Calendar.getInstance();
+				cToday.set(Calendar.HOUR_OF_DAY, 0);
+		    	Date dToday = (Date) cToday.getTime();
+				
 	            // Add each food as FoodItem into the foodList
 	            foodItem = new FoodItem(AccountService.user.getuName()
+	            		, dToday
 	            		, jObj.getString("offset")
 	            		, jObj.getString("group")
 	            		, jObj.getString("name")
 	            		, jObj.getString("ndbno")
 	            		, jObj.getString("ds")
-	            		, 0, " ", 0, 0);
+	            		, " ", "", 0, 0);
 		        
 		        foodList.addFoodItem(foodItem);
 		        foodListGlbl.addFoodItem(foodItem);
@@ -120,7 +129,7 @@ public class USDAFoodService {
 	            fNutrList.addFNutrient(fNut);
 	            fNutrListGlbl.addFNutrient(fNut);
 	            // Nutrient fetching for the food.
-	            USDAgetFNutMeasures(jObjNutrient, foodItem.getName(), fnutmsrList);
+	            USDAgetFNutMeasures(jObjNutrient, foodItem.getName(), fNut.getnName(), fnutmsrList);
 	        }
 	        
 		} catch (Exception ex) {
@@ -129,7 +138,7 @@ public class USDAFoodService {
 		return true;
 	}
 	
-	public boolean USDAgetFNutMeasures(JSONObject jObjNutrient, String fName, FMeasureList fmsrList) {
+	public boolean USDAgetFNutMeasures(JSONObject jObjNutrient, String fName, String nName, FMeasureList fmsrList) {
         FMeasures fNutMes;
 		try {
 		    JSONArray jsonArrayMeas = jObjNutrient.getJSONArray("measures");
@@ -141,6 +150,7 @@ public class USDAFoodService {
 				// Add each measure as FNutMeasures into fnutMes object.
 				fNutMes = new FMeasures(AccountService.user.getuName()
 	            		, fName
+	            		, nName
 						, jObjMeasure.getString("label")
 						, Float.parseFloat(jObjMeasure.getString("eqv"))
 						, Float.parseFloat(jObjMeasure.getString("qty"))
@@ -156,28 +166,17 @@ public class USDAFoodService {
 	}
 	
 	// adds food, nutrients and measures into the local database.
-	public String addFood(String foodName, String amount) {
+	public String addFood(String foodName, String amount, String date, String nunit) {
 		FoodItem foodItem = new FoodItem();
 		foodItem = foodListGlbl.getFoodListName(foodName);
+		SimpleDateFormat dd = new SimpleDateFormat("dd/MM/yyyy");
+		
 		try {
-				String sql = "INSERT INTO UFOODS( "
-						+ "UNAME, FOFFSET, FGROUP, "
-						+ "FNAME, FNDBNO, FDS, FWEIGHT, "
-						+ "FMEASURE, FCALORY, AMOUNT"
-						+ ") values(?,?,?,?,?,?,?,?,?,?)";
-				jdbcTemplate.update(sql, new Object[] {
-						AccountService.user.getuName(),
-						foodItem.getOffset(), foodItem.getGroup(),
-						foodName, foodItem.getNdbno(),
-						foodItem.getDs(), foodItem.getWeight(),
-						foodItem.getMeasure(), foodItem.getfCalory(),
-						Integer.parseInt(amount)});
-			
-			
 			FNutrients nutrient;
 			ArrayList<FNutrients> fNutrList = new ArrayList<FNutrients>();
 			FMeasures measure;
 			ArrayList<FMeasures> fnutmsrList;
+			String sql;
 			
 			fNutrList = fNutrListGlbl.getFNutrListFood(foodItem.getNdbno());
 			int nutrListSize = fNutrList.size();
@@ -190,32 +189,55 @@ public class USDAFoodService {
 						+ ") values(?,?,?,?,?,?,?,?)";
 				jdbcTemplate.update(sql, new Object[] {
 						AccountService.user.getuName(),
-						foodItem.getName(),
-						foodItem.getNdbno(), nutrient.getNid(),
-						nutrient.getNname(), nutrient.getGroup(),
-						nutrient.getNunit(), nutrient.getNvalue()});
+						foodItem.getName(), foodItem.getNdbno(),
+						nutrient.getNid(), nutrient.getnName(),
+						nutrient.getGroup(), nutrient.getNunit(),
+						nutrient.getNvalue()});
 			}
 				
 			fnutmsrList = new ArrayList<FMeasures>();
 			fnutmsrList = fnutmsrListGlbl.getFMeasureList(foodItem.getName());
 			int fnutmsrListSize = fnutmsrList.size();
+			float tCalorie = 0;
 			for(int j = 0; j < fnutmsrListSize; j++) {
 				measure = new FMeasures();
 				measure = fnutmsrList.get(j);
 				sql = "INSERT INTO UFMEASURES( UNAME, FNAME, "
-						+ "LABEL, EQV, QTY, VALUE"
-						+ ") values(?,?,?,?,?,?)";
+						+ " NNAME, LABEL, EQV, QTY, VALUE"
+						+ " ) values(?,?,?,?,?,?,?)";
 				jdbcTemplate.update(sql, new Object[] {
 						AccountService.user.getuName(),
-						foodItem.getName(), measure.getLabel(),
-						measure.getEqv(), measure.getQty(), 
-						measure.getValue()});
+						foodItem.getName(), measure.getNName(),
+						measure.getLabel(),	measure.getEqv(),
+						measure.getQty(), measure.getValue()});
+				tCalorie += calcFoodCalorie(measure, nunit, foodItem.getAmount());
 			}
+			sql = "INSERT INTO UFOODS( "
+					+ "UNAME, FDATE, FOFFSET, "
+					+ "FGROUP, FNAME, FNDBNO, FDS, "
+					+ "FMEASURE, FUNIT, FCALORY, AMOUNT"
+					+ ") values(?,?,?,?,?,?,?,?,?,?,?)";
+			jdbcTemplate.update(sql, new Object[] {
+					AccountService.user.getuName(), dd.parse(date.substring(0, 10)),
+					foodItem.getOffset(), foodItem.getGroup(),
+					foodName, foodItem.getNdbno(),
+					foodItem.getDs(), foodItem.getMeasure(), nunit,
+					tCalorie, Integer.parseInt(amount)
+					});
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 			return "newFoodFailed";
 		}
 		return "newFoodSuccess";
+	}
+	
+	private float calcFoodCalorie(FMeasures measure, String fUnit, int amount) {
+		float calorie = 0;
+		if (measure.getLabel().equals(fUnit)) {
+			calorie = measure.getValue() * measure.getEqv() * amount;
+		}
+		return calorie;
 	}
 }

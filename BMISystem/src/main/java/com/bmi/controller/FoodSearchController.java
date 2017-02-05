@@ -27,7 +27,7 @@ public class FoodSearchController {
 	}
 
     @RequestMapping(value = "/foodSearch" , method = RequestMethod.GET)
-    public String searchFood()
+    public String foodSearch()
     {
         return "foodSearch";
     }
@@ -45,21 +45,22 @@ public class FoodSearchController {
 		USDAfoodService.USDAFoodFetching(foodList, fNutrList, fMsrList, keyword);
 		return "foodList";
 	}
-	
+	// users chosen foodItem
 	@RequestMapping(value = "/addFood", method = RequestMethod.GET)
 	public String addFood(
 			@RequestParam(value = "foodName") String foodName,
 			@RequestParam(value = "amount") String amount,
+			@RequestParam(value = "date") String date,
+			@RequestParam(value = "nunit") String nunit,
 			Model model) {
-		// users' chosen foodItem
 		model.addAttribute("foodName", foodName);
-		return USDAfoodService.addFood(foodName, amount);
+		return USDAfoodService.addFood(foodName, amount, date, nunit);
 	}
 	
 	@RequestMapping("/newFoodSuccess")
 	public String foodSuccessForm(Model model,
-			FoodItem food) {
-		model.addAttribute("food", food);
+			String foodName) {
+		model.addAttribute("foodName", foodName);
 		return "newFoodSuccess";
 	}
 

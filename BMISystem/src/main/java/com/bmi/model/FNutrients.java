@@ -9,7 +9,7 @@ public class FNutrients {
 	private String fName;
     private String fndbno;
     private String nid;
-	private String nname;
+	private String nName;
     private String group;
 	private String nunit;
     private float nvalue;
@@ -18,12 +18,12 @@ public class FNutrients {
 		
 	}
 	
-	public FNutrients(String uName, String fName, String fndbno, String nid, String nname, String group, String nunit, float nvalue) {
+	public FNutrients(String uName, String fName, String fndbno, String nid, String nName, String group, String nunit, float nvalue) {
 		this.uName = uName;
 		this.fName = fName;
 		this.fndbno = fndbno;
 		this.nid = nid;
-		this.nname = nname;
+		this.nName = nName;
 		this.group = group;
 		this.nunit = nunit;
 		this.nvalue = nvalue;
@@ -61,12 +61,12 @@ public class FNutrients {
 		this.nid = nid;
 	}
 	
-	public String getNname() {
-		return nname;
+	public String getnName() {
+		return nName;
 	}
 
-	public void setNname(String nname) {
-		this.nname = nname;
+	public void setnName(String nName) {
+		this.nName = nName;
 	}
 	
 	public String getGroup() {

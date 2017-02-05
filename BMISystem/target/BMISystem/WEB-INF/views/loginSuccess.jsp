@@ -21,10 +21,9 @@
 			data.addColumn('string', 'Date');
  			data.addColumn('number', 'Weight');
 			data.addColumn('number', 'BMI');
-			data.addColumn('number', 'Calorie');
 			data.addRows([
 				<core:forEach var="uHist" items="${uHistList.getUHistList()}">
-					[ '<fmt:formatDate value="${uHist.IDate}" pattern="dd-MM-yyyy"/>', ${uHist.weight}, ${uHist.bmi}, ${uHist.calorie} ],
+					[ '<fmt:formatDate value="${uHist.IDate}" pattern="dd-MM-yyyy"/>', ${uHist.weight}, ${uHist.bmi} ],
 				</core:forEach>
 			]);
 	        var options = {
@@ -36,7 +35,37 @@
 	        	'min' : 0,
 	        };
 	        
-	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div0'));
+	
+	        chart.draw(data, options);
+	      }
+	</script>
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["corechart"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
+	
+			var data = new google.visualization.DataTable();
+			data.addColumn('number', 'Burned Calorie');
+ 			data.addColumn('number', 'Gained Calorie');
+			data.addRows([
+				<core:forEach var="actList" items="${uActList.getUActList()}">
+					[ ${uActList.calorie} ]
+				</core:forEach>
+				<core:forEach var="foodList" items="${foodList.getFoodList()}">
+					[ ${foodList.fCalory} ]
+				</core:forEach>
+			]);
+	        var options = {
+	        	'title' : 'Your BMI Graph',
+	        	is3D : true,
+	        	tooltip :  {showColorCode: true},
+	        	'width' : 1000,
+	        	'height' : 540,
+	        	'min' : 0,
+	        };
+	        
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
 	
 	        chart.draw(data, options);
 	      }
@@ -101,7 +130,9 @@
 						        <br />
 						    </core:otherwise>
 						</core:choose></b></p>
-						<div id="chart_div"></div>
+						<div id="chart_div0"></div>
+						<br/>
+						<div id="chart_div1"></div>
                     </div>
                 </div>
             </div>

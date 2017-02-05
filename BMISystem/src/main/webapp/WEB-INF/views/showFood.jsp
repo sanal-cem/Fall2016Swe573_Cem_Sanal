@@ -64,22 +64,22 @@
 						    <p class="desc"><b>Food Name:</b> <core:out value="${food.name}"/></p>
 						    </td></tr>
 						    <tr><td>
-						    <p class="desc"><b>Weight:</b> <core:out value="${String.valueOf(food.weight)}"/></p>
-						    </td></tr>
-						    <tr><td>
 						    <p class="desc"><b>Amount:</b> <core:out value="${String.valueOf(food.amount)}"/></p>
 						    </td></tr>
 						    <tr><td>
+						    <p class="desc"><b>Chosen unit:</b> <core:out value="${food.funit}"/></p>
 						    <p class="desc"><b>Calory:</b> <core:out value="${String.valueOf(food.fCalory)}"/></p>
 							</td></tr>
 							<tr><td>
 							<hr style="border: 1px solid #33FF49;" >
 						    <core:forEach var="nutrient" items="${fNutrList.getFNutrListFood(food.ndbno)}">
-							    <p class="desc"><b>Nutrient Name:</b> <core:out value="${nutrient.nname}"/></p>
+							    <p class="desc"><b>Nutrient Name:</b> <core:out value="${nutrient.nName}"/></p>
 							    <p class="desc"><b>Nutrient Unit:</b> <core:out value="${nutrient.nunit}"/></p>
 								<p class="desc"><b>Nutrient Value:</b> <core:out value="${nutrient.nvalue}"/></p>
 								<hr style="border: 1px solid #334FFF;" >
 							</core:forEach>
+							</td></tr>
+							<tr><td>
 							<core:forEach var="measure" items="${fMsrList.getFMeasureList(food.name)}">
 							    <p class="desc"><b>Measure Label:</b> <core:out value="${measure.label}"/></p>
 							    <p class="desc"><b>Measure Value:</b> <core:out value="${measure.value}"/></p>

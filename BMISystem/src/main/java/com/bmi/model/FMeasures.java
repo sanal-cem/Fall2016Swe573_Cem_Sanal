@@ -7,6 +7,7 @@ public class FMeasures {
 	
 	private String uName;
 	private String fName;
+	private String nName;
     private String label;
     private float eqv;
 	private float qty;
@@ -16,9 +17,10 @@ public class FMeasures {
 		
 	}
 	
-	public FMeasures(String uName, String fName, String label, float eqv, float qty, float value) {
+	public FMeasures(String uName, String fName, String nName, String label, float eqv, float qty, float value) {
 		this.uName = uName;
 		this.fName = fName;
+		this.nName = nName;
 		this.label = label;
 		this.eqv = eqv;
 		this.qty = qty;
@@ -39,6 +41,14 @@ public class FMeasures {
 
 	public void setFName(String fName) {
 		this.fName = fName;
+	}
+	
+	public String getNName() {
+		return nName;
+	}
+
+	public void setNName(String nName) {
+		this.nName = nName;
 	}
 	
 	public String getLabel() {

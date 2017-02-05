@@ -42,15 +42,16 @@ public class ActivityService {
 		SimpleDateFormat dd = new SimpleDateFormat("dd/MM/yyyy");
 		ActivityItem actItem = new ActivityItem();
 		actItem = actListGlbl.getActListID(actID);
+		float tDuration = Float.parseFloat(duration);
 		
 		try {
-			UserActivity userActivity = new UserActivity(AccountService.user.getuName(), actItem.getActId(), Double.parseDouble(duration), dd.parse(date.substring(0, 10)));
+			UserActivity userActivity = new UserActivity(AccountService.user.getuName(), actItem.getActId(), tDuration, dd.parse(date.substring(0, 10)), calcCalory(actItem.getActMETS(), tDuration));
 			userActListGlbl.addActItem(userActivity);
 			
 			List<Map<String, Object>> actRows = null;
 			String query = "SELECT ACTID FROM UACTIVITY "
-					+ "WHERE UNAME LIKE '" + AccountService.user.getuName()
-					+ "' AND ACTID LIKE '" + actID + "'";
+					+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"'
+					+ " AND ACTID LIKE " + '"' + actID + '"';
 			actRows = jdbcTemplate.queryForList(query);
 			for(Map<String, Object> row : actRows){
 		    	
@@ -63,20 +64,22 @@ public class ActivityService {
 			}
 			if(check == true) {
 				String sql = "INSERT INTO UACTIVITY ("
-						+ "UNAME, ACTID, DURATION, TSTART "
-						+ ") values(?,?,?,?)";
+						+ " UNAME, ACTID, DURATION, "
+						+ " TSTART, CALORIE "
+						+ ") values(?,?,?,?,?)";
 				jdbcTemplate.update(sql, new Object[] {
 						AccountService.user.getuName(),
 						userActivity.getActId(),
 						userActivity.getDuration(),
-						userActivity.getTstart()
+						userActivity.getTstart(),
+						userActivity.getCalorie()
 						});
 
 				actRows = null;
 				query = "SELECT ACTID "
 						+ "FROM UACTIVITYINFO "
-						+ "WHERE UNAME LIKE '" + AccountService.user.getuName()
-						+ "' AND ACTID LIKE '" + actItem.getActId() + "'";
+						+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"'
+						+ " AND ACTID LIKE " + '"' + actItem.getActId() + '"';
 				actRows = jdbcTemplate.queryForList(query);
 				for(Map<String, Object> row : actRows){
 			    	
@@ -89,14 +92,13 @@ public class ActivityService {
 				}
 				if(check == true) {
 					sql = "INSERT INTO UACTIVITYINFO ("
-							+ "UNAME, ACTID, ACTCODE, ACTMETS, "
-							+ "ACTGROUPID, ACTDESC"
+							+ " UNAME, ACTID, ACTCODE, ACTMETS, "
+							+ " ACTGROUPID, ACTDESC"
 							+ ") values(?,?,?,?,?,?)";
 					jdbcTemplate.update(sql, new Object[] {
-							AccountService.user.getuName(),
-							actItem.getActId(), actItem.getActCode(),
-							actItem.getActMETS(), actItem.getActGroupID(),
-							actItem.getActDesc()
+							AccountService.user.getuName(), actItem.getActId(), 
+							actItem.getActCode(), actItem.getActMETS(),
+							actItem.getActGroupID(), actItem.getActDesc()
 							});
 					
 					ActivityGroup actGrp = new ActivityGroup();
@@ -104,8 +106,8 @@ public class ActivityService {
 					actRows = null;
 					query = "SELECT ACTGRPID "
 							+ "FROM UACTIVITYGRP "
-							+ "WHERE UNAME LIKE '" + AccountService.user.getuName()
-							+ "' AND ACTGRPID LIKE '" + actGrp.getActGrpId() + "'";
+							+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"'
+							+ " AND ACTGRPID LIKE " + '"' + actGrp.getActGrpId() + '"';
 					actRows = jdbcTemplate.queryForList(query);
 					for(Map<String, Object> row : actRows){
 				    	
@@ -136,14 +138,18 @@ public class ActivityService {
 		return "newActivitySuccess";
 	}
 	
+	public float calcCalory(double METS, float duration) {
+		return (float)METS * AccountService.user.getWeight() * duration / 60;
+	}
+	
 	public String showUsersActivity(ActivityList actList, UserActivityList uActList) {
 		List<Map<String, Object>> actRows = null;
 		ActivityItem actItem;
 		try {
 			String query = "SELECT UNAME, ACTID, ACTCODE, "
-					+ "ACTMETS, ACTGROUPID, ACTDESC "
-					+ "FROM UACTIVITYINFO "
-					+ "WHERE UNAME LIKE '" + AccountService.user.getuName() + "'";
+					+ " ACTMETS, ACTGROUPID, ACTDESC "
+					+ " FROM UACTIVITYINFO "
+					+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"';
 			actRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> row : actRows){
 		    	actItem = new ActivityItem();
@@ -195,8 +201,8 @@ public class ActivityService {
 		   // Chosen user name inserted after LIKE expression.
 		   SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
 		   query = "SELECT UNAME, ACTID, DURATION, "
-					+ "TSTART FROM UACTIVITY "
-					+ "WHERE UNAME LIKE '" + AccountService.user.getuName() + "'";
+					+ " TSTART, CALORIE FROM UACTIVITY "
+					+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"';
 			actRows = jdbcTemplate.queryForList(query);
 		    for(Map<String, Object> urow : actRows){
 		       uAct = new UserActivity();
@@ -216,7 +222,7 @@ public class ActivityService {
 			   }
 			   
 			   if(urow.get("DURATION") != null) {
-				   uAct.setDuration(Double.parseDouble(urow.get("DURATION").toString()));
+				   uAct.setDuration(Float.parseFloat(urow.get("DURATION").toString()));
 			   }
 			   else {
 				   uAct.setDuration(0);
@@ -228,6 +234,13 @@ public class ActivityService {
 			   else {
 				   Date d = dd.parse("1900-01-01");
 				   uAct.setTstart(d);
+			   }
+			   
+			   if(urow.get("CALORIE") != null) {
+				   uAct.setCalorie(Float.parseFloat(urow.get("CALORIE").toString()));
+			   }
+			   else {
+				   uAct.setCalorie(0);
 			   }
 			   uActList.addActItem(uAct);
 		    }

@@ -42,9 +42,6 @@ public class ActivityController {
 			@RequestParam(value = "duration") String duration,
 			@RequestParam(value = "date") String date,
 			@RequestParam(value = "actID") String actID) {
-		
-		model.addAttribute("duration", duration);
-		model.addAttribute("date", date);
 		model.addAttribute("actID", actID);
 		return actService.addUsersActivity(duration, date, actID);
 	}
