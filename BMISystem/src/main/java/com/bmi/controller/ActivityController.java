@@ -41,9 +41,12 @@ public class ActivityController {
 			Model model,
 			@RequestParam(value = "duration") String duration,
 			@RequestParam(value = "date") String date,
-			@RequestParam(value = "actID") String actID) {
+			@RequestParam(value = "actID") String actID,
+			@RequestParam(value = "actDesc") String actDesc,
+			ActivityList actList) {
 		model.addAttribute("actID", actID);
-		return actService.addUsersActivity(duration, date, actID);
+		model.addAttribute("actDesc", actDesc);
+		return actService.addUsersActivity(duration, date, actID, actDesc);
 	}
 	
     @RequestMapping(value = "/showActivity")
@@ -57,7 +60,8 @@ public class ActivityController {
 	
 	@RequestMapping("/newActivitySuccess")
 	public String actSuccessForm(Model model,
-			@ModelAttribute("actID") String actID) {
+			@ModelAttribute("actID") String actID,
+			@ModelAttribute("actDesc") String actDesc) {
 		return "newActivitySuccess";
 	}
 

@@ -1,15 +1,20 @@
 package com.bmi.service;
 
 import java.util.Date;
+import java.util.List;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import com.bmi.domain.FoodList;
 import com.bmi.domain.UHistoryList;
+import com.bmi.domain.UserActivityList;
+import com.bmi.model.FoodItem;
 import com.bmi.model.UHistory;
 import com.bmi.model.User;
+import com.bmi.model.UserActivity;
 /**
  * Created by Cem Þanal.
  */
@@ -25,7 +30,7 @@ public class AccountService {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	public String login(User userL, UHistoryList uHistList) {
+	public String login(User userL, UHistoryList uHistList, UserActivityList uActListG, FoodList foodListG) {
 	    try
 	    {
         if(user.getIsValid())
@@ -73,31 +78,7 @@ public class AccountService {
 	    	
 	    	if(user.getuName().equals(userL.getuName()) == false)
 	    		return "loginFailed";
-
-	    	SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
-	    	Date hDate;
-	    	UHistory uHist;
-        	try {
-    			String query = "SELECT UNAME, IDATE, "
-    					+ " WEIGHT, BMI "
-    					+ " FROM UHISTORY "
-    					+ " WHERE UNAME LIKE " + '"'
-    					+ userL.getuName() + '"';
-    		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
-    		    	//DEÐÝÞTÝRÝLECEKLER
-    		    	hDate = dd.parse(row.get("IDATE").toString());
-    		    	uHist = new UHistory(row.get("UNAME").toString(),
-    		    			hDate,
-    		    			Float.parseFloat(row.get("WEIGHT").toString()),
-    		    			Float.parseFloat(row.get("BMI").toString())
-    		    			);
-    		    	uHistList.addUHistItem(uHist);
-    		     }
-    		} catch (Exception e) {
-    			System.out.println(e.getMessage());
-    			e.printStackTrace();
-    		}
-	    	
+	    	getGraphs(userL, uHistList, uActListG, foodListG);
         	return "loginSuccess";
         }else
         	//user name or password are not Valid
@@ -107,6 +88,114 @@ public class AccountService {
 	        System.out.println(exc);
 	    }
 	    return "logreg";
+	}
+	
+	public String getGraphs(User userL, UHistoryList uHistList, UserActivityList uActListG, FoodList foodListG) {
+    	SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
+    	Date hDate;
+    	UHistory uHist;
+    	try {
+			String query = "SELECT UNAME, IDATE, "
+					+ " WEIGHT, BMI "
+					+ " FROM UHISTORY "
+					+ " WHERE UNAME LIKE " + '"'
+					+ userL.getuName() + '"';
+		    for(Map<String, Object> row : jdbcTemplate.queryForList(query)){
+		    	//DEÐÝÞTÝRÝLECEKLER
+		    	hDate = dd.parse(row.get("IDATE").toString());
+		    	uHist = new UHistory(row.get("UNAME").toString(),
+		    			hDate,
+		    			Float.parseFloat(row.get("WEIGHT").toString()),
+		    			Float.parseFloat(row.get("BMI").toString())
+		    			);
+		    	uHistList.addUHistItem(uHist);
+		     }
+		    
+			   UserActivity uAct;
+			   // Chosen user name inserted after LIKE expression.
+			   query = "SELECT ACTID, DURATION, "
+					+ " TSTART, CALORIE FROM UACTIVITY "
+					+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"';
+			   List<Map<String, Object>> actRows = jdbcTemplate.queryForList(query);
+			    for(Map<String, Object> urow : actRows){
+			       uAct = new UserActivity();
+				   
+				   if(urow.get("ACTID") != null) {
+				   uAct.setActId(urow.get("ACTID").toString());
+				   }
+				   else {
+					   uAct.setActId(" ");
+				   }
+				   
+				   if(urow.get("DURATION") != null) {
+					   uAct.setDuration(Float.parseFloat(urow.get("DURATION").toString()));
+				   }
+				   else {
+					   uAct.setDuration(0);
+				   }
+				   
+				   if(urow.get("TSTART") != null) {
+					   uAct.setTstart(dd.parse(urow.get("TSTART").toString().substring(0, 10)));
+				   }
+				   else {
+					   Date d = dd.parse("1900-01-01");
+					   uAct.setTstart(d);
+				   }
+				   
+				   if(urow.get("CALORIE") != null) {
+					   uAct.setCalorie(Float.parseFloat(urow.get("CALORIE").toString()));
+				   }
+				   else {
+					   uAct.setCalorie(0);
+				   }
+				   uActListG.addActItem(uAct);
+				}
+
+				FoodItem foodItem;
+				query = "SELECT FGROUP, FNAME, FCALORY, "
+						+ "AMOUNT, FDATE FROM UFOODS "
+						+ "WHERE UNAME LIKE "
+						+ '"' + AccountService.user.getuName() + '"';
+				List<Map<String, Object>> foodRows = jdbcTemplate.queryForList(query);
+				for(Map<String, Object> row : foodRows){
+					foodItem = new FoodItem();
+
+				   if(row.get("FNAME") != null) {
+					   foodItem.setName(row.get("FNAME").toString());
+				   }
+				   else {
+					   foodItem.setName(" ");
+				   }
+				   
+				   if(row.get("FCALORY") != null) {
+					   foodItem.setfCalory(Float.parseFloat(row.get("FCALORY").toString()));
+				   }
+				   else {
+					   foodItem.setfCalory(Float.parseFloat("0"));
+				   }
+				   
+				   if(row.get("AMOUNT") != null) {
+					   foodItem.setAmount(Integer.parseInt(row.get("AMOUNT").toString()));
+				   }
+				   else {
+					   foodItem.setAmount(Integer.parseInt("0"));
+				   }
+				   
+				   if(row.get("FDATE") != null) {
+					   foodItem.setfDate(dd.parse(row.get("FDATE").toString().substring(0, 10)));
+				   }
+				   else {
+					   Date d = dd.parse("1900-01-01");
+					   foodItem.setfDate(d);
+				   }
+				
+				   foodListG.addFoodItem(foodItem);
+				}
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+					e.printStackTrace();
+				}
+				return "loginSuccess";
 	}
 	
 	public String reg(User userR) {

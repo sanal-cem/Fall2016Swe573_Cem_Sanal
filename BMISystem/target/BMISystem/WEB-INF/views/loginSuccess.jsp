@@ -46,18 +46,16 @@
 		function drawChart() {
 	
 			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Date');
 			data.addColumn('number', 'Burned Calorie');
- 			data.addColumn('number', 'Gained Calorie');
+			data.addColumn('number', 'Duration');
 			data.addRows([
-				<core:forEach var="actList" items="${uActList.getUActList()}">
-					[ ${uActList.calorie} ]
-				</core:forEach>
-				<core:forEach var="foodList" items="${foodList.getFoodList()}">
-					[ ${foodList.fCalory} ]
+				<core:forEach var="uActListG" items="${uActListG.getUActList()}">
+					[ '<fmt:formatDate value="${uActListG.tstart}" pattern="dd-MM-yyyy"/>', ${uActListG.calorie}, ${uActListG.duration} ],
 				</core:forEach>
 			]);
 	        var options = {
-	        	'title' : 'Your BMI Graph',
+	        	'title' : 'Your Calorie Graph',
 	        	is3D : true,
 	        	tooltip :  {showColorCode: true},
 	        	'width' : 1000,
@@ -66,6 +64,33 @@
 	        };
 	        
 	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+	
+	        chart.draw(data, options);
+	      }
+	</script>
+	<script type="text/javascript">
+		google.load("visualization", "1", {packages:["corechart"]});
+		google.setOnLoadCallback(drawChart);
+		function drawChart() {
+	
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Date');
+ 			data.addColumn('number', 'Gained Calorie');
+			data.addRows([
+				<core:forEach var="foodListG" items="${foodListG.getFoodList()}">
+					[ '<fmt:formatDate value="${foodListG.fDate}" pattern="dd-MM-yyyy"/>', ${foodListG.fCalory} ],
+				</core:forEach>
+			]);
+	        var options = {
+	        	'title' : 'Your Calorie Graph',
+	        	is3D : true,
+	        	tooltip :  {showColorCode: true},
+	        	'width' : 1000,
+	        	'height' : 540,
+	        	'min' : 0,
+	        };
+	        
+	        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div2'));
 	
 	        chart.draw(data, options);
 	      }
@@ -133,6 +158,8 @@
 						<div id="chart_div0"></div>
 						<br/>
 						<div id="chart_div1"></div>
+						<br/>
+						<div id="chart_div2"></div>
                     </div>
                 </div>
             </div>

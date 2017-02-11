@@ -76,19 +76,19 @@
 							<input class="hidden" type="text" name="foodName" value="${food.name}"></input>
 							<p class="desc"><b>Food Amount: </b></p><p class="desc"><input class="ui-button numbersOnly" type="text" name="amount" /></p>
 						    <p class="desc"><b>Eating Date: </b></p><p class="desc"><input class="ui-button datepicker" type="text" name="date" ></p>
-	    					<p class="desc"><b>Food Unit: </b></p>
-							<select class="form-control" name="nunit" >
-								<core:forEach var="nutr" items="${fNutrList.getFNutrListFood(food.ndbno)}" varStatus="status">
-									<core:set var="unitExists" value="${false}" />
+	    					<p class="desc"><b>Unit type: </b></p>
+							<select class="form-control" name="measLabel" >
+								<core:forEach var="meas" items="${fMsrList.getFMeasureList(food.name)}" varStatus="status">
+									<core:set var="measExists" value="${false}" />
 							        <core:if test="${(status.index - 1) > 0}">
-							            <core:forEach var="prvsUnit" items="${fNutrList.getFNutrListFood(food.ndbno)}" begin="0" end="${status.index - 1}" varStatus="inner">
-							                <core:if test="${nutr.nunit == prvsUnit.nunit}">
-							                    <core:set var="unitExists" value="${true}" />
+							            <core:forEach var="prvsMeas" items="${fMsrList.getFMeasureList(food.name)}" begin="0" end="${status.index - 1}" varStatus="inner">
+							                <core:if test="${meas.label == prvsMeas.label}">
+							                    <core:set var="measExists" value="${true}" />
 							                </core:if>
 							            </core:forEach>
 							        </core:if>
-							        <core:if test="${not unitExists}">
-							            <option value="${nutr.nunit}">${nutr.nunit}</option>
+							        <core:if test="${not measExists}">
+							            <option value="${meas.label}">${meas.label}</option>
 							        </core:if>
 							    </core:forEach>
 							</select>

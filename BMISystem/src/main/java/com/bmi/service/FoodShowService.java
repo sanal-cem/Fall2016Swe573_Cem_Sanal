@@ -1,5 +1,7 @@
 package com.bmi.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +34,11 @@ public class FoodShowService {
 		FNutrients fNutrient;
 		FoodItem foodItem;
 		FMeasures fNutrMeasure;
+		SimpleDateFormat dd = new SimpleDateFormat("yyyy-MM-dd");
 		// get food items.
 		try {
 			String query = "SELECT FGROUP, FNAME, FNDBNO, "
-					+ "FMEASURE, FUNIT, FCALORY, AMOUNT "
+					+ "FMEASURE, FUNIT, FCALORY, AMOUNT, FDATE "
 					+ "FROM UFOODS WHERE UNAME LIKE "
 					+ '"' + AccountService.user.getuName() + '"';
 		    foodRows = jdbcTemplate.queryForList(query);
@@ -90,6 +93,14 @@ public class FoodShowService {
 		       else {
 		    	   foodItem.setAmount(Integer.parseInt("0"));
 		       }
+			   
+			   if(row.get("FDATE") != null) {
+				   foodItem.setfDate(dd.parse(row.get("FDATE").toString().substring(0, 10)));
+			   }
+			   else {
+				   Date d = dd.parse("1900-01-01");
+				   foodItem.setfDate(d);
+			   }
 
 		       foodList.addFoodItem(foodItem);
 

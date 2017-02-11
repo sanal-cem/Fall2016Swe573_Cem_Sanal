@@ -51,10 +51,10 @@ public class FoodSearchController {
 			@RequestParam(value = "foodName") String foodName,
 			@RequestParam(value = "amount") String amount,
 			@RequestParam(value = "date") String date,
-			@RequestParam(value = "nunit") String nunit,
+			@RequestParam(value = "measLabel") String measLabel,
 			Model model) {
 		model.addAttribute("foodName", foodName);
-		return USDAfoodService.addFood(foodName, amount, date, nunit);
+		return USDAfoodService.addFood(foodName, amount, date, measLabel);
 	}
 	
 	@RequestMapping("/newFoodSuccess")

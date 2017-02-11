@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 align="center">Adding New Activity Successful</h1>
-                        <p class="desc"><b>Activity ID: <core:out value="${actID}" /></b></p>
+                        <p class="desc"><b>Activity Description: <core:out value="${actDesc}" /></b></p>
                     </div>
                 </div>
             </div>

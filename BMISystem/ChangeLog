@@ -1,7 +1,8 @@
-Version 0.22 (changes from BMI Calculator 0.21) - Released on 04 February 2017:
-* bug, fix: Can't escaping from quotations cause not fetching nutrutions and measures.
+Version 0.22 (changes from BMI Calculator 0.21) - Released on 11 February 2017:
+* bug, fix: Can't escaping from quotations cause not fetching nutrutions and measures situation fixed.
 * added: DropDown added to provide choosable measure types for foods.
-* added, gui: Users' BMI and Calorie Graphs.
+* added, gui: Users' BMI, Calorie gained and Calorie burned Graphs.
+* bug, fix: Users' Food Calorie calculation fixed.
 
 Version 0.21 (changes from BMI Calculator 0.2) - Released on 29 January 2017:
 * fix, gui: Food and Activity Showcase pages should be fixed to be more user friendly.

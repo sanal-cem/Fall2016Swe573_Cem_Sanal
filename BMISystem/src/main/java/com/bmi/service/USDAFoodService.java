@@ -166,7 +166,7 @@ public class USDAFoodService {
 	}
 	
 	// adds food, nutrients and measures into the local database.
-	public String addFood(String foodName, String amount, String date, String nunit) {
+	public String addFood(String foodName, String amount, String date, String measLabel) {
 		FoodItem foodItem = new FoodItem();
 		foodItem = foodListGlbl.getFoodListName(foodName);
 		SimpleDateFormat dd = new SimpleDateFormat("dd/MM/yyyy");
@@ -210,18 +210,18 @@ public class USDAFoodService {
 						foodItem.getName(), measure.getNName(),
 						measure.getLabel(),	measure.getEqv(),
 						measure.getQty(), measure.getValue()});
-				tCalorie += calcFoodCalorie(measure, nunit, foodItem.getAmount());
+				tCalorie += calcFoodCalorie(measure, measLabel, Integer.parseInt(amount));
 			}
 			sql = "INSERT INTO UFOODS( "
 					+ "UNAME, FDATE, FOFFSET, "
 					+ "FGROUP, FNAME, FNDBNO, FDS, "
-					+ "FMEASURE, FUNIT, FCALORY, AMOUNT"
-					+ ") values(?,?,?,?,?,?,?,?,?,?,?)";
+					+ "FMEASURE, FCALORY, AMOUNT"
+					+ ") values(?,?,?,?,?,?,?,?,?,?)";
 			jdbcTemplate.update(sql, new Object[] {
 					AccountService.user.getuName(), dd.parse(date.substring(0, 10)),
 					foodItem.getOffset(), foodItem.getGroup(),
 					foodName, foodItem.getNdbno(),
-					foodItem.getDs(), foodItem.getMeasure(), nunit,
+					foodItem.getDs(), measLabel,
 					tCalorie, Integer.parseInt(amount)
 					});
 			
@@ -233,9 +233,9 @@ public class USDAFoodService {
 		return "newFoodSuccess";
 	}
 	
-	private float calcFoodCalorie(FMeasures measure, String fUnit, int amount) {
+	private float calcFoodCalorie(FMeasures measure, String mLabel, int amount) {
 		float calorie = 0;
-		if (measure.getLabel().equals(fUnit)) {
+		if (measure.getLabel().equals(mLabel)) {
 			calorie = measure.getValue() * measure.getEqv() * amount;
 		}
 		return calorie;

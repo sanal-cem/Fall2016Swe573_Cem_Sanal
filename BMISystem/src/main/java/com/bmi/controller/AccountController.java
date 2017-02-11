@@ -41,20 +41,17 @@ public class AccountController {
 	
 	@RequestMapping("/login")
 	public String loginFunc(Model model,
-			User user, UHistoryList uHistList) {
-		model.addAttribute("user", user);
-		model.addAttribute("uHistList", uHistList);
-		return accountService.login(user, uHistList);
+		@ModelAttribute("user") User user,
+		@ModelAttribute("uHistList") UHistoryList uHistList,
+		@ModelAttribute("uActListG") UserActivityList uActListG,
+		@ModelAttribute("foodListG") FoodList foodListG) {
+		return accountService.login(user, uHistList, uActListG, foodListG);
 	}
 	
 	@RequestMapping("/loginSuccess")
-	public String loginSuccessForm(Model model,
-			@ModelAttribute("user") User user,
-			@ModelAttribute("uHistList") UHistoryList uHistList,
-			@ModelAttribute("uActList") UserActivityList uActList,
-			@ModelAttribute("foodList") FoodList foodList) {
+	public String loginSuccessForm(Model model) {
 		return "loginSuccess";
-		}
+	}
 	
 	@RequestMapping("/loginFailed")
 	public String loginFailForm() {

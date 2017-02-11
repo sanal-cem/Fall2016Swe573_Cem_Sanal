@@ -1,107 +1,112 @@
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- phpMyAdmin SQL Dump
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: bmi
--- ------------------------------------------------------
--- Server version	5.7.14-log
+-- Anamakine: 127.0.0.1
+-- Üretim Zamanı: 11 Şub 2017, 14:50:27
+-- Sunucu sürümü: 5.7.14-log
+-- PHP Sürümü: 5.6.25
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
--- Table structure for table `UACTIVITY`
+-- Veritabanı: `bmi`
 --
 
-DROP TABLE IF EXISTS `UACTIVITY`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `UACTIVITY`
+--
+
 CREATE TABLE `UACTIVITY` (
   `UNAME` varchar(64) DEFAULT NULL,
   `ACTID` varchar(32) NOT NULL,
   `DURATION` float NOT NULL,
   `TSTART` date NOT NULL,
-  `CALORIE` float DEFAULT NULL,
-  PRIMARY KEY (`ACTID`,`TSTART`,`DURATION`)
+  `CALORIE` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `UACTIVITY`
+-- Tablo döküm verisi `UACTIVITY`
 --
 
-LOCK TABLES `UACTIVITY` WRITE;
-/*!40000 ALTER TABLE `UACTIVITY` DISABLE KEYS */;
-INSERT INTO `UACTIVITY` VALUES ('cemsanal@yandex.com','46',90,'2017-02-02',924.75),('cemsanal@yandex.com','6',30,'2018-09-02',232.9),('cemsanal@yandex.com','11',60,'2019-02-01',465.8),('cemsanal@yandex.com','26',150,'2017-02-02',1507);
-/*!40000 ALTER TABLE `UACTIVITY` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UACTIVITY` (`UNAME`, `ACTID`, `DURATION`, `TSTART`, `CALORIE`) VALUES
+('cemsanal@yandex.com', '8', 50, '2018-10-02', 443.75),
+('cemsanal@yandex.com', '17', 90, '2018-10-02', 958.5),
+('cemsanal@yandex.com', '62', 120, '2018-05-02', 752.6),
+('cemsanal@yandex.com', '74', 40, '2017-04-08', 321.867),
+('cemsanal@yandex.com', '13', 50, '2018-10-02', 591.667),
+('cemsanal@yandex.com', '116', 15, '2016-04-10', 88.75),
+('cemsanal@yandex.com', '64', 56, '2018-04-02', 152.413),
+('cemsanal@yandex.com', '81', 70, '2017-03-02', 414.167),
+('cemsanal@yandex.com', '75', 40, '2017-03-10', 227.2);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `UACTIVITYGRP`
+-- Tablo için tablo yapısı `UACTIVITYGRP`
 --
 
-DROP TABLE IF EXISTS `UACTIVITYGRP`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UACTIVITYGRP` (
   `UNAME` varchar(64) DEFAULT NULL,
   `ACTGRPID` varchar(32) NOT NULL,
-  `ACTNAME` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`ACTGRPID`)
+  `ACTNAME` varchar(128) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `UACTIVITYGRP`
+-- Tablo döküm verisi `UACTIVITYGRP`
 --
 
-LOCK TABLES `UACTIVITYGRP` WRITE;
-/*!40000 ALTER TABLE `UACTIVITYGRP` DISABLE KEYS */;
-INSERT INTO `UACTIVITYGRP` VALUES ('cemsanal@yandex.com','2','Conditioning Exercise'),('cemsanal@yandex.com','1','Bicycling');
-/*!40000 ALTER TABLE `UACTIVITYGRP` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UACTIVITYGRP` (`UNAME`, `ACTGRPID`, `ACTNAME`) VALUES
+('cemsanal@yandex.com', '1', 'Bicycling'),
+('cemsanal@yandex.com', '2', 'Conditioning Exercise'),
+('cemsanal@yandex.com', '3', 'Dancing'),
+('cemsanal@yandex.com', '4', 'Fishing and Hunting');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `UACTIVITYINFO`
+-- Tablo için tablo yapısı `UACTIVITYINFO`
 --
 
-DROP TABLE IF EXISTS `UACTIVITYINFO`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UACTIVITYINFO` (
   `UNAME` varchar(64) DEFAULT NULL,
   `ACTID` varchar(32) NOT NULL,
   `ACTCODE` varchar(32) DEFAULT NULL,
   `ACTMETS` float DEFAULT NULL,
   `ACTGROUPID` varchar(32) DEFAULT NULL,
-  `ACTDESC` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`ACTID`)
+  `ACTDESC` varchar(128) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `UACTIVITYINFO`
+-- Tablo döküm verisi `UACTIVITYINFO`
 --
 
-LOCK TABLES `UACTIVITYINFO` WRITE;
-/*!40000 ALTER TABLE `UACTIVITYINFO` DISABLE KEYS */;
-INSERT INTO `UACTIVITYINFO` VALUES ('cemsanal@yandex.com','46','02065',9,'2','stair-treadmill ergometer, general'),('cemsanal@yandex.com','6','01011',6.8,'1','bicycling, to/from work, self selected pace'),('cemsanal@yandex.com','11','01020',6.8,'1','bicycling, 10-11.9 mph, leisure, slow, light effort'),('cemsanal@yandex.com','26','02013',8.8,'2','bicycling, stationary, 101-160 watts, vigorous effort');
-/*!40000 ALTER TABLE `UACTIVITYINFO` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UACTIVITYINFO` (`UNAME`, `ACTID`, `ACTCODE`, `ACTMETS`, `ACTGROUPID`, `ACTDESC`) VALUES
+('cemsanal@yandex.com', '8', '01015', 7.5, '1', 'bicycling, general'),
+('cemsanal@yandex.com', '17', '01066', 9, '1', 'bicycling, 12 mph, standing, hands on brake hoods, 60 rpm'),
+('cemsanal@yandex.com', '62', '02120', 5.3, '2', 'water aerobics, water calisthenics, water exercise'),
+('cemsanal@yandex.com', '74', '03012', 6.8, '3', 'ballet, modern, or jazz, performance, vigorous effort'),
+('cemsanal@yandex.com', '13', '01040', 10, '1', 'bicycling, 14-15.9 mph, racing or leisure, fast, vigorous effort'),
+('cemsanal@yandex.com', '116', '04120', 5, '4', 'hunting, rabbit, squirrel, prairie chick, raccoon, small game (Taylor Code 690)'),
+('cemsanal@yandex.com', '64', '02140', 2.3, '2', 'video exercise workouts, TV conditioning programs (e.g., yoga, stretching), light effort'),
+('cemsanal@yandex.com', '81', '03020', 5, '3', 'aerobic, low impact'),
+('cemsanal@yandex.com', '75', '03014', 4.8, '3', 'tap');
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `UFMEASURES`
+-- Tablo için tablo yapısı `UFMEASURES`
 --
 
-DROP TABLE IF EXISTS `UFMEASURES`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UFMEASURES` (
   `UNAME` varchar(64) DEFAULT NULL,
   `FNAME` varchar(128) DEFAULT NULL,
@@ -111,25 +116,58 @@ CREATE TABLE `UFMEASURES` (
   `QTY` float DEFAULT NULL,
   `VALUE` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `UFMEASURES`
+-- Tablo döküm verisi `UFMEASURES`
 --
 
-LOCK TABLES `UFMEASURES` WRITE;
-/*!40000 ALTER TABLE `UFMEASURES` DISABLE KEYS */;
-INSERT INTO `UFMEASURES` VALUES ('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Energy','g',68,68,80),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Protein','g',68,68,12),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Total lipid (fat)','g',68,68,2.5),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Carbohydrate, by difference','g',68,68,2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Fiber, total dietary','g',68,68,0),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Sugars, total','g',68,68,2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Calcium, Ca','g',68,68,0),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Iron, Fe','g',68,68,0.72),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Sodium, Na','g',68,68,460),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Vitamin C, total ascorbic acid','g',68,68,2.4),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Vitamin A, IU','g',68,68,750),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Fatty acids, total saturated','g',68,68,0.5),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Fatty acids, total trans','g',68,68,0),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','Cholesterol','g',68,68,50),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Energy','g',91,91,150),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Protein','g',91,91,14),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Total lipid (fat)','g',91,91,9),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Carbohydrate, by difference','g',91,91,2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Sugars, total','g',91,91,2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Iron, Fe','g',91,91,0.72),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Sodium, Na','g',91,91,630),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Vitamin C, total ascorbic acid','g',91,91,2.4),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Vitamin A, IU','g',91,91,300),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Fatty acids, total saturated','g',91,91,2.5),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Cholesterol','g',91,91,75),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Energy','g',91,91,150),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Protein','g',91,91,14),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Total lipid (fat)','g',91,91,9),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Carbohydrate, by difference','g',91,91,2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Sugars, total','g',91,91,2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Iron, Fe','g',91,91,0.72),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Sodium, Na','g',91,91,630),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Vitamin C, total ascorbic acid','g',91,91,2.4),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Vitamin A, IU','g',91,91,300),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Fatty acids, total saturated','g',91,91,2.5),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','Cholesterol','g',91,91,75),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Energy','PIECES',90,2,140),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Protein','PIECES',90,2,12),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Total lipid (fat)','PIECES',90,2,8),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Carbohydrate, by difference','PIECES',90,2,3),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Fiber, total dietary','PIECES',90,2,1),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Sugars, total','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Calcium, Ca','PIECES',90,2,20),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Iron, Fe','PIECES',90,2,1.8),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Potassium, K','PIECES',90,2,90),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Sodium, Na','PIECES',90,2,430),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Vitamin C, total ascorbic acid','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Thiamin','PIECES',90,2,150.3),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Riboflavin','PIECES',90,2,170),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Niacin','PIECES',90,2,2),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Vitamin B-6','PIECES',90,2,0.16),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Vitamin B-12','PIECES',90,2,1.8),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Vitamin A, IU','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Fatty acids, total saturated','PIECES',90,2,0.999),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Fatty acids, total monounsaturated','PIECES',90,2,1.998),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Fatty acids, total polyunsaturated','PIECES',90,2,5.004),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Fatty acids, total trans','PIECES',90,2,0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','Cholesterol','PIECES',90,2,0),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','Energy','cup',245,1,140),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','Protein','cup',245,1,8.99),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','Total lipid (fat)','cup',245,1,2.99),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','Carbohydrate, by difference','cup',245,1,19.01),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','Fiber, total dietary','cup',245,1,3.9),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','Sugars, total','cup',245,1,2.01);
-/*!40000 ALTER TABLE `UFMEASURES` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UFMEASURES` (`UNAME`, `FNAME`, `NNAME`, `LABEL`, `EQV`, `QTY`, `VALUE`) VALUES
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Energy', 'g', 85, 85, 130),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Protein', 'g', 85, 85, 14),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Total lipid (fat)', 'g', 85, 85, 7),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Carbohydrate, by difference', 'g', 85, 85, 2),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Sugars, total', 'g', 85, 85, 1),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Calcium, Ca', 'g', 85, 85, 20),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Iron, Fe', 'g', 85, 85, 1.08),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Sodium, Na', 'g', 85, 85, 440),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Vitamin C, total ascorbic acid', 'g', 85, 85, 4.8),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Vitamin A, IU', 'g', 85, 85, 200),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Fatty acids, total saturated', 'g', 85, 85, 2),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Fatty acids, total trans', 'g', 85, 85, 0),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', 'Cholesterol', 'g', 85, 85, 65),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Energy', 'g', 50, 50, 80),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Protein', 'g', 50, 50, 9),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Total lipid (fat)', 'g', 50, 50, 4.5),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Carbohydrate, by difference', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Sugars, total', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Calcium, Ca', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Iron, Fe', 'g', 50, 50, 0.72),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Sodium, Na', 'g', 50, 50, 270),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Vitamin C, total ascorbic acid', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Vitamin A, IU', 'g', 50, 50, 100),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Fatty acids, total saturated', 'g', 50, 50, 1),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Fatty acids, total trans', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Cholesterol', 'g', 50, 50, 40),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Energy', 'g', 50, 50, 80),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Protein', 'g', 50, 50, 9),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Total lipid (fat)', 'g', 50, 50, 4.5),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Carbohydrate, by difference', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Sugars, total', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Calcium, Ca', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Iron, Fe', 'g', 50, 50, 0.72),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Sodium, Na', 'g', 50, 50, 270),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Vitamin C, total ascorbic acid', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Vitamin A, IU', 'g', 50, 50, 100),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Fatty acids, total saturated', 'g', 50, 50, 1),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Fatty acids, total trans', 'g', 50, 50, 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', 'Cholesterol', 'g', 50, 50, 40);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `UFNUTRIENTS`
+-- Tablo için tablo yapısı `UFNUTRIENTS`
 --
 
-DROP TABLE IF EXISTS `UFNUTRIENTS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UFNUTRIENTS` (
   `UNAME` varchar(64) DEFAULT NULL,
   `FNAME` varchar(128) DEFAULT NULL,
@@ -140,25 +178,58 @@ CREATE TABLE `UFNUTRIENTS` (
   `NUNIT` varchar(16) DEFAULT NULL,
   `NVALUE` float DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `UFNUTRIENTS`
+-- Tablo döküm verisi `UFNUTRIENTS`
 --
 
-LOCK TABLES `UFNUTRIENTS` WRITE;
-/*!40000 ALTER TABLE `UFNUTRIENTS` DISABLE KEYS */;
-INSERT INTO `UFNUTRIENTS` VALUES ('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','208','Energy','Proximates','kcal',118),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','203','Protein','Proximates','g',17.65),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','204','Total lipid (fat)','Proximates','g',3.68),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','205','Carbohydrate, by difference','Proximates','g',2.94),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','291','Fiber, total dietary','Proximates','g',0),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','269','Sugars, total','Proximates','g',2.94),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','301','Calcium, Ca','Minerals','mg',0),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','303','Iron, Fe','Minerals','mg',1.06),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','307','Sodium, Na','Minerals','mg',676),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','401','Vitamin C, total ascorbic acid','Vitamins','mg',3.5),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','318','Vitamin A, IU','Vitamins','IU',1103),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','606','Fatty acids, total saturated','Lipids','g',0.74),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','601','Cholesterol','Lipids','mg',74),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','208','Energy','Proximates','kcal',165),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','203','Protein','Proximates','g',15.38),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','204','Total lipid (fat)','Proximates','g',9.89),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','205','Carbohydrate, by difference','Proximates','g',2.2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','269','Sugars, total','Proximates','g',2.2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','303','Iron, Fe','Minerals','mg',0.79),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','307','Sodium, Na','Minerals','mg',692),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','401','Vitamin C, total ascorbic acid','Vitamins','mg',2.6),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','318','Vitamin A, IU','Vitamins','IU',330),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','606','Fatty acids, total saturated','Lipids','g',2.75),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','601','Cholesterol','Lipids','mg',82),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','208','Energy','Proximates','kcal',165),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','203','Protein','Proximates','g',15.38),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','204','Total lipid (fat)','Proximates','g',9.89),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','205','Carbohydrate, by difference','Proximates','g',2.2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','269','Sugars, total','Proximates','g',2.2),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','303','Iron, Fe','Minerals','mg',0.79),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','307','Sodium, Na','Minerals','mg',692),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','401','Vitamin C, total ascorbic acid','Vitamins','mg',2.6),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','318','Vitamin A, IU','Vitamins','IU',330),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','606','Fatty acids, total saturated','Lipids','g',2.75),('cemsanal@yandex.com','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','601','Cholesterol','Lipids','mg',82),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','208','Energy','Proximates','kcal',156),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','203','Protein','Proximates','g',13.33),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','204','Total lipid (fat)','Proximates','g',8.89),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','205','Carbohydrate, by difference','Proximates','g',3.33),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','291','Fiber, total dietary','Proximates','g',1.1),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','269','Sugars, total','Proximates','g',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','301','Calcium, Ca','Minerals','mg',22),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','303','Iron, Fe','Minerals','mg',2),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','306','Potassium, K','Minerals','mg',100),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','307','Sodium, Na','Minerals','mg',478),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','401','Vitamin C, total ascorbic acid','Vitamins','mg',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','404','Thiamin','Vitamins','mg',167),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','405','Riboflavin','Vitamins','mg',188.889),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','406','Niacin','Vitamins','mg',2.222),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','415','Vitamin B-6','Vitamins','mg',0.178),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','418','Vitamin B-12','Vitamins','µg',2),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','318','Vitamin A, IU','Vitamins','IU',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','606','Fatty acids, total saturated','Lipids','g',1.11),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','645','Fatty acids, total monounsaturated','Lipids','g',2.22),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','646','Fatty acids, total polyunsaturated','Lipids','g',5.56),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','601','Cholesterol','Lipids','mg',0),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','208','Energy','Proximates','kcal',57),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','203','Protein','Proximates','g',3.67),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','204','Total lipid (fat)','Proximates','g',1.22),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','205','Carbohydrate, by difference','Proximates','g',7.76),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','291','Fiber, total dietary','Proximates','g',1.6),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','269','Sugars, total','Proximates','g',0.82),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','301','Calcium, Ca','Minerals','mg',16),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','303','Iron, Fe','Minerals','mg',0.44),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','307','Sodium, Na','Minerals','mg',196),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','401','Vitamin C, total ascorbic acid','Vitamins','mg',0),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','318','Vitamin A, IU','Vitamins','IU',204),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','606','Fatty acids, total saturated','Lipids','g',0.41),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','605','Fatty acids, total trans','Lipids','g',0),('cemsanal@yandex.com','AHOLD, CHICKEN TORTILLA SOUP, UPC: 688267155994','45045486','601','Cholesterol','Lipids','mg',2);
-/*!40000 ALTER TABLE `UFNUTRIENTS` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UFNUTRIENTS` (`UNAME`, `FNAME`, `FNDBNO`, `NID`, `NNAME`, `NGROUP`, `NUNIT`, `NVALUE`) VALUES
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '208', 'Energy', 'Proximates', 'kcal', 153),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '203', 'Protein', 'Proximates', 'g', 16.47),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '204', 'Total lipid (fat)', 'Proximates', 'g', 8.24),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '205', 'Carbohydrate, by difference', 'Proximates', 'g', 2.35),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '269', 'Sugars, total', 'Proximates', 'g', 1.18),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '301', 'Calcium, Ca', 'Minerals', 'mg', 24),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '303', 'Iron, Fe', 'Minerals', 'mg', 1.27),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '307', 'Sodium, Na', 'Minerals', 'mg', 518),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '401', 'Vitamin C, total ascorbic acid', 'Vitamins', 'mg', 5.6),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '318', 'Vitamin A, IU', 'Vitamins', 'IU', 235),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '606', 'Fatty acids, total saturated', 'Lipids', 'g', 2.35),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '605', 'Fatty acids, total trans', 'Lipids', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', '601', 'Cholesterol', 'Lipids', 'mg', 76),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '208', 'Energy', 'Proximates', 'kcal', 160),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '203', 'Protein', 'Proximates', 'g', 18),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '204', 'Total lipid (fat)', 'Proximates', 'g', 9),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '205', 'Carbohydrate, by difference', 'Proximates', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '269', 'Sugars, total', 'Proximates', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '301', 'Calcium, Ca', 'Minerals', 'mg', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '303', 'Iron, Fe', 'Minerals', 'mg', 1.44),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '307', 'Sodium, Na', 'Minerals', 'mg', 540),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '401', 'Vitamin C, total ascorbic acid', 'Vitamins', 'mg', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '318', 'Vitamin A, IU', 'Vitamins', 'IU', 200),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '606', 'Fatty acids, total saturated', 'Lipids', 'g', 2),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '605', 'Fatty acids, total trans', 'Lipids', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '601', 'Cholesterol', 'Lipids', 'mg', 80),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '208', 'Energy', 'Proximates', 'kcal', 160),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '203', 'Protein', 'Proximates', 'g', 18),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '204', 'Total lipid (fat)', 'Proximates', 'g', 9),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '205', 'Carbohydrate, by difference', 'Proximates', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '269', 'Sugars, total', 'Proximates', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '301', 'Calcium, Ca', 'Minerals', 'mg', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '303', 'Iron, Fe', 'Minerals', 'mg', 1.44),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '307', 'Sodium, Na', 'Minerals', 'mg', 540),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '401', 'Vitamin C, total ascorbic acid', 'Vitamins', 'mg', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '318', 'Vitamin A, IU', 'Vitamins', 'IU', 200),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '606', 'Fatty acids, total saturated', 'Lipids', 'g', 2),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '605', 'Fatty acids, total trans', 'Lipids', 'g', 0),
+('cemsanal@yandex.com', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', '601', 'Cholesterol', 'Lipids', 'mg', 80);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `UFOODS`
+-- Tablo için tablo yapısı `UFOODS`
 --
 
-DROP TABLE IF EXISTS `UFOODS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `UFOODS` (
   `UNAME` varchar(64) DEFAULT NULL,
   `FDATE` date NOT NULL,
@@ -170,54 +241,48 @@ CREATE TABLE `UFOODS` (
   `FMEASURE` varchar(64) DEFAULT NULL,
   `FUNIT` varchar(16) DEFAULT NULL,
   `FCALORY` float DEFAULT NULL,
-  `AMOUNT` int(11) DEFAULT NULL,
-  PRIMARY KEY (`FDATE`,`FNAME`)
+  `AMOUNT` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `UFOODS`
+-- Tablo döküm verisi `UFOODS`
 --
 
-LOCK TABLES `UFOODS` WRITE;
-/*!40000 ALTER TABLE `UFOODS` DISABLE KEYS */;
-INSERT INTO `UFOODS` VALUES ('cemsanal@yandex.com','2018-04-02',14,'Branded Food Products Database','AHOLD, NATURE\'S PROMISE, ORGANIC CHICKEN SAUSAGE, PUMPKIN SPICE, UPC: 688267158346','45045732','BL',' ','g',0,4),('cemsanal@yandex.com','2017-01-02',15,'Branded Food Products Database','AHOLD, NATURE\'S PROMISE, SWEET ITALIAN CHICKEN SAUSAGE WITH KALE, UPC: 688267156335','45048380','BL',' ','g',0,6),('cemsanal@yandex.com','2017-01-02',0,'Branded Food Products Database','A DELICIOUS VEGETARIAN ALTERNATIVE TO CHICKEN, UPC: 845561000669','45188431','BL',' ','g',0,3);
-/*!40000 ALTER TABLE `UFOODS` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UFOODS` (`UNAME`, `FDATE`, `FOFFSET`, `FGROUP`, `FNAME`, `FNDBNO`, `FDS`, `FMEASURE`, `FUNIT`, `FCALORY`, `AMOUNT`) VALUES
+('cemsanal@yandex.com', '2017-07-12', 42, 'Branded Food Products Database', 'AL FRESCO, CHICKEN SAUSAGE, SPICY JALAPENO, UPC: 030771097107', '45027907', 'BL', 'g', NULL, 301539, 4),
+('cemsanal@yandex.com', '2018-04-02', 44, 'Branded Food Products Database', 'AL FRESCO, COUNTRY STYLE BREAKFAST CHICKEN SAUSAGE, UPC: 030771096650', '45010815', 'BL', 'g', NULL, 353654, 7);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `uhistory`
+-- Tablo için tablo yapısı `UHISTORY`
 --
 
-DROP TABLE IF EXISTS `uhistory`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `uhistory` (
+CREATE TABLE `UHISTORY` (
   `UNAME` varchar(64) NOT NULL,
   `IDATE` date NOT NULL,
   `WEIGHT` float DEFAULT NULL,
-  `BMI` float NOT NULL,
-  PRIMARY KEY (`IDATE`,`UNAME`,`BMI`)
+  `BMI` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `uhistory`
+-- Tablo döküm verisi `UHISTORY`
 --
 
-LOCK TABLES `uhistory` WRITE;
-/*!40000 ALTER TABLE `uhistory` DISABLE KEYS */;
-INSERT INTO `uhistory` VALUES ('cemsanal@yandex.com','2017-02-04',69.9,21.3363),('cemsanal@yandex.com','2017-02-04',69.2,21.1227),('cemsanal@yandex.com','2017-02-04',70,21.3669),('cemsanal@yandex.com','2017-02-04',80,24.4193),('cemsanal@yandex.com','2017-02-04',75,22.8931),('cemsanal@yandex.com','2017-02-04',60,18.3145),('cemsanal@yandex.com','2017-02-04',68.5,20.909);
-/*!40000 ALTER TABLE `uhistory` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `UHISTORY` (`UNAME`, `IDATE`, `WEIGHT`, `BMI`) VALUES
+('cemsanal@yandex.com', '2017-02-11', 70, 21.3669),
+('cemsanal@yandex.com', '2017-02-11', 69, 21.0616),
+('cemsanal@yandex.com', '2017-02-11', 71, 21.6721),
+('cemsanal@yandex.com', '2017-02-11', 71, 27.7344),
+('cemsanal@yandex.com', '2017-02-11', 71, 21.9136),
+('sfdj&#305;sgf@sdfkmsrg.com', '2017-02-11', 60, 0.195918);
+
+-- --------------------------------------------------------
 
 --
--- Table structure for table `USERS`
+-- Tablo için tablo yapısı `USERS`
 --
 
-DROP TABLE IF EXISTS `USERS`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `USERS` (
   `UNAME` varchar(64) NOT NULL,
   `PASS` varchar(256) DEFAULT NULL,
@@ -229,28 +294,63 @@ CREATE TABLE `USERS` (
   `HEIGHT` float DEFAULT NULL,
   `WEIGHT` float DEFAULT NULL,
   `BMI` float DEFAULT NULL,
-  `WEIGHTTYPE` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`UNAME`)
+  `WEIGHTTYPE` varchar(32) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `USERS`
+-- Tablo döküm verisi `USERS`
 --
 
-LOCK TABLES `USERS` WRITE;
-/*!40000 ALTER TABLE `USERS` DISABLE KEYS */;
-INSERT INTO `USERS` VALUES ('asd2@asd2.com','cemcem','asd2','asd2','34','F','deneme wehfuwerf &#305;&#305;&#305;&#305;&#305;&#305; &#287;&#287;&#287;&#287;&#287;&#287; üüüü',18.1,55.1,0.168188,'U'),('asd@asd.com','cemcem','Cem','Sanal','27','F','adsfsdfsrgfewrg deneme askjhda',1.8,68,20.9877,'N'),('cem-sanal@hotmail.com','cemcem','Cem1','Sanal1','26','M','Female comment deneme 1234',1.81,67.7,20.6648,'N'),('cemsanal@yandex.com','cemcem','Cem','Sanal','27','M','deneme comment Cem 123435 wergyer',1.81,68.5,20.909,'N'),('cemsanal@yandex.ru','cemcem','Cem','Sanal','26','M','deneme 233479 deneme owekroe',1.81,68,20.7564,'N'),('uskudarli','yemek123456','S','Uskudarli','23','F',' ',2.05,90,15055.3,''),('asd3@asd3.com','cemcem','Asd3','Asd3','23','F','deneme weujwfeu 2345435 sdfsdf',1.75,74,24.1633,'N');
-/*!40000 ALTER TABLE `USERS` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+INSERT INTO `USERS` (`UNAME`, `PASS`, `NAME`, `SURNAME`, `AGE`, `GENDER`, `COMMENT`, `HEIGHT`, `WEIGHT`, `BMI`, `WEIGHTTYPE`) VALUES
+('asd2@asd2.com', 'cemcem', 'asd2', 'asd2', '34', 'F', 'deneme wehfuwerf &#305;&#305;&#305;&#305;&#305;&#305; &#287;&#287;&#287;&#287;&#287;&#287; üüüü', 18.1, 55.1, 0.168188, 'U'),
+('asd@asd.com', 'cemcem', 'Cem', 'Sanal', '27', 'F', 'adsfsdfsrgfewrg deneme askjhda', 1.8, 68, 20.9877, 'N'),
+('cem-sanal@hotmail.com', 'cemcem', 'Cem1', 'Sanal1', '26', 'M', 'Female comment deneme 1234', 1.81, 67.7, 20.6648, 'N'),
+('cemsanal@yandex.com', 'cemcem', 'Cem', 'Sanal', '27', 'M', 'deneme comment Cem 123435 wergyer', 1.8, 71, 21.9136, 'N'),
+('cemsanal@yandex.ru', 'cemcem', 'Cem', 'Sanal', '26', 'M', 'deneme 233479 deneme owekroe', 1.81, 68, 20.7564, 'N'),
+('uskudarli', 'yemek123456', 'S', 'Uskudarli', '23', 'F', ' ', 2.05, 90, 15055.3, ''),
+('asd3@asd3.com', 'cemcem', 'Asd3', 'Asd3', '23', 'F', 'deneme weujwfeu 2345435 sdfsdf', 1.75, 74, 24.1633, 'N'),
+('sfdj&#305;sgf@sdfkmsrg.com', 'cemcem', 'jkewf&#305;jkwef&#305;', 'ws&#305;efjwefjw', '34', 'M', 'ssefsewswefswgs wegsdgd', 17.5, 60, 0.195918, 'U');
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Dökümü yapılmış tablolar için indeksler
+--
+
+--
+-- Tablo için indeksler `UACTIVITY`
+--
+ALTER TABLE `UACTIVITY`
+  ADD PRIMARY KEY (`ACTID`,`TSTART`,`DURATION`);
+
+--
+-- Tablo için indeksler `UACTIVITYGRP`
+--
+ALTER TABLE `UACTIVITYGRP`
+  ADD PRIMARY KEY (`ACTGRPID`);
+
+--
+-- Tablo için indeksler `UACTIVITYINFO`
+--
+ALTER TABLE `UACTIVITYINFO`
+  ADD PRIMARY KEY (`ACTID`);
+
+--
+-- Tablo için indeksler `UFOODS`
+--
+ALTER TABLE `UFOODS`
+  ADD PRIMARY KEY (`FDATE`,`FNAME`);
+
+--
+-- Tablo için indeksler `UHISTORY`
+--
+ALTER TABLE `UHISTORY`
+  ADD PRIMARY KEY (`IDATE`,`UNAME`,`BMI`);
+
+--
+-- Tablo için indeksler `USERS`
+--
+ALTER TABLE `USERS`
+  ADD PRIMARY KEY (`UNAME`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2017-02-06  0:35:54

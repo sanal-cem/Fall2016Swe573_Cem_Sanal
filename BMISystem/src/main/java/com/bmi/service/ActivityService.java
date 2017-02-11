@@ -36,7 +36,7 @@ public class ActivityService {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 	
-	public String addUsersActivity(String duration, String date, String actID) {
+	public String addUsersActivity(String duration, String date, String actID, String actDesc) {
 		boolean check = true;
 		
 		SimpleDateFormat dd = new SimpleDateFormat("dd/MM/yyyy");
@@ -49,9 +49,10 @@ public class ActivityService {
 			userActListGlbl.addActItem(userActivity);
 			
 			List<Map<String, Object>> actRows = null;
-			String query = "SELECT ACTID FROM UACTIVITY "
-					+ " WHERE UNAME LIKE " + '"' + AccountService.user.getuName() + '"'
-					+ " AND ACTID LIKE " + '"' + actID + '"';
+			String query = "SELECT A.ACTID, UI.ACTDESC FROM UACTIVITY A "
+					+ " INNER JOIN UACTIVITYINFO UI ON A.ACTID = UI.ACTID"
+					+ " WHERE A.UNAME LIKE " + '"' + AccountService.user.getuName() + '"'
+					+ " AND A.ACTID LIKE " + '"' + actID + '"';
 			actRows = jdbcTemplate.queryForList(query);
 			for(Map<String, Object> row : actRows){
 		    	
@@ -60,6 +61,13 @@ public class ActivityService {
 				   }
 				   else {
 					   check = true;
+				   }
+				   
+				   if(row.get("ACTDESC") != null) {
+					   actDesc = row.get("ACTDESC").toString();
+				   }
+				   else {
+					   actDesc = "";
 				   }
 			}
 			if(check == true) {

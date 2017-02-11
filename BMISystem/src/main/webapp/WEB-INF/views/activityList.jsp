@@ -79,13 +79,14 @@
 							    </td><td>
 							    	<p class="desc"><b><core:out value="${actGrpList.getActGroupListID(actItem.actGroupID).actName}"/></b></p>
 							    </td></tr>
-							    <form:form method="GET" commandName="addActivity" action="addActivity" modelAttribute="duration, date, actID">
+							    <form:form method="GET" commandName="addActivity" action="addActivity" modelAttribute="duration, date, actID, actDesc">
 							    	<tr><td>
 										<p class="desc"><b>Activity Duration (Minutes):</b></p><p class="desc"><input class="ui-button numbersOnly" type="text" name="duration" ></p>
 						            	<br/>
 						            	<p class="desc"><b>Activity Date:</b></p><p class="desc"><input class="ui-button datepicker" type="text" name="date" ></p>
 						            	<br/>
 						            	<input class="hidden" type="text" value="<core:out value="${actItem.actId}"/>" name="actID" ></input>
+						            	<input class="hidden" type="text" value="<core:out value="${actItem.actDesc}"/>" name="actDesc" ></input>
 						            </td></tr>
 						            <tr><td>
 						            	<input class="ui-button ui-widget ui-corner-all" type="submit" value="Add Activity"></input>

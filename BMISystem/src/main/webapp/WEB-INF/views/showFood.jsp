@@ -67,7 +67,7 @@
 						    <p class="desc"><b>Amount:</b> <core:out value="${String.valueOf(food.amount)}"/></p>
 						    </td></tr>
 						    <tr><td>
-						    <p class="desc"><b>Chosen unit:</b> <core:out value="${food.funit}"/></p>
+						    <p class="desc"><b>Chosen measure:</b> <core:out value="${food.measure}"/></p>
 						    <p class="desc"><b>Calory:</b> <core:out value="${String.valueOf(food.fCalory)}"/></p>
 							</td></tr>
 							<tr><td>
